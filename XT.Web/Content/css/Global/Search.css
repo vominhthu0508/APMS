@@ -1,0 +1,151 @@
+.inline-search
+{
+    float: left;
+}
+
+.inline-search:first-child .btn{
+    padding-left: 0px;
+}
+
+.search-panel{
+    position: relative;
+}
+
+.search-panel .btn.dropdown-toggle:not(.solid){
+    background-color: transparent;
+}
+
+    .search-panel .btn.dropdown-toggle:focus
+    {
+        outline: none;
+        -moz-box-shadow: none;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+    }
+
+.search-panel .search_concept
+{
+    margin-right: 5px;
+}
+
+.search-panel h6{
+    font-weight: normal;
+}
+
+.search-panel .search_concept i, .search-panel .dropdown-menu li a i
+{
+    font-style: normal;
+    opacity: 0.5;
+}
+
+.search-panel .dropdown-menu
+{
+    border-radius: 0px;
+    border: none;
+    border-top: 1px solid #e6e6e6;
+    margin-top: 8px;
+    text-align: left;
+    left: 50%;
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    -o-transform: translateX(-50%);
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    /*padding-bottom: 0px;*/
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.search-panel.open .caret{
+    position: relative;
+}
+
+.search-panel.open .caret:before
+{
+    content: '';
+    border: solid transparent;
+    position: absolute;
+    right: -9px;
+    bottom: -21px;
+    border-width: 9px;
+    border-bottom-color: #d6d6d6;
+}
+
+.search-panel.open .caret:after
+{
+    content: '';
+    border: solid transparent;
+    position: absolute;
+    right: -9px;
+    bottom: -22px;
+    border-width: 9px;
+    border-bottom-color: #fff;
+    z-index: 1001;
+}
+
+.search-panel .dropdown-menu .range{
+    padding: 10px; 
+    background-color: #e6e6e6; 
+    margin-bottom: -5px;
+    margin-top: -10px;
+}
+
+.search-panel.with-padding .dropdown-menu{
+    width: 100%;
+    margin-top: -12px;
+}
+
+.instant-search-dialog .modal-content
+{
+    background: transparent;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border: none;
+}
+
+    .instant-search-dialog .modal-content .modal-header
+    {
+        background: transparent !important;
+        border: none;
+    }
+
+        .instant-search-dialog .modal-content .modal-header .bootstrap-dialog-close-button .close
+        {
+            font-size: 60px;
+            line-height: 26px;
+            font-weight: 200;
+            cursor: pointer;
+            color: #e04f67;
+            opacity: 1;
+            text-shadow: none;
+        }
+
+        .instant-search-dialog .modal-content .modal-header .bootstrap-dialog-close-button .close:hover,
+        .instant-search-dialog .modal-content .modal-header .bootstrap-dialog-close-button .close:focus{
+            outline: none;
+        }
+
+        .instant-search-dialog .modal-content .modal-header .bootstrap-dialog-title
+        {
+            color: #fff;
+        }
+
+.instant-search-dialog input
+{
+    font-size: 70px;
+    background-color: transparent;
+    border: 0 solid;
+    outline: 0;
+    box-shadow: none;
+    height: 84px;
+    color: #f2f2f2;
+    position: absolute;
+    padding: 0;
+    font-weight: 400;
+    z-index: 1000;
+}
+
+.instant-ui-complete{
+    z-index: 2000 !important;
+}

@@ -1,0 +1,317 @@
+    header#plain {
+        background-color: #fff;
+    }
+
+    header #logo .logo_sticky {
+        display: none;
+    }
+
+    header.sticky #logo .logo_normal {
+        display: none;
+    }
+
+    header.sticky #logo .logo_sticky {
+        display: block;
+    }
+
+    header.sticky #top_line {
+        height: 0;
+        overflow: hidden;
+        padding: 0;
+        opacity: 0;
+    }
+
+    header.sticky {
+        -webkit-box-shadow: 0 2px 10px -2px rgba(0,0,0,0.41);
+        -moz-box-shadow: 0 2px 10px -2px rgba(0,0,0,0.41);
+        box-shadow: 0 2px 10px -2px rgba(0,0,0,0.41);
+        background-color: #fff;
+        padding-bottom: 0;
+    }
+
+.carousel-control.district {
+    padding-top: 6%;
+    width: 5%;
+}
+.carousel-control.main {
+    margin-top:140px;
+}
+
+.district-detail.active {
+}
+
+    .district-detail.active::after
+    {
+        content: '';
+        position: absolute;
+        bottom: -20px;
+        left: 50%;
+        -moz-transform: translateX(-50%);
+        -ms-transform: translateX(-50%);
+        -o-transform: translateX(-50%);
+        -webkit-transform: translateX(-50%);
+        transform: translateX(-50%);
+        border-color: transparent transparent #2B2E2F;
+        border-style: solid;
+        border-width: 10px;
+        height: 0;
+        width: 0;
+    }
+
+.district-detail-wrapper {
+    margin-top: 20px;
+    background-color: #2B2E2F;
+    display: none;
+    position: relative;
+    height: 300px;
+    /*font-family: 'segoe ui', Helvetica, sans-serif, Arial;*/
+}
+    .district-detail-wrapper .menuboxs .subbox-menu ul li   {
+        list-style-type: none;
+    }
+    .district-detail-wrapper .menuboxs .subbox-menu ul li a {
+        color: #fff;
+    }
+
+        .district-detail-wrapper .menuboxs .subbox-menu ul li a > i {
+            display: inline-block;
+            margin-right: 5px;
+        }
+
+        .district-detail-wrapper .menuboxs .subbox-menu ul li a.active, .district-detail-wrapper .menuboxs .subbox-menu ul li a:hover {
+            background: #eee;
+            color: #e04f67;
+        }
+
+            .district-detail-wrapper .menuboxs .subbox-menu ul li a.active > i {
+                display: inline;
+            }
+                .district-detail-wrapper > .article-popup-close{
+                    font-size: 23px;
+                }
+
+/*end district-detail*/
+
+.district-rooms-wrapper {
+    background-color: #fff;
+    height: 260px;
+    padding: 20px 30px;
+}
+
+.district-rooms-list {
+    margin-bottom: 20px;
+    height: 80%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.article-popup-close {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    font-size: 35px;
+    color: #efefef;
+    cursor: pointer;
+    z-index: 2000;
+}
+
+
+.district-rooms-list {
+    margin-bottom: 20px;
+    height: 80%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.directory-list
+{
+    /*padding-left: 15px;*/
+}
+
+    .directory-list .directory-list-item
+    {
+        padding-top: 20px;
+        position: relative;
+    }
+
+    .directory-list .directory-list-item hr{
+        margin-bottom: 0px;
+    }
+
+.directory-list-item .directory-photo
+{
+    height: 150px;
+}
+
+.directory-list-item .doctor-info h4
+{
+    margin-bottom: 5px;
+}
+
+.directory-list-item .doctor-info p.address
+{
+    font-size: 11px;
+    color: #a9a9a9;
+}
+
+.ratings-wrapper
+{
+    text-align: center;
+    margin-top: 5px;
+}
+
+.directory-photo-hover:hover
+{
+    border-color: #d6d6d6;
+    cursor: pointer;
+}
+
+.directory-photo img
+{
+    width: 100%;
+    min-height: 100%;
+}
+
+.doctor-info-fixheight-150
+{
+    height: 150px;
+    overflow: hidden;
+}
+
+.doctor-info-fixheight-100
+{
+    height: 120px;
+    overflow: hidden;
+    font-size: 13px;
+    font-style: italic;
+}
+
+.doctor-info h4
+{
+    color: #586467;
+    margin: 0px 0px 15px;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+    .doctor-info h4 a
+    {
+        color: #586467;
+    }
+
+        .doctor-info h4 a:hover
+        {
+            color: #e04f67;
+            text-decoration: none;
+        }
+.district-detail-wrapper .menuboxs .subbox-menu ul li a.active, .district-detail-wrapper .menuboxs .subbox-menu ul li a:hover {
+    background: #eee;
+    color: #e04f67;
+}
+
+/*.area-picture:hover{
+    cursor: pointer;
+    opacity: 0.5;
+}*/
+
+.area-name {
+  margin-top: 5px;
+  text-align: center;
+}
+
+.area-picture{
+    border: 5px solid#fff;
+    overflow: hidden;
+    -webkit-box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
+    -moz-box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.area-picture img
+{
+    width: 100%;
+    
+    
+        -webkit-transform: scale(1.2);
+    transform: scale(1.2);
+    -webkit-transition: all .7s ease;
+    transition: all .7s ease;
+}
+
+.area-picture:hover img{
+        -webkit-transform: scale(1);
+    transform: scale(1);
+}
+
+#hot-hosts .sp-slide .sp-image-container:after{
+    content: '';
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+#hot-hosts .sp-slide.sp-selected .sp-image-container:after{
+    content: none;
+}
+
+.slider-pro h3.sp-layer{
+    text-align: center;
+}
+
+#hot-hosts .sp-caption-container{
+    display: none;
+}
+
+.hero-media{
+    top: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    overflow: hidden;
+}
+
+.hero-layer{
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.emerge{
+    z-index: 2;
+}
+
+.HeroVideo {
+    -webkit-transform: translate(-50%,-50%);
+    -khtml-transform: translate(-50%,-50%);
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    width: auto;
+    position: absolute;
+}
+
+@media only screen and (min-width: 1154px)
+{
+    .HeroVideo
+    {
+        width: 100%;
+        height: auto;
+    }
+}
+
+@media (max-width: 480px)
+{
+    #hot-hosts .sp-slide .host-name
+    {
+        font-size: 14px !important;
+    }
+
+    #hot-hosts .sp-caption-container
+    {
+        display: block !important;
+    }
+}

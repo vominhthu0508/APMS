@@ -1,0 +1,39 @@
+﻿@using XT.Web.External
+@using XT.Web.Models
+@using XT.Model
+
+@{
+    //ViewBag.form_id = "registersuccess";
+    var title = "Hoàn tất đăng ký";
+    Layout = "~/Views/Layout/LayoutAccountBySteps.cshtml";
+    //ViewBag.SearchHeader = "";
+
+    ViewBag.Title = title;
+    //ViewBag.Steps = new[] { 
+    //    new { Name = "Đăng ký", Url = Url.GoAccountRegisterUser() },
+    //    new { Name = "Kích hoạt tài khoản", Url = "#" },
+    //    new { Name = "Hoàn tất!", Url = "#" },
+    //};
+    ViewBag.Steps = new MyDictionary[] { 
+        new MyDictionary{ Name = "Đăng ký", Image = Url.GoAccountRegisterUser() },
+        new MyDictionary{ Name = "Kích hoạt tài khoản", Image = "#" },
+        new MyDictionary{ Name = "Hoàn tất!", Image = "#" },
+    };
+    ViewBag.CurrentStep = 2;
+    ViewBag.ParentStep = 0;
+}
+
+<div class="form_title">
+    <h3><strong><i class="icon_set_1_icon-84"></i></strong>Đăng kí tài khoản thành công tại @XT.Web.AppSettings.Website!</h3>
+    <p>
+        @Html.GetResource("Account_Active__line29")
+    </p>
+</div>
+<div class="step">
+    <p>
+        @Html.GetResource("Account_Active__line34")
+        <br />
+        <br />
+        Bạn hãy ấn vào @Html.ActionLink("Trang chủ", "Index", "Home") để quay trở lại trang chủ hoặc @Html.ActionLink("Đăng nhập", "Login", "Account") để đăng nhập
+    </p>
+</div>

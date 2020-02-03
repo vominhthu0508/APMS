@@ -1,0 +1,86 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Module
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="title-text">@name Name</label>
+                @Html.TextBoxFor(model => model.Module_Name, 
+                    new { @class = "form-control", placeholder = "Nhập tên " + name })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Module Code</label>
+                @Html.TextBoxFor(model => model.Module_Code, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Module Exam Name (Portal)</label>
+                @Html.TextBoxFor(model => model.Module_Name_Portal, 
+                    new { @class = "form-control", placeholder = "Vd: Mod Exam 1" })
+            </div>
+            <div class="form-group">
+                <label>Course Family</label>
+                @*@Html.DropDownListFor(model => model.CourseFamily_Id, 
+                    new SelectList(LayoutModel.CourseFamilies(), "Id", "CourseFamily_FullName", Model.CourseFamily_Id), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.CourseFamilies_ToMyDictionary(), new { Model.CourseFamily_Id }))
+            </div>
+            <div class="form-group">
+                <label>Module Type</label>
+                @*@Html.DropDownListFor(model => model.Module_Type, 
+                    new SelectList(MyDictionary.GetValues(typeof(ModuleTypeEnum)), "Id", "Name", Model.Module_Type), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(ModuleTypeEnum), new { Model.Module_Type }))
+            </div>
+            <div class="form-group">
+                <label>Semester</label>
+                @*@Html.DropDownListFor(model => model.Semester, 
+                    new SelectList(MyDictionary.GetValues(typeof(SemesterEnum)), "Id", "Name", Model.Semester), 
+                    new { @class = "form-control", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(SemesterEnum), new { Model.Semester }))
+            </div>
+            <div class="form-group">
+                <label class="title-text">Semester Name (Portal)</label>
+                @Html.TextBoxFor(model => model.Semester_Name_Portal, 
+                    new { @class = "form-control", placeholder = "Vd: Graphic Suite" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Max LT</label>
+                @Html.TextBoxFor(model => model.Module_Max_LT, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Max TH</label>
+                @Html.TextBoxFor(model => model.Module_Max_TH, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Hours</label>
+                @Html.TextBoxFor(model => model.Module_DurationByHour, 
+                    new { @class = "form-control textbox-float", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Days</label>
+                @Html.TextBoxFor(model => model.Module_DurationByDay, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label>Portal Type</label>
+                @*@Html.DropDownListFor(model => model.Module_Portal_Type, 
+                    new SelectList(MyDictionary.GetValues(typeof(ModulePortalTypeEnum)), "Id", "Name", Model.Module_Portal_Type), 
+                    new { @class = "form-control " + Model.Module_Portal_Type, style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(ModulePortalTypeEnum), new { Model.Module_Portal_Type }))
+            </div>
+            <div class="form-group">
+                <label>Exam Type</label>
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(ModuleExamTypeEnum), new { Model.Module_Exam_Type }))
+            </div>
+        </div>
+    </div>
+}

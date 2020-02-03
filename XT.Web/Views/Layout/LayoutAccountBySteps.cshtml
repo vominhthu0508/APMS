@@ -1,0 +1,77 @@
+﻿@using XT.Web.External
+@using XT.Model
+
+@{
+    Layout = "~/Views/Layout/Layout.cshtml";
+    ViewBag.SearchHeader = "";
+
+    var title = ViewBag.Title;
+    var steps = ViewBag.Steps as MyDictionary[];
+    var steps_count = steps.Length;
+    var currentStep = ViewBag.CurrentStep;
+    var parentStep = -1;
+    if (ViewBag.ParentStep != null)
+    {
+        parentStep = ViewBag.ParentStep;
+    }
+    
+    //used in: RegisterSucccess, Active, RecoverPassword, RecoverPasswordFinish
+}
+
+<section id="hero_2">
+    <div class="intro_title animated fadeInDown">
+        <h1>@title</h1>
+        <div class="bs-wizard">
+            @for(int i = 0; i < steps_count; i++)
+            {
+                var status = "complete";
+                var url = steps[i].Image;
+                var name = steps[i].Name;
+                if (i >= currentStep)
+                {
+                    if (i == currentStep)
+                    {
+                        status = "active";
+                    }
+                    else
+                    {
+                        status = "disabled";
+                    }
+                }
+            <div class="col-xs-4 bs-wizard-step @status">
+                <div class="text-center bs-wizard-stepnum">@name</div>
+                <div class="progress">
+                    <div class="progress-bar"></div>
+                </div>
+                <a href="@url" class="bs-wizard-dot"></a>
+            </div>
+            }
+        </div>
+        <!-- End bs-wizard -->
+    </div>
+    <!-- End intro-title -->
+</section>
+<div id="position">
+    <div class="container">
+        <ul>
+            <li><a href="@Url.GoIndex()">@Html.GetResource("Home_Contact__line28")</a></li>
+            @if (parentStep != -1)
+            {
+                var parent = steps[parentStep];
+            <li><a href="@parent.Image">@parent.Name</a></li>
+            }
+            <li>@title</li>
+        </ul>
+    </div>
+</div>
+<div class="container margin_60">
+    <div class="row">
+        <div class="col-md-8 col-sm-8">
+            @RenderBody()
+        </div>
+        <!-- End col-md-8 -->
+        @Html.Partial("../Account/_partialContactBox")
+        <!-- End col-md-4 -->
+    </div>
+    <!-- End row -->
+</div>

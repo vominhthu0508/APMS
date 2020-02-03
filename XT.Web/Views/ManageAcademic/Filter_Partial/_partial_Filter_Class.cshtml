@@ -1,0 +1,18 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@{
+    //Layout = "~/Views/Admin/_partial_Filter_Model.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <div style="margin-bottom: 10px">
+            <input type="text" class="form-control" name="Model_Name"
+                    placeholder="Nhập tên lớp để tìm kiếm...">
+        </div>
+    </div>
+    <div class="col-md-2">
+        @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.CompaniesAll_ToMyDictionary(), new { Company_Id = 0 }))
+    </div>
+</div>

@@ -1,0 +1,78 @@
+﻿@using XT.Web.External
+@using XT.Model
+
+@{
+    var cover = XT.Web.AppSettings.DefaultAccountCover;
+    var avatar = XT.Web.External.AuthenticationManager.Account_Avatar;
+    var name = XT.Web.External.AuthenticationManager.Account_Name;
+    var address = "Hồ Chí Minh";
+
+
+    if (ViewBag.Title == null)
+    {
+        ViewBag.Title = "Thông tin cá nhân";
+    }
+    Layout = "~/Views/Layout/Layout.cshtml";
+    //ViewBag.SearchHeader = "search-header search-header-background";
+}
+
+@section Styles{
+    @Styles.Render("~/Content/Stylesheets/User/Index")
+}
+
+@section Scripts{
+    @Scripts.Url("~/Scripts/User/Index")
+}
+
+<style>
+    @Html.GetResource("Layout_LayoutAccount_Old__line21")
+    {
+        color: #ed3434;
+    }
+</style>
+<div class="container">
+    <section class="main-page">
+        <div class="row" style="margin-right: 0px;">
+            <aside class="col-lg-3 col-md-3">
+                <div class="profile-wrapper" 
+                    style="background:url('@Helper.MyUrlContent_AccountCover(cover)'); background-size: cover;background-position: 50%;">
+                    @*<button class="btn btn-change" id="change-cover">Đổi cover</button>*@
+                    @*<button class="btn btn-change" id="change-ava">Đổi avatar</button>*@
+                    <div class="ava-wrapper">
+                        @*<div class="profile-ava" style="background:url('@Helper.MyUrlContent_DefaultImage(avatar)')">
+                        </div>*@
+                        <div class="profile-ava">
+                            <img src="@Helper.MyUrlContent_AccountAvatar(avatar)" />
+                        </div>
+                        <h5>@name</h5>
+                        @*<i class="icon-pencil-alt active"></i>*@
+                        <br />
+                        <p>@address</p>
+                        @*<i class="icon-pencil-alt active"></i>*@
+                    </div>
+                </div>
+                <div class="profile-control-wrapper">
+                    <ul>
+                        <li class="@((ViewBag.CurrentTab == "info") ? "active" : "") "><i class="icon-user"></i><a href="@Url.GoAccountChangeProfileInfo()">@Html.GetResource("Layout_LayoutUser__line56")</a></li>
+                        <li class="@((ViewBag.CurrentTab == "wishlist") ? "active" : "") "><i class="icon-heart"></i><a href="@Url.Action("Saves", "User")">@Html.GetResource("Layout_LayoutUser__line57")</a></li>
+                        <li class="@((ViewBag.CurrentTab == "inbox") ? "active" : "") "><i class="icon-mail-3"></i><a href="@Url.GoUser_Inbox()">Hộp thư của tôi@*<span> (1)</span>*@</a></li>
+                        <li class="@((ViewBag.CurrentTab == "contact") ? "active" : "") "><i class="fa fa-paper-plane"></i><a href="@Url.GoUser_Contact()">@Html.GetResource("Layout_LayoutUser__line59")</a></li>
+                    </ul>
+                </div>
+            </aside>
+            <div class="col-sm-9">
+                <div class="row profile-container">
+                    <div class="col-xs-12">
+                        <div class="category-header">
+                            <span class="underline"></span>
+                            <span class="category-title bottomline">@ViewBag.Title</span>
+                        </div>
+                        <div class="form-container">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

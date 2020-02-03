@@ -1,0 +1,66 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<BookOrder_Detail>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+
+<table class="table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Student</th>
+            <th>Book Code</th>
+            <th>Price</th>
+            <th>Batch</th>
+            <th>Sem</th>
+            <th>Indent Date</th>
+            <th>Indent No.</th>
+            <th>Center</th>
+            <th>Indent Status</th>
+            <th>SAP Customer ID</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            var book_order = item.BookOrder;
+            var student = item.Student;
+            <tr id="item-@item.Id">
+                <td class="notranslate">@item.Id</td>
+                <td>
+                    @Html.Partial("../ManageAcademic/Partial/_partial_Search_Student_SmallInfo", student)
+                </td>
+                <td>@item.BookCode</td>
+                <td>@item.BookPrice</td>
+                <td>@student.Class.Class_Name</td>
+                <td>@item.Semester</td>
+                <td>@book_order.Indent_Date.ToDateString()</td>
+                <td>@book_order.Indent_Number</td>
+                <td>@book_order.Center</td>
+                <td>@((IndentStatusEnum)book_order.Indent_Status)</td>
+                <td>@book_order.SAP_Customer_ID</td>
+                <td class="options">
+                    @Html.Partial("../Admin/_partial_Search_Model_Options",
+                            Tuple.Create((IEntity<Int32>)item, api_delete, addview_name, name))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

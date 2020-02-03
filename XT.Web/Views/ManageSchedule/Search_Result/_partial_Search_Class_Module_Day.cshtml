@@ -1,0 +1,69 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Class_Module_Day>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+<table class="table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Class</th>
+            <th>Batch</th>
+            <th>Hour</th>
+            <th>Day</th>
+            <th>Module</th>
+            <th>Sem</th>
+            <th>FC</th>
+            <th>Status</th>
+            <th>Note</th>
+            <th>View</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            var module = item.Class_Module;
+            <tr id="item-@item.Id">
+                <td class="notranslate">@item.Id</td>
+                <td>@module.Class_Name</td>
+                <td>@LayoutModel.GetText_ClassDayEnum((ClassDayEnum)module.Class_Module_Day)</td>
+                <td>@(module.Class_Module_Hour_Start.ToHourString())h-@(module.Class_Module_Hour_End.ToHourString())h</td>
+                <td>@item.Class_Module_Day_Date.ToDateString()</td>
+                <td>@module.Module.Module_Name</td>
+                <td>Sem @module.Module.Semester</td>
+                <td>@module.Faculty.FC_Name</td>
+                <td>@((ClassModuleDayStatusEnum)item.Class_Module_Day_Status)</td>
+                <td>@item.Class_Module_Day_Note</td>
+                <td>
+                    @{
+            var color = item.Class_Module_Day_Date <= DateTime.Today ? "primary" : "default";
+                    }
+                    <a href="@Url.Action("ManageSchedule_ClassModule_StudentAttendance",
+                            new { day_id = item.Id })" class="btn btn-@color btn-xs">Detail</a>
+                </td>
+
+                <td class="options">
+                    @Html.Partial("../Admin/_partial_Search_Model_Options",
+                            Tuple.Create((IEntity<Int32>)item, api_delete, addview_name, name))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

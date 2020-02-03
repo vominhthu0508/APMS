@@ -1,0 +1,12 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@{
+    var currentParentId = ViewBag.currentParentId;
+    var day_id = (int)ViewBag.Day;
+    var student_id = (int)ViewBag.Student;
+}
+
+<input type="hidden" name="class_module_id" value="@currentParentId" />
+<input type="hidden" name="day_id" value="@day_id" />
+<input type="hidden" name="student_id" value="@student_id" />

@@ -1,0 +1,150 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Class_Module_StudentExam>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+
+    var current_classmodule = ViewBag.CurrentClassModule as Class_Module;
+    var day_id = (int)ViewBag.Day;
+    var days = current_classmodule.Class_Module_Days_List;//valid
+
+    if(day_id != 0)
+    {
+        days = days.Where(d => d.Id == day_id).ToList();
+    }
+    
+    var i = 1;
+    
+    var hasDays = days.Count() > 0;
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+@if (!hasDays)
+    { 
+    <div class="alert" style="margin-bottom: 0px;">
+        <p>
+            <a class="btn btn-warning" href="@Url.Action("ManageSchedule_ClassModule_Attendance", "ManageSchedule", new { id = current_classmodule.Id })">+ Class Day</a>
+        </p>
+    </div>
+    }
+<div class="@(hasDays ? "frozen-table" : "")" style="overflow: auto;">
+    <table class="table table-bordered table-hover dataTable">
+            <thead>
+                <tr>
+                    @*<th>Id</th>*@
+                    <th class="headcol bg-white">
+                        <div>Name</div>
+                    </th>
+                    <th>Class</th>
+                    <th>Module</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    @foreach (var day in days)
+                    { 
+                        <th class="bg-gray">@current_classmodule.Class_Name - @i
+                            <br />
+                            <small class="text-muted">@day.Class_Module_Day_Date.ToDateString()</small>
+                            <br />
+                            @if (XT.Web.External.AuthenticationManager.CanMakeAttendance())
+                            {
+                            <a 
+                                data-id="@day.Id" 
+                                data-api="@Url.Action("CheckAllAttendanceForDay")" 
+                                data-action="check tất cả"
+                                href="#" class="btn btn-warning btn-xs btn-admin-action" title="Check All"><i class="fa fa-star fa-fw"></i></a>
+                            }
+                        </th>
+                        i++;
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in lstItems)
+                {
+                    var Student_Status = (StudentAcademicStatusEnum)item.Student.Student_Status;
+                    <tr id="item-@item.Id">
+                        @*<td class="notranslate">@item.Id</td>*@
+                        <td class="headcol bg-white">
+                            @Html.Partial("../ManageAcademic/Partial/_partial_Search_Student_SmallInfo", item.Student)
+                        </td>
+                        <td>@item.Class_Module.Class_Name</td>
+                        <td>@item.Class_Module.Module.Module_Code</td>
+                        <td><span class="badge bg-@Helper.GetStudentStatusColor(Student_Status)">@Student_Status.ToString()</span></td>
+                        <td>
+                            @{
+                                var color = item.Student_Status == (int)StudentClassModuleStatusEnum.Official ? "green" : "yellow";
+                            }
+                            <span class="badge bg-@color">@((StudentClassModuleStatusEnum)item.Student_Status)</span>
+                        </td>
+                        @foreach (var day in days)
+                        {
+                            var atten = "";// Enum.GetName(typeof(StudentClassModuleAttendanceEnum), 1);
+                            var note = "Click để cập nhật điểm danh";
+                            var student = day.Class_Module_Day_Students_List.FirstOrDefault(s => s.Student_Id == item.Student_Id && s.Attendance_Status > 0);
+                            if (student != null)
+                            {
+                                atten = Enum.GetName(typeof(StudentClassModuleAttendanceEnum), student.Attendance_Status);
+                                note = student.Attendance_Note;
+                            }
+                            else
+                            {
+                                student = new Class_Module_Day_Student { 
+                                    Class_Module_Day_Id = day.Id, 
+                                    Student_Id = item.Student_Id, 
+                                    Status = (int)EntityStatus.Visible
+                                };
+                            }
+                        <td class="bg-gray" title="@note">
+                            <div class="td-button-modal" 
+                                 data-toggle="modal" data-target="#myModalEdit-@student.Class_Module_Day_Id-@student.Student_Id">
+                                 @atten
+                             </div>
+                            @if (XT.Web.External.AuthenticationManager.CanMakeAttendance())
+                            {
+                            <div class="modal fade text-black flat-modal" id="myModalEdit-@student.Class_Module_Day_Id-@student.Student_Id" role="dialog" aria-labelledby="myModalEdit" aria-hidden="true">
+                                 <div class="modal-dialog">
+                                     <form enctype="multipart/form-data" method="post">
+                                         <div class="modal-content">
+                                             <div class="modal-header">
+                                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                 <h4 class="modal-title">Update Student Attendance</h4>
+                                             </div>
+                                             <div class="modal-body">
+                                                 @Html.Partial(addview_name, student)
+                                             </div>
+                                             <div class="modal-footer">
+                                                 <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                 @if (student.Id == 0)
+                                                 { 
+                                                 <button type="submit" class="btn btn-primary btnAdd"><i class="fa fa-edit fa-fw"></i>&nbsp;Add</button>
+                                                 }
+                                                 else
+                                                 {
+                                                 <button type="submit" class="btn btn-primary btnEdit"><i class="fa fa-edit fa-fw"></i>&nbsp;Update</button>
+                                                 }
+                                             </div>
+                                         </div>
+                                     </form>
+                                 </div>
+                             </div>
+                            }
+                         </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+</div>

@@ -1,0 +1,20 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@{
+    //Layout = "~/Views/Admin/_partial_Filter_Model.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-10">
+        <div style="margin-bottom: 10px">
+            <input type="text" class="form-control" name="Model_Name"
+                    placeholder="Nhập tên FC để tìm kiếm...">
+        </div>
+    </div>
+    <div class="col-md-2">
+        @Html.DropDownList("Company_Id",
+                    new SelectList(LayoutModel.CompaniesAll(), "Id", "Company_Name_Abbrev"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+    </div>
+</div>

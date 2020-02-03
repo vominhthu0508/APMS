@@ -1,0 +1,113 @@
+﻿@using XT.Web.External
+
+@model Tuple<int, int>
+@{
+    var day = Model.Item1;
+    var student_id = Model.Item2;
+    var day_count = 20;
+    
+    var days = new List<int>();
+    if (day > 0)
+    {
+        days.Add(day);
+    }
+    else
+    {
+        for (var i = 1; i <= day_count; i++)
+        {
+            days.Add(i);
+        }
+    }
+
+    var students = new List<int>();
+    if (student_id > 0)
+    {
+        students.Add(student_id);
+    }
+    else
+    {
+        for (var i = 1; i <= day_count; i++)
+        {
+            students.Add(i);
+        }
+    }
+
+    var status = days.Count > 0 ? "" : "Chưa tạo ngày học";
+}
+
+<div class="box">
+    @if (days.Count == 0)
+    { 
+    <div class="box-header">
+        <div class="alert alert-danger alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <p>Chưa tạo ngày học cho lớp. Vui lòng tạo ngày học</p>
+            <a href="@Url.Action("ManageSchedule", "ManageSchedule_ClassModule_Attendance", )">+ Class Day</a>
+        </div>
+    </div>
+    }
+    <div class="box-body" style="overflow: auto;">
+        <table class="table table-bordered table-hover dataTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Current Class</th>
+                    <th>Status</th>
+                    @foreach(var i in days)
+                    { 
+                        <th class="bg-gray">TIP - @i
+                            <br /><small class="text-muted">@i/5/2015</small>
+                        </th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var i in students)
+                {
+                <tr>
+                    <td>@i</td>
+                    <td>
+                        <div class="user-block">
+                            <img class="img-circle img-bordered-sm" src="/demo/img/user1-128x128.jpg" alt="user image">
+                            <span class="username">
+                                <a href="@Url.GoUserProfile()" target="_blank">Nguyễn Văn A</a>
+                            </span>
+                            <span class="description">Student843164</span>
+                        </div>
+                    </td>
+                    <td>@if (i <= 15)
+                        { 
+                        <span>C1504L</span>
+                        }
+                        else
+                        {
+                        <span>C1509G</span>
+                        }</td>
+                    <td>
+                        @if (i <= 15)
+                        { 
+                            <span class="badge bg-green">Chính thức</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-yellow">Dự thính</span>
+                        }
+                    </td>
+                    @foreach (var j in days)
+                    {
+                        if (j <7)
+                        {
+                        <td class="bg-gray">P</td>
+                        }
+                        else
+                        {
+                        <td class="bg-gray"></td>
+                        }
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,82 @@
+﻿@using XT.Model
+@using XT.Web.External
+
+@model IEnumerable<Room>
+
+@{
+    var rooms = Model;
+
+    var title = "Danh sách dự án ưa thích";
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Layout/LayoutUser.cshtml";
+}
+
+@if (rooms != null && rooms.Count() != 0)
+{
+    foreach (var item in rooms)
+    {
+    @Html.Partial("../Global/_partialRoomContainer_ListItem", item)
+    }
+}
+else
+{
+    <div id="tools">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                @*<div class="styled-select-filters">
+                            <select name="sort_price" id="sort_price" class="no-dd">
+                                <option value="" selected="">Sort by price</option>
+                                <option value="lower">Lowest price</option>
+                                <option value="higher">Highest price</option>
+                            </select>
+                        </div>*@
+                <div class="filter-menu">
+                    <div class="dropdown" id="filterproject" style="display: inline-block;">
+                        <button class="btn btn-white no-uppercase btn-sort dropdown-toggle" type="button"
+                            data-toggle="dropdown" aria-expanded="false">
+                            <span>@Helper.GetSearchOrder((RoomSearchOrderEnum)ViewBag.CurrentSort)</span>
+                            @*<span class="caretdown"><i class="fa fa-caret-down"></i></span>*@
+                        </button>
+                        <ul class="dropdown-menu" role="menu">
+                            @foreach (RoomSearchOrderEnum filter in Enum.GetValues(typeof(RoomSearchOrderEnum)))
+                            {
+                                <li>
+                                    <a href="#" data-currentsort="@((int)filter)" class="btn-Horizontal-Search">@Helper.GetSearchOrder(filter)</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            @*<div class="col-md-3 col-sm-3 col-xs-6">
+                        <div class="styled-select-filters">
+                            <select name="sort_rating" id="sort_rating" class="no-dd">
+                                <option value="" selected="">Sort by ranking</option>
+                                <option value="lower">Lowest ranking</option>
+                                <option value="higher">Highest ranking</option>
+                            </select>
+                        </div>
+                    </div>*@
+            @*<div class="col-md-6 col-sm-6 hidden-xs text-right">
+                <span class="text-muted totalcount">Tìm thấy <b>@(Model.TotalItemCount)</b> dự án</span>&nbsp;&nbsp;
+                <a href="#" class="bt_filters btnGrid active"><i class="icon-th"></i></a>&nbsp;
+                <a href="#" class="bt_filters btnList "><i class=" icon-list"></i></a>
+            </div>*@
+        </div>
+    </div>
+    <p>@Html.GetResource("User_Saves__line68")</p>
+    
+    rooms = ViewBag.HotRooms as IEnumerable<Room>;
+
+    if (rooms != null && rooms.Count() != 0)
+    {
+    <p>@Html.GetResource("User_Saves__line74")</p>
+    <div class="row list-item" style="margin-top: 20px;">
+        @foreach (var other in rooms)
+        {
+            @Html.Partial("../Global/_partialRoomContainer_GridItem_Col", other)
+        }
+    </div>
+    }
+}

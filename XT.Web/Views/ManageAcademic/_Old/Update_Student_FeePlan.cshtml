@@ -1,0 +1,85 @@
+﻿@using XT.Web.External
+@using XT.BusinessService
+
+@{
+    ViewBag.Title = "[Academic] Cập nhật FeePlan của HV";
+    var title = ViewBag.Title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+
+    var student_name = "Nguyễn Văn A";
+}
+
+
+<section class="content-header">
+    <h1>@title
+        <small>@student_name</small>
+    </h1>
+    <ol class="breadcrumb low">
+        <li><a href="@Url.GoAccountAdminFirstPage()"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="@Url.Action("ManageAcademic_Student")">Danh sách HV</a></li>
+        <li class="active">@student_name</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="box box-default box-solid">
+        <div class="box-header with-border">
+            <h3 class="box-title">Nhập thông tin FeePlan</h3>
+        </div>
+        <div class="box-body">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Họ tên: </label>
+                        Nguyễn Văn A
+                    </div>
+                    <div class="form-group">
+                        <label>Ngày nhập học: </label>
+                        @DateTime.Today.ToDateString()
+                    </div>
+                    
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>FeePlan</label>
+                        <select name="" class="form-control select2">
+                            <option value="0">DIM theo kỳ</option>
+                            <option value="1">DIM trọn gói</option>
+                            <option value="0">ADIM theo kỳ</option>
+                            <option value="1">ADIM trọn gói</option>
+                            <option value="1">Upgrade theo kỳ</option>
+                            <option value="1">Upgrade trọn gói</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <label>Nominal Course Fee</label>
+                        <div class="input-group">
+                            <input class="form-control" value="1234">
+                            <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Discount Amount</label>
+                        <div class="input-group">
+                            <input class="form-control" value="234">
+                            <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Actual Course Fee</label>
+                        <div class="input-group">
+                            <input class="form-control" value="1000">
+                            <span class="input-group-addon"><i class="fa fa-usd" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box-footer text-right">
+            @*<button type="submit" class="btn btn-success">Cập nhật</button>*@
+            <a href="@Url.Action("ManageAcademic_Student_FeePlan", new { status = true })" class="btn btn-success">
+                <i class="fa fa-check" aria-hidden="true"></i>&nbsp;Cập nhật</a>
+        </div>
+    </div>
+</section>

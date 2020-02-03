@@ -1,0 +1,45 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model BookOrder_Detail
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+    <input type="hidden" value="@Model.BookOrder_Id" name="BookOrder_Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Student</label>
+                @if (Model.Student_Id == 0)
+                {
+                <select class="form-control select-students" style = "width: 100%;" name="Student_Id">
+                </select>
+                }
+                else
+                {
+                <input class="form-control" value="@Model.Student.Student_FullName" disabled />
+                <input type="hidden" value="@Model.Student_Id" name="Student_Id">
+                }
+            </div>
+            <div class="form-group">
+                <label class="title-text">Semester</label>
+                 @*@Html.DropDownListFor(model => model.Semester, 
+                    new SelectList(MyDictionary.GetValues(typeof(SemesterEnum)), "Id", "Name", Model.Semester), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(SemesterEnum), new { Model.Semester }))
+            </div>
+            <div class="form-group">
+                <label class="title-text">BookCode</label>
+                @Html.TextBoxFor(model => model.BookCode, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">BookPrice</label>
+                @Html.TextBoxFor(model => model.BookPrice, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+        </div>
+    </div>
+}

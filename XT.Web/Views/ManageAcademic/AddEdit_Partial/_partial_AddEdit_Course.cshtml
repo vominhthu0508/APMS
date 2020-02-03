@@ -1,0 +1,46 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Course
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="title-text">Tên @name</label>
+                @Html.TextBoxFor(model => model.Course_Name,
+                    new { @class = "form-control", placeholder = "Nhập tên " + name })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Course Code</label>
+                @Html.TextBoxFor(model => model.Course_Code,
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label>Parent Course</label>
+                <select class="form-control select2" style="width: 100%;" name="Parent_Course_Id">
+                    <option value="">--Choose course--</option>
+                    @foreach (var c in XT.Web.Models.LayoutModel.Courses())
+                    {
+                        <option @(Model.Parent_Course_Id == c.Id ? "selected=selected" : "")
+                        value="@c.Id">
+                            @c.Course_Code
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Center Type</label>
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Company_Types_ToMyDictionary(), new { Model.Company_Type_Id }))
+            </div>
+            <div class="form-group">
+                <label class="title-text">Semester Count</label>
+                @Html.TextBoxFor(model => model.Course_Semester_Count,
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+        </div>
+    </div>
+}

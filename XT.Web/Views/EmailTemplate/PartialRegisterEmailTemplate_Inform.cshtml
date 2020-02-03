@@ -1,0 +1,42 @@
+﻿@using XT.Model;
+@using XT.Web.External;
+
+@model Tuple<Account, string, string>
+
+@{
+    Layout = "EmailTemplate_Main.cshtml";
+}
+
+@if (Model != null)
+{
+    var account = Model.Item1;
+    var name = Model.Item2;
+    var email = Model.Item3;
+    var website = XT.Web.AppSettings.Website;
+    //không có Request.Url.Scheme thì sẽ chỉ lấy dc là http:////, không có thông tin website
+    var website_url = Url.Action("Index", "Home", new { }, Request.Url.Scheme);
+    var css_website_url = "http://homely.vn/";
+    var logo_small = css_website_url + "/images/logo_small.png";
+
+    var active_account_url = Url.Action("Active", "Account", new { key = account.Account_ActiveKey }, Request.Url.Scheme);
+
+    ViewBag.title = "Xin chào " + name;
+    ViewBag.sub_title = "Cảm ơn bạn " + name + " đã đăng ký dịch vụ của " + website;
+    
+@*<div>
+        <p>Xin chào @name</p>
+        <p>Cảm ơn bạn @name đã đăng ký dịch vụ của @website</p>
+        <p>Vui lòng click vào link sau để kích hoạt tài khoản<br /><br />
+            <a href="@active_account_url">@active_account_url</a>
+        </p>
+        <br />
+        <p>Cảm ơn bạn</p>
+        <p>@website</p>
+    </div>*@
+    
+    <p>
+        @Html.GetResource("EmailTemplate_PartialRegisterEmailTemplate_Inform__line38")<br />
+        <br />
+        <a href="@active_account_url">@active_account_url</a>
+    </p>
+}

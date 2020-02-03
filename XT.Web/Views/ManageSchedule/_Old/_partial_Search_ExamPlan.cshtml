@@ -1,0 +1,43 @@
+﻿<div class="box-body">
+    <table class="table table-bordered table-hover dataTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Module</th>
+                <th>Class</th>
+                <th>Date</th>
+                <th>Hour</th>
+                <th>Location</th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 1; i <= 10; i++)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td style="text-transform: capitalize">
+                        <a href="@Url.Action("ManageSchedule_ClassModule_Students", "ManageSchedule")">
+                            @XT.Utilities.SampleData.SampleData.GetModuleName()
+                        </a>
+                    </td>
+                    <td>C150@(i)L</td>
+                    <td>1/5/2016</td>
+                    <td>19h-21h</td>
+                    <td>Lab 1</td>
+                    <td class="options">
+                        <div class="btn-group pull-left">
+                            <a class="btn btn-default" title="Chỉnh sửa">
+                                <i class="fa fa-edit fa-fw"></i>
+                            </a>
+                            @*<a class="btn btn-default btn-admin-action" data-action="xóa" title="Xóa">
+                                <i class="fa fa-trash fa-fw"></i>
+                            </a>*@
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@Html.Partial("../Admin/_partial_Search_Paging")

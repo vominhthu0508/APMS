@@ -1,0 +1,11 @@
+﻿@{
+    var class_module_id = ViewBag.CurrentParentId;
+    var hasData = (bool)ViewBag.HasData;
+}
+@if (!hasData)
+{ 
+    <a href="@Url.Action("Generate_ClassModule_StudentAttendance", new { id = class_module_id })" class="btn btn-success">
+    Generate Days</a>
+}
+<a href="@Url.Action("ManageSchedule_ClassModule_StudentAttendance", new { id = class_module_id })" class="btn btn-info">
+    Attendance</a>

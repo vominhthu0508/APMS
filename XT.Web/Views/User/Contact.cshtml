@@ -1,0 +1,73 @@
+﻿@model XT.Web.Models.ContactModel
+
+@{
+    var title = "Gửi liên hệ đến " + XT.Web.AppSettings.Website;
+
+    ViewBag.Title = title;
+    Layout = "~/Views/Layout/LayoutUser.cshtml";
+}
+
+@using (Html.BeginForm("Contact", "User", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal", id = "change-profile-form" }))
+{
+    @Html.Partial("../Error/_partialErrorHandle")
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="abc">@Html.GetResource("Account_ChangeProfileInfo__line14")</label>
+        <div class="col-sm-9">
+            @Html.TextBoxFor(model => model.Contact_Name,
+                    new
+                    {
+                        @class = "form-control",
+                        placeholder = "Nhập họ và tên",
+                    })
+            @Html.ValidationMessageFor(model => model.Contact_Name)
+        </div>
+        <span class="clearfix"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="abc">@Html.GetResource("Home__partial_Contact_Form__line33")</label>
+        <div class="col-sm-9">
+            @Html.TextBoxFor(model => model.Contact_Phone,
+                    new
+                    {
+                        @class = "form-control",
+                        placeholder = "Nhập số điện thoại"
+                    })
+            @Html.ValidationMessageFor(model => model.Contact_Phone)
+        </div>
+        <span class="clearfix"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="abc">@Html.GetResource("Account_ChangeProfileInfo__line27")</label>
+        <div class="col-sm-9">
+            @Html.TextBoxFor(model => model.Contact_Email,
+                    new
+                    {
+                        @class = "form-control",
+                        placeholder = "Nhập email"
+                    })
+            @Html.ValidationMessageFor(model => model.Contact_Email)
+        </div>
+        <span class="clearfix"></span>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="abc">@Html.GetResource("Home__partial_Contact_Form__line43")</label>
+        <div class="col-sm-9">
+            @Html.TextAreaFor(model => model.Contact_Description,
+                    new
+                    {
+                        @class = "form-control",
+                        placeholder = "Nhập nội dung",
+                        rows = 3
+                    })
+            @Html.ValidationMessageFor(model => model.Contact_Description)
+        </div>
+        <span class="clearfix"></span>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <button class="btn btn-success" type="submit"><i class="fa fa-paper-plane-o"></i>&nbsp;Gửi</button>
+            <button class="btn btn-default" type="reset"><i class="fa fa-times"></i>&nbsp;Hủy</button>
+        </div>
+        <span class="clearfix"></span>
+    </div>
+}

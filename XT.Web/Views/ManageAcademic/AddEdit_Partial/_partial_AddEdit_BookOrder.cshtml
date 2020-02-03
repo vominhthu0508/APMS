@@ -1,0 +1,48 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model BookOrder
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Center</label>
+                @*@Html.DropDownListFor(model => model.Company_Id, 
+                    new SelectList(LayoutModel.Companies(), "Id", "Company_Name", Model.Company_Id), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Companies_ToMyDictionary(), new { Model.Company_Id }))
+            </div>
+            <div class="form-group">
+                <label>Indent Date</label>
+                <input type="text" name="Indent_Date" 
+                       value="@Model.Indent_Date.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+            </div>
+            <div class="form-group">
+                <label class="title-text">Indent Number</label>
+                @Html.TextBoxFor(model => model.Indent_Number, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Center</label>
+                @Html.TextBoxFor(model => model.Center, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">SAP Customer ID</label>
+                @Html.TextBoxFor(model => model.SAP_Customer_ID, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label>Indent Status</label>
+                @*@Html.DropDownListFor(model => model.Indent_Status, 
+                    new SelectList(MyDictionary.GetValues(typeof(IndentStatusEnum)), "Id", "Name", Model.Indent_Status), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(IndentStatusEnum), new { Model.Indent_Status }))
+            </div>
+        </div>
+    </div>
+}

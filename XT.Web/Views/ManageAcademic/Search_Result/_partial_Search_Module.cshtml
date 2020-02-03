@@ -1,0 +1,60 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Module>();
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+<table class="table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Semester</th>
+            <th>Course</th>
+            <th>Type</th>
+            <th>Portal Type</th>
+            @*<th>Exam Type</th>*@
+            <th>Max LT</th>
+            <th>Max TH</th>
+            <th>Hours</th>
+            @*<th>Days</th>*@
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            <tr id="item-@item.Id">
+                <td class="notranslate">@item.Id</td>
+                <td>@item.Module_Name (@item.Module_Code)</td>
+                <td>@item.Semester - @item.Semester_Name_Portal</td>
+                <td>@item.CourseFamily.CourseFamily_FullName</td>
+                <td>@((ModuleTypeEnum)item.Module_Type)</td>
+                <td>@((ModulePortalTypeEnum)item.Module_Portal_Type) - @item.Module_Name_Portal</td>
+                @*<td>@((ModuleExamTypeEnum)item.Module_Exam_Type)</td>*@
+                <td>@item.Module_Max_LT</td>
+                <td>@item.Module_Max_TH</td>
+                <td>@item.Module_DurationByHour hours</td>
+                @*<td>@item.Module_DurationByDay days</td>*@
+                <td class="options">
+                    @Html.Partial("../Admin/_partial_Search_Model_Options", 
+                        Tuple.Create((IEntity<Int32>)item, api_delete, addview_name, name))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

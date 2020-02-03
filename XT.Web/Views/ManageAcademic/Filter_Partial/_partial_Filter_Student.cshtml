@@ -1,0 +1,72 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@{
+    var currentParentName = ViewBag.CurrentParentName as string;
+    //Layout = "~/Views/Admin/_partial_Filter_Model.cshtml";
+}
+
+<input type="hidden" name="Class_Id" value="@currentParentName" />
+<div class="row">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label>Name or Student Id:</label>
+            <input type="text" class="form-control" name="Model_Name"
+                placeholder="Nhập tên/số điện thoại/mã số sinh viên để tìm kiếm...">
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Center:</label>
+            @Html.DropDownList("Company_Id",
+                    new SelectList(LayoutModel.CompaniesAll(), "Id", "Company_Name_Abbrev"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Academic Status:</label>
+            @Html.DropDownList("Student_Status",
+                    new SelectList(MyDictionary.GetValuesWithAll(typeof(StudentAcademicStatusEnum), "Status"), "Id", "Name"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+        </div>
+    </div>
+    <div class="col-md-2">
+        <div class="form-group">
+            <label>Due Status:</label>
+            @Html.DropDownList("Due_Status",
+                    new SelectList(MyDictionary.GetValuesWithAll(typeof(DueStatusEnum), "Status"), "Id", "Name"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Birthday:</label>
+            <div class="daterange-box">
+                <input class="Start_Date" type="hidden" name="Birthday_Start_Date" value="" />
+                <input class="End_Date" type="hidden" name="Birthday_End_Date" value="" />
+                <a href="javascript:void(0);" class="btn btn-default daterange-btn" style="width: 100%;">
+                    <i class="fa fa-calendar"></i>&nbsp;
+                    <span>Choose Birthday</span>&nbsp;
+                    <i class="fa fa-caret-down"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <label>Status Date:</label>
+            <div class="daterange-box">
+                <input class="Start_Date" type="hidden" name="Status_Start_Date" value="" />
+                <input class="End_Date" type="hidden" name="Status_End_Date" value="" />
+                <a href="javascript:void(0);" class="btn btn-default daterange-btn" style="width: 100%;">
+                    <i class="fa fa-calendar"></i>&nbsp;
+                    <span>Choose Status Date</span>&nbsp;
+                    <i class="fa fa-caret-down"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

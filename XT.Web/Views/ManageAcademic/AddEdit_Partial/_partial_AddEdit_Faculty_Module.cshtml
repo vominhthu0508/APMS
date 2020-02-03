@@ -1,0 +1,22 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Faculty_Module
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+    <input type="hidden" value="@Model.Faculty_Id" name="Faculty_Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Skill</label>
+                @*@Html.DropDownListFor(model => model.Module_Id, 
+                    new SelectList(LayoutModel.Modules(), "Id", "Module_Code", Model.Module_Id), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Modules_ToMyDictionary(), new { Model.Module_Id }))
+            </div>
+        </div>
+    </div>
+}

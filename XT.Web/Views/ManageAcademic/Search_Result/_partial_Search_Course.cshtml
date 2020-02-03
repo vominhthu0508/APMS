@@ -1,0 +1,54 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Course>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+<table class="table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Center</th>
+            <th>Course Name</th>
+            <th>Course Code</th>
+            <th>Parent Course</th>
+            <th>Semester Count</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            var parent_code = item.Parent_Course != null ? item.Parent_Course.Course_Code : "";
+            <tr id="item-@item.Id">
+                <td class="notranslate">@item.Id</td>
+                <td>@item.Company_Type.Company_Type_Name</td>
+                <td>
+                    <a href="@Url.Action("ManageAcademic_CourseFamily", new { id = item.Id })">@item.Course_Name</a>
+                </td>
+                <td>@item.Course_Code</td>
+                <td>@parent_code</td>
+                <td>@item.Course_Semester_Count</td>
+                <td class="options">
+                    @Html.Partial("../Admin/_partial_Search_Model_Options", 
+                        Tuple.Create((IEntity<Int32>)item, api_delete, addview_name, name))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

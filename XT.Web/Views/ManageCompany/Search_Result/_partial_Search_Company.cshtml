@@ -1,0 +1,59 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Company>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+<div class="box-body">
+    <table class="table table-bordered table-hover dataTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Center Type</th>
+                <th>Center Name</th>
+                <th>Center Abbr</th>
+                <th>Portal Name</th>
+                <th>Logo</th>
+                <th>View</th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in lstItems)
+            {
+                <tr id="item-@item.Id">
+                    <td class="notranslate">@item.Id</td>
+                    <td>@item.Company_Type.Company_Type_Name</td>
+                    <td>@item.Company_Name</td>
+                    <td>@item.Company_Name_Abbrev</td>
+                    <td>@item.Company_Name_Portal</td>
+                    <td>
+                        <img src="@XT.Web.External.Helper.MyUrlContent_DefaultImage(item.Company_Logo)" style="width: 100px;" />
+                    </td>
+                    <td>
+                        <a href="@Url.Action("ManageResource", new { id = item.Id })" class="btn btn-primary btn-xs" title="Resources"><i class="fa fa-database"></i></a>
+                    </td>
+                    <td class="options">
+                        @Html.Partial("../Admin/_partial_Search_Model_Options",
+                            Tuple.Create((IEntity<Int32>)item, api_delete, addview_name, name))
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

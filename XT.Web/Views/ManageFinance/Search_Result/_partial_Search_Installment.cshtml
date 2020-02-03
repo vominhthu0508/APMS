@@ -1,0 +1,115 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Student_FeePlan>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+
+    var Start_Date = (DateTime)ViewBag.Start_Date;
+    var End_Date = (DateTime)ViewBag.End_Date;
+    var Total_Due = (long)ViewBag.Total_Due;
+}
+
+<div style="padding: 20px; padding-bottom: 0px;">
+    <div class="row">
+        <div class="col-lg-6 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3>@Model.TotalItemCount</h3>
+                    <p>Total Students</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-users"></i>
+                </div>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-6 col-xs-6">
+            <!-- small box -->
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3>@Total_Due.ToMoneyString() $</h3>
+                    <p>Total Due</p>
+                </div>
+                <div class="icon">
+                    <i class="fa fa-usd"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            @*<th>Id</th>*@
+            <th>Student</th>
+            <th>Center</th>
+            <th>Status</th>
+            <th>Application Date</th>
+            <th>Course</th>
+            <th>Nominal Course Fee</th>
+            <th>Discount Amount</th>
+            <th>Actual Course Fee</th>
+            <th>Paid Fee</th>
+            <th>Remain </th>
+            <th class="bg-yellow">@End_Date.ToDateString()</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            var student = item.Student;
+            var Student_Status = (StudentAcademicStatusEnum)student.Student_Status;
+            <tr id="item-@item.Id">
+                @*<td class="notranslate">@item.Id</td>*@
+                <td>
+                    @Html.Partial("../ManageAcademic/Partial/_partial_Search_Student_SmallInfo", student)
+                </td>
+                <td>@item.Student.Class.Company.Company_Name_Abbrev</td>
+                <td><span class="bg-@Helper.GetStudentStatusColor(Student_Status) btn-sm">@Student_Status.ToString()</span></td>
+                <td>@student.Student_Application_Date.ToDateString()</td>
+                <td>@student.CourseFamily.Course.Course_Code</td>
+                <td>@item.Nominal_Course_Fee$</td>
+                <td>@item.Discount_Amount$</td>
+                <td class="text-bold">@item.Actual_Course_Fee$</td>
+                <td class="text-bold text-green">@item.Paid_Fee$</td>
+                <td class="text-bold text-red">@item.Remain_Fee$</td>
+                <td class="text-bold bg-yellow">@item.Remain_FeeUntilDate(Start_Date, End_Date)$</td>
+                <td><a href="#" class="btn btn-primary btn-xs feeplan-status" title="Chi tiết" data-id="@item.Student_Id">Detail</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="feeplan-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Xem lịch sử giao dịch</h4>
+            </div>
+            <div class="modal-body">
+                Loading...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                @*<a href="#" class="btn btn-success">Cập nhật lịch sử giao dịch</a>*@
+            </div>
+        </div>
+    </div>
+</div>

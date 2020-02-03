@@ -1,0 +1,31 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Resource
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="title-text">Name</label>
+                @Html.TextBoxFor(model => model.Resource_Name, 
+                    new { @class = "form-control", placeholder = "Nhập tên " + name })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Capacity</label>
+                @Html.TextBoxFor(model => model.Resource_Capacity, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label>Center</label>
+                @*@Html.DropDownListFor(model => model.Company_Id, 
+                    new SelectList(LayoutModel.Companies(), "Id", "Company_Name", Model.Company_Id), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Companies_ToMyDictionary(), new { Model.Company_Id }))
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,59 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+
+@model Tuple<Student, int>
+
+@{
+    var current_student = Model.Item1 as Student;
+    var sem = Model.Item2;
+    var isSem = sem > 0;
+    var isActiveSem = sem == 1;
+    var sem_text = isSem ? "Sem" + sem.ToString() : "Extra";
+
+    //var modules = Model.Item3.Where(m => m.Semester == sem);
+    var marks = Helper.GetStudentSemesterMarks(current_student, sem);
+}
+
+@if (isSem || marks.Count() > 0)
+{
+<div class="tab-pane @(isActiveSem ? "active" : "")" id="@sem_text">
+    <div class="">
+        <div class="box-header">
+            <h3 class="box-title">Student Marks - @sem_text</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th>Module</th>
+                        <th>Mark</th>
+                        <th>Max Mark</th>
+                        <th>Rate</th>
+                        <th>Status</th>
+                    </tr>
+                    @foreach (var mark in marks)
+                    {
+                        var text_bold = mark.Mark_Name == "Overall Weighted Marks" ? "text-bold" : "";
+                        <tr class="@text_bold">
+                            <td>@mark.Mark_Name</td>
+                            <td>@mark.Mark</td>
+                            <td>@mark.Max_Mark</td>
+                            <td>@mark.Rate</td>
+                            <td>@mark.Rate_Status</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        @if (sem > 0)
+        {
+            <!-- /.box-body -->
+            <div class="box-footer clearfix text-right">
+                <a href="@Url.Action("ExportMarks", new { id = current_student.Id, sem = sem })" class="btn btn-primary"><i class="fa fa-download fa-fw"></i>&nbsp;Export Sem @sem</a>
+            </div>
+        }
+    </div>
+</div>
+}

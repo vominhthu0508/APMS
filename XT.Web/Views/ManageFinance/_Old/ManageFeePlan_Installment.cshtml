@@ -1,0 +1,32 @@
+﻿@using XT.Web.External
+@using XT.BusinessService
+
+@{
+    ViewBag.Title = "[ManageFinance] Installment";
+    var title = ViewBag.Title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+}
+
+<section class="content-header">
+    <h1>@title
+        <small>@DateTime.Today.ToDateString()</small>
+    </h1>
+    <div class="breadcrumb">
+        <div style="margin-bottom: 10px; margin-top: 10px;">
+            <button class="btn btn-primary">
+                <i class="fa fa-download fa-fw"></i>&nbsp;Export
+            </button>
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="row ajax-search-group">
+        <div class="col-md-12">
+            <div class="Search_Result">
+                <div class="box">
+                    @Html.Partial("Search_Result/_partial_Search_Installment")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

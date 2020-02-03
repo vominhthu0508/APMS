@@ -1,0 +1,23 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@{
+    //Admin/SearchByName
+    var entity = ViewBag.Entity as string;
+    var name = ViewBag.EntityName as string;
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var modal_size = "";
+    if (!string.IsNullOrEmpty(ViewBag.ModalSize))
+    {
+        modal_size = ViewBag.ModalSize;
+    }
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div style="margin-bottom: 10px">
+            <input type="text" class="form-control" name="Model_Name"
+                    placeholder="Nhập tên @name để tìm kiếm...">
+        </div>
+    </div>
+</div>

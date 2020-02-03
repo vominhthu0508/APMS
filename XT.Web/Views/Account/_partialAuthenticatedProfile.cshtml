@@ -1,0 +1,14 @@
+﻿@using XT.Web.External
+
+@{
+    <div class="dropdown dropdown-search">
+        <a href="#" class="btn-navigate-profile dropdown-toggle"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <img src="@Helper.MyUrlContent_AccountAvatar(XT.Web.External.AuthenticationManager.Account_Avatar)" />
+            <span><b>@XT.Web.External.AuthenticationManager.Account_Name</b></span>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+            @Html.Partial("../Account/_partialAuthenticatedProfileMenu")
+        </ul>
+    </div>
+}

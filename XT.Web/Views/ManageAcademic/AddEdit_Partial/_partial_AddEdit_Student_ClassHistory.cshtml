@@ -1,0 +1,57 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Student_ClassHistory
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Student</label>
+                @if (Model.Student_Id == 0)
+                {
+                <select class="form-control select-students" style = "width: 100%;" name="Student_Id">
+                </select>
+                }
+                else
+                {
+                <input class="form-control" value="@Model.Student.Student_FullName" disabled />
+                <input type="hidden" value="@Model.Student_Id" name="Student_Id">
+                }
+            </div>
+            <div class="form-group">
+                <label>Class</label>
+                <select name="Class_Id" class="form-control">
+                    @foreach (var c in LayoutModel.Classes())
+                    {
+                        <option value="@c.Id" @(Model.Class_Id == c.Id ? "selected" : "")>@c.Class_Name</option>
+                    }
+                </select>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="text" name="StartDate" 
+                               value="@Model.StartDate.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="text" name="EndDate" 
+                               value="@(Model.EndDate.HasValue ? Model.EndDate.Value.ToString("dd/MM/yyyy") : "")" class="form-control monthdatepicker">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Reason</label>
+                @Html.TextBoxFor(model => model.ChangeReason, 
+                    new { @class = "form-control", placeholder = "Lý do chuyển" })
+            </div>
+        </div>
+    </div>
+}

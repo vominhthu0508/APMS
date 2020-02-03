@@ -1,0 +1,64 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<User_Profile>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();//ViewContext.RouteData.Values["controller"].ToString();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+
+<table class="table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Birthday</th>
+            <th>Gender</th>
+            <th>Position</th>
+            <th>Center</th>
+            <th>Options</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            <tr id="item-@item.Id">
+                <td class="notranslate">@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.GetPhone()</td>
+                <td>@item.Email</td>
+                <td>@item.User_Profile_Birthday.ToDateString()</td>
+                <td>@item.GetGender()</td>
+                <td>@((RoleTypeEnum)item.Role_Type_Id)</td>
+                <td>@string.Join(",", item.Companies_List.Select(c => c.Company_Name_Abbrev))</td>
+                <td class="options">
+                    <div class="btn-group">
+                        @if (XT.Web.External.AuthenticationManager.CanManageEmployee())
+                        { 
+                            @Html.Partial("../Admin/_partial_Search_Model_Options",
+                        Tuple.Create((IEntity<Int32>)item, api_delete, addview_name, name))
+                            @*<a href="@Url.Action("ManageAccountLog", "Admin", new { id = item.Id })" class="btn btn-warning" title="Lịch sử truy cập"><i class="fa fa-user-secret fa-fw"></i></a>*@
+                            <a href="@Url.Action("ResetPassword", "Account", new { id = item.Id })" class="btn btn-primary" title="Reset Password"><i class="fa fa-lock fa-fw"></i></a>
+                            <a href="@Url.Action("ManageUser_Company", new { id = item.Id })" class="btn btn-warning" title="Manage User's Center"><i class="fa fa-university fa-fw"></i></a>
+                        }
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

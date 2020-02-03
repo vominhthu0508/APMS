@@ -1,0 +1,50 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Company
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label class="title-text">@name Full Name (Ex: Arena HCM 1)</label>
+                @Html.TextBoxFor(model => model.Company_Name, 
+                    new { @class = "form-control", placeholder = "Nhập tên " + name })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Abbreviated Name (Ex: AMMHCM1)</label>
+                @Html.TextBoxFor(model => model.Company_Name_Abbrev, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Portal Name (Ex: ARENA-HANOI-5-APROTRAIN)</label>
+                @Html.TextBoxFor(model => model.Company_Name_Portal, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label>Center Type</label>
+                @*@Html.DropDownListFor(model => model.Company_Type_Id, 
+                    new SelectList(LayoutModel.Company_Types(), "Id", "Company_Type_Name", Model.Company_Type_Id), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Company_Types_ToMyDictionary(), new { Model.Company_Type_Id }))
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group form-upload-images clearfix">
+                <label>Hình ảnh</label>
+                <div class="btn-upload-image">
+                    <i class="fa fa-camera"></i>
+                    <span>Upload hình</span>
+                    <input type="file" class="file" name="uploadFile" />
+                </div>
+                <div class="form-photos">
+                    <input type="hidden" value="@Model.Company_Logo" name="Student_Avatar">
+                    <img style="width:100%" src="@XT.Web.External.Helper.MyUrlContent_DefaultImage(Model.Company_Logo)" class="upload-image-container"/>
+                </div>
+            </div>
+        </div>
+    </div>
+}

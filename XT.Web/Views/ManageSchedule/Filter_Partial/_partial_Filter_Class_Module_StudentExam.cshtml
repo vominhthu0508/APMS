@@ -1,0 +1,16 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@{
+    var currentParentId = ViewBag.currentParentId;
+    //Layout = "~/Views/Admin/_partial_Filter_Model.cshtml";
+}
+
+<input type="hidden" name="class_id" value="@currentParentId" />
+<div class="row" style="margin-bottom: 10px">
+    <div class="col-md-3">
+        @Html.DropDownList("ExamStatus",
+                    new SelectList(MyDictionary.GetValuesWithAll(typeof(ClassModuleStudentExamEnum), "Exam Status"), "Id", "Name"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+    </div>
+</div>

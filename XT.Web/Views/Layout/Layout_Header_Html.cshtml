@@ -1,0 +1,49 @@
+﻿<title>@ViewBag.Title</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="/Images/favicon.png" type="image/png" rel="shortcut icon">
+@if (string.IsNullOrEmpty(ViewBag.Description))
+{
+    ViewBag.Description = "Homely.vn là công ty công nghệ về dịch vụ bất động sản với tham vọng giúp hàng trăm triệu người Việt Nam tìm kiếm bất động sản nhanh chóng, thuận lợi và dễ dàng";
+}
+@if (string.IsNullOrEmpty(ViewBag.Keywords))
+{
+    ViewBag.Keywords = "bán căn hộ, chung cư, thuê căn hộ, can ho, bán chung cư, ban chung cu, mua chung cư, chung cu gia re, căn hộ mẫu, ban can ho, mua can ho, thue can ho, nha chung cu, bat dong san, bất động sản";
+}
+@if (ViewBag.OgType == null)
+{
+    ViewBag.OgType = "article";
+}
+@if (ViewBag.OgImage == null)
+{
+    ViewBag.OgImage = "http://homely.vn/Images/slide_hero.jpg";
+}
+else
+{
+	ViewBag.OgImage = "http://homely.vn" + ViewBag.OgImage;
+}
+@if (ViewBag.OgUrl == null)
+{
+    //ViewBag.OgUrl = "http://homely.vn";
+	ViewBag.OgUrl = Request.Url.ToString();
+}
+
+<!-- for Google -->
+<meta name="description" content="@ViewBag.Description" />
+<meta name="keywords" content="@ViewBag.Keywords" />
+
+<meta name="author" content="" />
+<meta name="copyright" content="" />
+<meta name="application-name" content="" />
+
+<!-- for Facebook -->
+<meta property="og:site_name" content="Homely.vn" />
+<meta property="og:title" content="@ViewBag.Title" />
+<meta property="og:description" content="@ViewBag.Description" />
+<meta property="og:type" content="@ViewBag.OgType" />
+<meta property="og:url" content="@ViewBag.OgUrl" />
+<meta property="og:image" content="@ViewBag.OgImage">
+<meta property="og:locale" content="vi_VN">
+
+<!-- for canonical -->
+<link rel="canonical" href="@ViewBag.OgUrl">
+<link rel="image_src" type="image/jpeg" href="@ViewBag.OgImage">

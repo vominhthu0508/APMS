@@ -1,0 +1,83 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XT.Web", "XT.Web\XT.Web.csproj", "{B052E031-7BD0-4C48-81C4-1E64D500CA13}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XT.Model", "XT.Model\XT.Model.csproj", "{DC25E832-3410-4EAD-B4AB-911628144596}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XT.Model.EF", "XT.Model.EF\XT.Model.EF.csproj", "{691F60CB-82C0-487B-AA20-D92EF6D493B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XT.Model.LINQ", "XT.Model.LINQ\XT.Model.LINQ.csproj", "{5D58F245-7A0C-4F4A-91CF-2840EA450A75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XT.Repository", "XT.Repository\XT.Repository.csproj", "{19B1A2CE-B8E7-446C-BD5C-3868180AC3B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XT.Service", "XT.Service\XT.Service.csproj", "{E333B4C2-293F-4864-BB53-C5BCD13542DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XT.Utilities", "XT.Utilities\XT.Utilities.csproj", "{DD92A641-24B3-4BAA-88CB-0BF77D15CFC0}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 8
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://aprotrainaptech.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = XT.Model.EF\\XT.Model.EF.csproj
+		SccProjectName1 = XT.Model.EF
+		SccLocalPath1 = XT.Model.EF
+		SccProjectUniqueName2 = XT.Model.LINQ\\XT.Model.LINQ.csproj
+		SccProjectName2 = XT.Model.LINQ
+		SccLocalPath2 = XT.Model.LINQ
+		SccProjectUniqueName3 = XT.Model\\XT.Model.csproj
+		SccProjectName3 = XT.Model
+		SccLocalPath3 = XT.Model
+		SccProjectUniqueName4 = XT.Repository\\XT.Repository.csproj
+		SccProjectName4 = XT.Repository
+		SccLocalPath4 = XT.Repository
+		SccProjectUniqueName5 = XT.Service\\XT.Service.csproj
+		SccProjectName5 = XT.Service
+		SccLocalPath5 = XT.Service
+		SccProjectUniqueName6 = XT.Utilities\\XT.Utilities.csproj
+		SccProjectName6 = XT.Utilities
+		SccLocalPath6 = XT.Utilities
+		SccProjectUniqueName7 = XT.Web\\XT.Web.csproj
+		SccProjectName7 = XT.Web
+		SccLocalPath7 = XT.Web
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B052E031-7BD0-4C48-81C4-1E64D500CA13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B052E031-7BD0-4C48-81C4-1E64D500CA13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B052E031-7BD0-4C48-81C4-1E64D500CA13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B052E031-7BD0-4C48-81C4-1E64D500CA13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC25E832-3410-4EAD-B4AB-911628144596}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC25E832-3410-4EAD-B4AB-911628144596}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC25E832-3410-4EAD-B4AB-911628144596}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC25E832-3410-4EAD-B4AB-911628144596}.Release|Any CPU.Build.0 = Release|Any CPU
+		{691F60CB-82C0-487B-AA20-D92EF6D493B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{691F60CB-82C0-487B-AA20-D92EF6D493B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{691F60CB-82C0-487B-AA20-D92EF6D493B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{691F60CB-82C0-487B-AA20-D92EF6D493B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D58F245-7A0C-4F4A-91CF-2840EA450A75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D58F245-7A0C-4F4A-91CF-2840EA450A75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D58F245-7A0C-4F4A-91CF-2840EA450A75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D58F245-7A0C-4F4A-91CF-2840EA450A75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19B1A2CE-B8E7-446C-BD5C-3868180AC3B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19B1A2CE-B8E7-446C-BD5C-3868180AC3B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19B1A2CE-B8E7-446C-BD5C-3868180AC3B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19B1A2CE-B8E7-446C-BD5C-3868180AC3B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E333B4C2-293F-4864-BB53-C5BCD13542DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E333B4C2-293F-4864-BB53-C5BCD13542DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E333B4C2-293F-4864-BB53-C5BCD13542DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E333B4C2-293F-4864-BB53-C5BCD13542DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD92A641-24B3-4BAA-88CB-0BF77D15CFC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD92A641-24B3-4BAA-88CB-0BF77D15CFC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD92A641-24B3-4BAA-88CB-0BF77D15CFC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD92A641-24B3-4BAA-88CB-0BF77D15CFC0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

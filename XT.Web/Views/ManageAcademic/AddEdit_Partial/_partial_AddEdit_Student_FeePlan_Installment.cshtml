@@ -1,0 +1,63 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Student_FeePlan_Installment
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+    <input type="hidden" value="@Model.Student_FeePlan_Id" name="Student_FeePlan_Id">
+    <input type="hidden" value="@Model.FeePlan_Detail_Id" name="FeePlan_Detail_Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Student</label>
+                <input class="form-control" value="@Model.Student_FeePlan.Student.Student_FullName" disabled />
+            </div>
+            <div class="form-group">
+                <label>Date Planning</label>
+                <input type="text" name="Date_Planning" 
+                               value="@Model.Date_Planning.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+            </div>
+            <div class="form-group">
+                <label>Date Actual</label>
+                <input type="text" name="Date_Actual" 
+                               value="@(Model.Date_Actual.HasValue ? Model.Date_Actual.Value.ToString("dd/MM/yyyy") : "")" class="form-control monthdatepicker">
+            </div>
+            <div class="form-group">
+                <label>Date Extend</label>
+                <input type="text" name="Date_Extend" 
+                               value="@(Model.Date_Extend.HasValue ? Model.Date_Extend.Value.ToString("dd/MM/yyyy") : "")" class="form-control monthdatepicker">
+            </div>
+            @*<div class="form-group">
+                <label>Extend Count</label>
+                @Html.TextBoxFor(model => model.Extend_Count, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>*@
+            <div class="form-group">
+                <label class="title-text">Amount Planning</label>
+                <div class="input-group">
+                    @Html.TextBoxFor(model => model.Amount_Planning,
+                    new { @class = "form-control", placeholder = "" })
+                    <div class="input-group-addon">$</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="title-text">Amount Actual</label>
+                <div class="input-group">
+                    @Html.TextBoxFor(model => model.Amount_Actual,
+                    new { @class = "form-control", placeholder = "" })
+                    <div class="input-group-addon">$</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                @*@Html.DropDownListFor(model => model.Installment_Status, 
+                    new SelectList(MyDictionary.GetValues(typeof(InstallmentStatusEnum)), "Id", "Name", Model.Installment_Status), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(InstallmentStatusEnum), new { Model.Installment_Status }))
+            </div>
+        </div>
+    </div>
+}

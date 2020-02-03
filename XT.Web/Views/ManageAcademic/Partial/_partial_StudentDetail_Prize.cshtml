@@ -1,0 +1,43 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+
+@model Student
+
+@{
+    var current_student = Model as Student;
+    var status_color = Helper.GetStudentStatusColor((StudentAcademicStatusEnum)current_student.Student_Status);
+}
+
+<ul class="timeline timeline-inverse">
+@foreach(var status in current_student.Prizes_List)
+{
+    var date = status.Prize_Date.ToShortDateString();
+    var color = status.Prize_Type == (int)PrizeTypeEnum.Module ? "blue" : "yellow";
+    <li class="time-label">
+        <span class="bg-@color">@date
+        </span>
+    </li>
+    <!-- /.timeline-label -->
+    <!-- timeline item -->
+    <li>
+        <i class="fa fa-trophy bg-@color"></i>
+        <div class="timeline-item">
+            <h3 class="timeline-header text-@color">@status.Title</h3>
+            <div class="timeline-body">
+                @if (status.Prize_Type == (int)PrizeTypeEnum.Module)
+                { 
+                <p>Kỳ thi môn @status.Exam.Class_Module.Module.Module_Name ngày <span class="label label-danger">@status.Exam.Class_Module.Class_Module_Date_Exam.ToShortDateString()</span></p>
+                }
+                else
+                {
+                <p>Đạt thành tích @status.Title của Sem @status.Prize_Semester</p>
+                }
+            </div>
+        </div>
+    </li>
+}
+    <li>
+        <i class="fa fa-clock-o bg-gray"></i>
+    </li>
+</ul>

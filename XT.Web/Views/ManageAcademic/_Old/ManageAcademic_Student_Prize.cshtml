@@ -1,0 +1,42 @@
+﻿@using XT.Web.External
+
+@{
+    ViewBag.Title = "[Academic] Quản lý khen thưởng của HV";
+    var title = ViewBag.Title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+
+    var student_name = ViewBag.StudentName as string;
+}
+
+<section class="content-header">
+    <h1>@title
+        <small>@student_name</small>
+    </h1>
+    <ol class="breadcrumb low">
+        <li><a href="@Url.GoAccountAdminFirstPage()"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="@Url.Action("ManageAcademic_Student")">Danh sách HV</a></li>
+        <li class="active">@student_name</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row ajax-search-group">
+        <div class="col-md-12">
+            <div class="Search_Result">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">Khen thưởng của HV</h3>
+                        <div class="box-tools">
+                            <a href="#" class="btn btn-default" id="daterange-btn">
+                                <i class="fa fa-calendar"></i>&nbsp;<i class="fa fa-caret-down"></i>
+                            </a>
+                            <button class="btn btn-warning" data-toggle="modal" data-target="#add-modal">
+                                <i class="fa fa-plus fa-fw"></i>&nbsp;Khen thưởng mới
+                            </button>
+                        </div>
+                    </div>
+                    @Html.Partial("Search_Result/_partial_Search_Student_Prize", student_name)
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

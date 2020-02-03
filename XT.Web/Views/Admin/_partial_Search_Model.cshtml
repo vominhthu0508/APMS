@@ -1,0 +1,67 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model;
+    var hasData = lstItems != null && lstItems.Count > 0;
+
+    //var entity = ViewBag.Entity as string;
+    var entityFilter = ViewBag.EntityFilter as string;
+    var name = ViewBag.EntityName as string;
+    var noPaging = (bool)ViewBag.NoPaging;
+    var IsSearchByName = ViewBag.IsSearchByName as string;
+    
+    //partial
+    var action = LayoutModel.GetCurrentActionName();
+    var controller = LayoutModel.GetCurrentControllerName();//ManageAcademic
+    var searchpartial_name = "_partial_Search_" + entityFilter;
+    
+    searchpartial_name = "../" + controller + "/Search_Result/" + searchpartial_name;
+
+}
+
+<div class="box">
+    @if (hasData)
+    {
+        <div class="box-body no-padding">
+            @Html.Partial(searchpartial_name, lstItems)
+        </div>
+        if (!noPaging)
+        {
+            if (string.IsNullOrEmpty(IsSearchByName))
+            {
+            <div class="box-footer clearfix">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="dataTables_info" role="status" aria-live="polite">Total: <b>@lstItems.TotalItemCount</b> records</div>
+                    </div>
+                    @*<div class="col-sm-2">
+                        <select name="page_size" class="form-control">
+                            <option value="30">30 dữ liệu/trang</option>
+                            <option value="50">50 dữ liệu/trang</option>
+                            <option value="100">100 dữ liệu/trang</option>
+                            <option value="150">150 dữ liệu/trang</option>
+                        </select>
+                    </div>*@
+                    <div class="col-sm-8">
+                        @Html.PagedListPager(Model, page => "#" + page)
+                    </div>
+                </div>
+            </div>
+            }
+        }
+    }
+    else
+    {
+      <div class="box-header with-border">
+            <div class="alert alert-danger">
+                <h4><i class="icon fa fa-frown-o"></i>Oops! No data meet your request!</h4>
+            </div>
+        </div>
+    }
+</div>

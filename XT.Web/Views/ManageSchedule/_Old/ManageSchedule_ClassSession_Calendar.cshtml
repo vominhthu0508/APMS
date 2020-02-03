@@ -1,0 +1,287 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "[Schedule] Quản lý TKB";
+    var name = "ClassSession";
+    var title = ViewBag.Title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+
+    var ClassID = ViewBag.ClassID as string;
+    var StartDate = (DateTime)ViewBag.StartDate;
+    var EndDate = (DateTime)ViewBag.EndDate;
+
+    var entity = "Class_Module";
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+@section Styles{
+    @Styles.Render("~/Content/Admin/ManageSchedule_ClassSession_Calendar")
+}
+
+@section Scripts{
+    @Scripts.Url("~/Scripts/Admin/ManageSchedule_ClassSession_Calendar")
+}
+
+<section class="content-header">
+    <h1>
+        @title
+        <small>@ClassID (@StartDate.ToShortDateString() - @EndDate.ToShortDateString())</small>
+    </h1>
+    <div class="breadcrumb">
+        <div style="margin-bottom: 10px; margin-top: 10px;">
+            <button class="btn btn-warning" data-toggle="modal" data-target="#add-modal">
+                <i class="fa fa-plus fa-fw"></i>&nbsp;@name
+            </button>
+            <a href="@Url.Action("ManageSchedule_ClassSession")" class="btn btn-danger"><i class="fa fa-list"></i>&nbsp;List</a>
+            <a href="#" class="btn btn-default" id="daterange-btn">
+                <i class="fa fa-calendar"></i>&nbsp;<i class="fa fa-caret-down"></i>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-body no-padding">
+                    <!-- THE CALENDAR -->
+                    <div id="calendar"></div>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /. box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+    <!-- Modal -->
+    <!-- NHO DICH THANH TIENG ANH -->
+    @*<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+            <form class="form-horizontal" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Them thoi khoa bieu</h4>
+                    </div>
+                    <!-- /.modal-header-->
+                    <div class="modal-body  clearfix">
+                        <div class="form-group">
+                            <label class="control-label text-right col-md-2">Lop hoc</label>
+                            <div class="col-md-10">
+                                <input type="text" id="txtLopHoc" placeholder="Nhap lop hoc..." class="form-control" />
+                            </div>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-label text-right col-md-2">Mon hoc</label>
+                            <div class="col-md-10">
+                                <input type="text" id="txtMonHoc" placeholder="Nhap mon hoc..." class="form-control col-md-6" />
+                            </div>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-label text-right col-md-2">FC</label>
+                            <div class="col-md-10">
+                                <select class="form-control" id="selectFC">
+                                    <option value="Dau Ngoc Ha Duong">Đậu Ngọc Hà Dương</option>
+                                    <option value="Dau Ngoc Ha Duong">Đậu Ngọc Hà Dương</option>
+                                    <option value="Dau Ngoc Ha Duong">Đậu Ngọc Hà Dương</option>
+                                    <option value="Dau Ngoc Ha Duong">Đậu Ngọc Hà Dương</option>
+                                    <option value="Dau Ngoc Ha Duong">Đậu Ngọc Hà Dương</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Gio hoc</label>
+                            <div class="col-md-4">
+                                <div class="input-group date" id="timestart" data-date="" data-date-format="hh:ii">
+                                    <input class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-md-push-2">
+                                <div class="input-group date" id="timeend" data-date="" data-date-format="hh:ii">
+                                    <input class="form-control" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.form-group -->
+
+                        <div class="form-group">
+                            <label class="control-label text-right col-md-2">Ngay bat dau</label>
+                            <div class="col-md-4">
+                                <div class="input-group date form_date" data-date="" data-date-format="dd MM yyyy">
+                                    <input class="form-control" id="datestart" size="16" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </div>
+                            <label class="control-label text-right col-md-2">LT</label>
+                            <div class="col-md-4">
+                                <select class="form-control " id="selectRoomLT">
+                                    <option value="1">Lab 1</option>
+                                    <option value="2">Lab 2</option>
+                                    <option value="3">Lab 3</option>
+                                    <option value="4">Lab 4</option>
+                                    <option value="5">Lab 5</option>
+                                    <option value="6">Lab 6</option>
+                                    <option value="7">Class 1</option>
+                                    <option value="8">Class 2</option>
+                                    <option value="9">Conference</option>
+                                    <option value="10">Studio</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-label text-right col-md-2">Ngay ket thuc</label>
+                            <div class="col-md-4">
+                                <div class="input-group date form_date" id="dateend" data-date="" data-date-format="dd MM yyyy">
+                                    <input class="form-control" size="16" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </div>
+                            <label class="control-label text-right col-md-2">TH</label>
+                            <div class="col-md-4">
+                                <select class="form-control " id="selectRoomTH">
+                                    <option value="1">Lab 1</option>
+                                    <option value="2">Lab 2</option>
+                                    <option value="3">Lab 3</option>
+                                    <option value="4">Lab 4</option>
+                                    <option value="5">Lab 5</option>
+                                    <option value="6">Lab 6</option>
+                                    <option value="7">Class 1</option>
+                                    <option value="8">Class 2</option>
+                                    <option value="9">Conference</option>
+                                    <option value="10">Studio</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- /.form-group -->
+                        <div class="form-group">
+                            <label class="control-label text-right col-md-2">Ngay thi</label>
+                            <div class="col-md-4">
+                                <div class="input-group date form_date" id="dateexam" data-date="" data-date-format="dd MM yyyy">
+                                    <input class="form-control" size="16" type="text" value="" readonly>
+                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                </div>
+                            </div>
+                            <label class="control-label text-right col-md-2">Exam</label>
+                            <div class="col-md-4">
+                                <select class="form-control " id="selectRoomExam">
+                                    <option value="1">Lab 1</option>
+                                    <option value="2">Lab 2</option>
+                                    <option value="3">Lab 3</option>
+                                    <option value="4">Lab 4</option>
+                                    <option value="5">Lab 5</option>
+                                    <option value="6">Lab 6</option>
+                                    <option value="7">Class 1</option>
+                                    <option value="8">Class 2</option>
+                                    <option value="9">Conference</option>
+                                    <option value="10">Studio</option>
+                                </select>
+
+                            </div>
+                        </div>
+                        <!-- /.form-group -->
+                    </div>
+                    <!-- /.modal-body-->
+                    <div class="modal-footer">
+                        <button type="button" id="close" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" id="save" class="btn btn-primary">Save changes</button>
+                    </div>
+                    <!-- /.modal-footer-->
+
+                </div>
+            </form>
+        </div>
+
+    </div>*@
+    <!-- /Modal -->
+
+    <div class="modal fade" id="add-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <form enctype="multipart/form-data" method="post">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Add new @name
+                            @*@if (!string.IsNullOrEmpty(currentParentName))
+                            { 
+                                <span> of @currentParentName</span>
+                            }*@
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        @Html.Partial(addview_name, new Class_Module())
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                        <button type="submit" class="btn btn-primary" id="btnAdd">Thêm</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+
+@*<script src="~/Scripts/jquery-1.11.2.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.9.2.min.js"></script>
+<script src="~/Scripts/moment-with-locales.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+<link href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" type="text/css" rel="stylesheet" />*@
+<script>
+    //$(function () {
+    //    var availableTags = [
+    //    "C1507G",
+    //    "C1407G",
+    //    "C1307G"
+    //    ];
+    //    $("#txtLopHoc").autocomplete({
+    //        source: availableTags
+    //    });
+    //});
+
+    //$("#timestart").datetimepicker({
+    //    language: 'en',
+    //    weekStart: 1,
+    //    todayBtn: 0,
+    //    autoclose: 1,
+    //    todayHighlight: 0,
+    //    startView: 1,
+    //    minView: 0,
+    //    maxView: 1,
+    //    forceParse: 0
+    //});
+    //$("#timeend").datetimepicker({
+    //    language: 'en',
+    //    weekStart: 1,
+    //    todayBtn: 0,
+    //    autoclose: 1,
+    //    todayHighlight: 0,
+    //    startView: 1,
+    //    minView: 0,
+    //    maxView: 1,
+    //    forceParse: 0
+    //});
+    //$('.form_date').datetimepicker({
+    //    language: 'en',
+    //    weekStart: 1,
+    //    todayBtn: 1,
+    //    autoclose: 1,
+    //    todayHighlight: 1,
+    //    startView: 2,
+    //    minView: 2,
+    //    forceParse: 0
+    //});
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    // ket thuc xy ly form modal //////////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+</script>

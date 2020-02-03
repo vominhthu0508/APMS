@@ -1,0 +1,68 @@
+/*image-ratio*/
+.image-ratio
+{
+    position: relative;
+    height: auto !important;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    display: block;
+}
+
+    .image-ratio:before
+    {
+        content: '';
+        display: block;
+        padding-top: 75%; /* initial ratio of 4:3*/
+    }
+
+.ratio2_1:before
+{
+    padding-top: 50%;
+}
+
+.ratio16_9:before
+{
+    padding-top: 56.25%;
+}
+
+.ratio5_3:before
+{
+    padding-top: 60%;
+}
+
+.ratio3_2:before
+{
+    padding-top: 66.67%;
+}
+
+.ratio4_3:before
+{
+    padding-top: 75%;
+}
+
+.ratio1_1:before
+{
+    padding-top: 100%;
+}
+
+.ratio1_2:before
+{
+    padding-top: 200%;
+}
+
+.image-ratio img
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+.has-bottom
+{
+    margin-bottom: 10px;
+}

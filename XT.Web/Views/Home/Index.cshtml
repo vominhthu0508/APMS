@@ -1,0 +1,56 @@
+﻿@using XT.Model
+@using XT.Web.External
+@using XT.Web.Models
+
+@{
+    ViewBag.Title = "Căn hộ chung cư, dự án tại TP HCM - Homely.vn";
+    Layout = "~/Views/Layout/Layout.cshtml";
+    ViewBag.SearchHeader = "";
+}
+
+@section Styles{
+    @Styles.Render("~/Content/Stylesheets/Home/Index")
+}
+
+@section Scripts{
+    @Scripts.Url("~/Scripts/Home/Index")
+}
+
+<section id="hero">
+    <div class="hero-media hero-layer hidden-xs"></div>
+    <div class="hero-media hidden-xs">
+        @*<video class="HeroVideo animated fadeIn" poster="images/slide_hero.jpg" autoplay muted loop>
+            <source src="Videos/Homely.mp4" type="video/mp4">
+            <source src="Videos/Homely.webm" type="video/webm">
+        </video>*@
+    </div>
+    <div class="intro_title home_title emerge" style="position: relative;">
+        <h1 class="animated fadeInDown">Tìm kiếm <span class="count text-primary"><i class="fa fa-angle-right"></i>10.000</span> căn hộ chung cư</h1>
+        @*<p class="no-uppercase animated fadeInDown">Tìm kiếm căn hộ chung cư nhanh chóng, dễ dàng</p>*@
+        <p class="animated fadeInDown">nhanh chóng / dễ dàng / chính xác</p>
+        @*<ul class="hashtags simple animated fadeInDown">
+            <li>#DUAN</li>
+            <li>#CANHO</li>
+            <li>#HOMELY.VN</li>
+            <li>#BATDONGSAN</li>
+            <li>#CHUNGCU</li>
+        </ul>*@
+        <a href="#search_bar_container" class="animated fadeInUp btn btn-default" data-top="-60">Bắt đầu</a>
+    </div>
+    <div id="search_bar_container" class="emerge">
+        <div class="container">
+            <div class="search_bar">
+                @*@Html.Partial("../Global/_partialAutoCompleteSearch")*@
+            </div>
+            <!-- End search bar-->
+        </div>
+    </div>
+    <!-- /search_bar-->
+</section>
+<div id="hot_rooms" class="container margin_60">
+    <div class="main_title">
+        <h2>Những dự án <span>nổi bật</span></h2>
+        <p>abc</p>
+    </div>
+    
+</div>

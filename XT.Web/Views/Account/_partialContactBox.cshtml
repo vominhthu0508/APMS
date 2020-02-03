@@ -1,0 +1,23 @@
+﻿<div class="col-md-4 col-sm-4">
+    <div class="box_style_1">
+        <h4>@Html.GetResource("Account__partialContactBox__line3")</h4>
+        <p>
+            @Html.GetResource("Account__partialContactBox__line5")
+        </p>
+        <hr>
+        <h4>@Html.GetResource("Account__partialContactBox__line8")</h4>
+        <p>
+            @Html.GetResource("Account__partialContactBox__line10")
+        </p>
+        <ul id="contact-info">
+            <li>@XT.Web.AppSettings.ContactPhone</li>
+            <li><a href="#">@XT.Web.AppSettings.ContactEmail</a></li>
+        </ul>
+    </div>
+    <div class="box_style_4">
+        <i class="icon_set_1_icon-57"></i>
+        <h4>Bạn cần <span>trợ giúp?</span></h4>
+        <a href="tel://@XT.Web.AppSettings.ContactPhone" class="phone">@XT.Web.AppSettings.ContactPhone</a>
+        <small>@Html.GetResource("Account__partialContactBox__line21")</small>
+    </div>
+</div>

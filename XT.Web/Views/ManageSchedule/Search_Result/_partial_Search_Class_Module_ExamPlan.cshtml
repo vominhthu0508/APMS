@@ -1,0 +1,66 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Class_Module>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+<table class="table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            @*<th>Id</th>*@
+            <th>Module</th>
+            <th>Class</th>
+            <th>Day</th>
+            <th>Hour</th>
+            <th>Unit</th>
+            <th>Type</th>
+            <th>Exam</th>
+            <th>Sem</th>
+            <th>Faculty</th>
+            <th>Location</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            var FC = item.Faculty;
+            <tr id="item-@item.Id">
+                @*<td class="notranslate">@item.Id</td>*@
+                <td>
+                    <a href="@Url.Action("ManageSchedule_ClassModule_Exam", new { id = item.Id })">
+                        @item.Module.Module_Name (@item.Module.Module_Code)
+                    </a>
+                </td>
+                <td>@item.Class_Name</td>
+                <td>@LayoutModel.GetText_ClassDayEnum((ClassDayEnum)item.Class_Module_Day)</td>
+                <td>@(item.Class_Module_Hour_Start.ToHourString())h-@(item.Class_Module_Hour_End.ToHourString())h</td>
+                <td>@item.Class.Company.Company_Name_Abbrev</td>
+                <td>@((ModuleTypeEnum)item.Module.Module_Type)</td>
+                <td>@item.Class_Module_Date_Exam.ToDateString()</td>
+                <td>Sem @item.Module.Semester</td>
+                <td><a href="@Url.GoFCProfile(FC.Id)">@FC.FC_Name</a></td>
+                <td>@item.Resource_Exam.Resource_Name</td>
+                <td class="options">
+                    @Html.Partial("../Admin/_partial_Search_Model_Options",
+                            Tuple.Create((IEntity<Int32>)item, "", addview_name, name))
+                </td>
+            </tr>
+            }
+    </tbody>
+</table>

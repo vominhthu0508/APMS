@@ -1,0 +1,40 @@
+﻿@using XT.Model;
+@using XT.Web.External;
+
+@model Contact
+
+@{
+    Layout = "EmailTemplate_Main.cshtml";    
+}
+
+@if (Model != null)
+{
+    var contact = Model;
+
+    string name = contact.Contact_Name;
+    string email = contact.Contact_Email;
+    string phone = contact.Contact_Phone;
+    string content = contact.Contact_Description;
+    string roomLink = Url.Action("Index", "Room", new { id = contact.Room_Id, name = "fake" }, Request.Url.Scheme);
+
+    var website = XT.Web.AppSettings.Website;
+    var website_url = Url.Action("Index", "Home", new { }, Request.Url.Scheme);
+    
+    <div>
+        Xin chào,
+        <br>
+        Có một liên hệ từ khách cho <a href="@roomLink" target="_blank">dự án</a> với nội dung như sau
+        <br>
+        <br>
+        Họ tên: @name<br>
+        Email: <a href="mailto:email" target="_blank">@email</a><br>
+        Số điện thoại: @phone<br>
+        Nội dung: @content<br>
+        <br>
+        <br>
+        
+        <a href="@website_url" target="_blank">@website</a>
+    </div>
+    
+    
+}

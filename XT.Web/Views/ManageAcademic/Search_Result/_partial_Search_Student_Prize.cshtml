@@ -1,0 +1,65 @@
+﻿@using XT.Web.External
+
+<div class="box-body">
+    <table class="table table-bordered table-hover dataTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Student</th>
+                <th>Prize</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(var i = 1; i <= 10; i++)
+            {
+                var student_name = Model == "Tất cả" ? XT.Utilities.SampleTextGenerator.GenWords(3) : Model;
+            <tr>
+                <td>@i</td>
+                <td>
+                    <div class="user-block">
+                        <img class="img-circle img-bordered-sm" src="/demo/img/user1-128x128.jpg" alt="user image">
+                        <span class="username">
+                            <a href="@Url.GoUserProfile()">@student_name</a>
+                        </span>
+                        <span class="description">Student843164</span>
+                    </div>
+                </td>
+                <td>
+                    @if (i % 2 == 0)
+                    { 
+                        <a href="@Url.Action("ManageSchedule_ClassModule_Exam", "ManageSchedule")">Typography Techniques</a>
+                    }
+                    else
+                    {
+                        <span>DISTINCTION - Sem 1</span>
+                    }
+                </td>
+                <td>3/6/2016</td>
+                <td>
+                    @if (i % 2 == 0)
+                    { 
+                        <span>Module</span>
+                    }
+                    else
+                    {
+                        <span>Sem 1</span>
+                    }
+                </td>
+                <td class="options">
+                    <div class="btn-group pull-left">
+                        <a class="btn btn-default" title="Chỉnh sửa">
+                            <i class="fa fa-edit fa-fw"></i>
+                        </a>
+                        <a class="btn btn-default btn-admin-action" data-action="xóa" title="Xóa">
+                            <i class="fa fa-trash fa-fw"></i>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</div>

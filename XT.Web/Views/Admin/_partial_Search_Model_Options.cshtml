@@ -1,0 +1,56 @@
+﻿@*@Html.Partial("../Admin/_partial_Search_Model_Options")*@
+
+@using XT.Model
+
+@model Tuple<IEntity<Int32>, string, string, string>
+@{
+    IEntity<Int32> item = Model.Item1 as IEntity<Int32>;
+    string api_delete = Model.Item2;
+    string addview_name = Model.Item3;
+    string name = Model.Item4;
+
+    var modal_size = "";
+    if (!string.IsNullOrEmpty(ViewBag.ModalSize))
+    {
+        modal_size = ViewBag.ModalSize;
+    }
+}
+
+@if (XT.Web.External.AuthenticationManager.CanManageData())
+{
+<div class="btn-group">
+    <a class="btn btn-default" 
+                            data-toggle="modal" 
+                            data-target="#myModaledit-@item.Obj_Id"
+                            title="Chỉnh sửa">
+        <i class="fa fa-edit fa-fw"></i>
+    </a>
+    @if (!string.IsNullOrEmpty(api_delete))
+    {
+    <a class="btn btn-default btn-admin-action" 
+                            data-id="@item.Obj_Id" 
+                            data-action="xóa" 
+                            data-api="@api_delete"
+                            title="Xóa @name"><i class="fa fa-trash fa-fw"></i></a>
+    }
+</div>
+<div class="modal fade" id="myModaledit-@item.Obj_Id" role="dialog" aria-labelledby="myModalLabeledit" aria-hidden="true">
+    <div class="modal-dialog @modal_size">
+        <form enctype="multipart/form-data" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabeledit">Update @name</h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Partial(addview_name, item)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary btnEdit">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+}

@@ -1,0 +1,140 @@
+﻿@using XT.Model
+@using XT.BusinessService;
+@using XT.Web.Models
+
+@model Class_Module
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    var Course_Id = Model.Id == 0 ? 0 : Model.Module.CourseFamily_Id;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Class</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <select name="Class_Id" class="form-control select2">
+                            @foreach (var c in LayoutModel.ClassesAll((int)ClassStatusEnum.Studying))
+                            {
+                                <option value="@c.Id" @(Model.Class_Id == c.Id ? "selected" : "")
+                                    data-value="@c.CourseFamily_Id" 
+                                    data-classday="@c.Class_Day"
+                                    data-classhourstart="@c.Class_Hour_Start"
+                                    data-classhourstartstring="@c.Class_Hour_Start.ToHourString()"
+                                    data-classhourend="@c.Class_Hour_End"
+                                    data-classhourendstring="@c.Class_Hour_End.ToHourString()">@c.Class_Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="col-md-1">
+                        Hoặc
+                    </div>
+                    <div class="col-md-5">
+                        @Html.TextBoxFor(model => model.Class_Module_Name, 
+                            new { @class = "form-control", placeholder = "Nhập tên lớp" })
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Course</label>
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.CourseFamilies_ToMyDictionary(), new { Course_Id = Course_Id }))
+            </div>
+            <div class="form-group">
+                <label>Module</label>
+                <select name="Module_Id" class="form-control select2 target-select" data-target="Class_Module_DurationByDay">
+                    <option value="0">Choose Module</option>
+                    @if (Model.Id > 0)
+                    { 
+                    <option value="@Model.Module.Id" selected="selected"
+                        data-value="@Model.Module.Module_DurationByDay">@Model.Module.Module_Name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>FC</label>
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Faculties_ToMyDictionary(), new { Model.Faculty_Id }))
+            </div>
+            <div class="form-group">
+                <label>Class Day (2,4,6 or 3,5,7)</label>
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(ClassDayEnum), new { Model.Class_Module_Day }))
+            </div>
+            <div class="form-group">
+                <label>Duration (days)</label>
+                @Html.TextBoxFor(model => model.Class_Module_DurationByDay, 
+                    new { @class = "form-control", placeholder = "Số buổi" })
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <input type="text" name="Class_Module_Date_Start" 
+                               value="@Model.Class_Module_Date_Start.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+                    </div>
+                    <div class="form-group">
+                        <label>End Date</label>
+                        <input type="text" name="Class_Module_Date_End" 
+                               value="@Model.Class_Module_Date_End.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+                    </div>
+                    <div class="form-group">
+                        <label>Exam Date</label>
+                        <input type="text" name="Class_Module_Date_Exam" 
+                               value="@Model.Class_Module_Date_Exam.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Theory</label>
+                        @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Resources_ToMyDictionary(), new { Model.Resource_LT_Id }))
+                    </div>
+                    <div class="form-group">
+                        <label>Lab</label>
+                        @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Resources_ToMyDictionary(), new { Model.Resource_TH_Id }))
+                    </div>
+                    <div class="form-group">
+                        <label>Exam</label>
+                        @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Resources_ToMyDictionary(), new { Model.Resource_Exam_Id }))
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Class Hour (24h base)</label>
+                <div class="row">
+                    <div class="col-md-6 bootstrap-timepicker Class_Module_Hour_Start">
+                        <div class="input-group">
+                            <input type="text" class="form-control timepicker" placeholder = "Từ" value="@Model.Class_Module_Hour_Start.ToHourString()">
+                            <div class="input-group-addon">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                            @Html.HiddenFor(model => model.Class_Module_Hour_Start, new { id = "timepicker-value" })
+                        </div>
+                    </div>
+                    <div class="col-md-6 bootstrap-timepicker Class_Module_Hour_End">
+                        <div class="input-group">
+                            <input type="text" class="form-control timepicker" placeholder = "Đến" value="@Model.Class_Module_Hour_End.ToHourString()">
+                            <div class="input-group-addon">
+                                <i class="fa fa-clock-o"></i>
+                            </div>
+                            @Html.HiddenFor(model => model.Class_Module_Hour_End, new { id = "timepicker-value" })
+                        </div>
+                        @*@Html.TextBoxFor(model => model.Class_Module_Hour_End, 
+                            new { @class = "form-control", placeholder = "Đến" })*@
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label >Note</label>
+                @Html.TextBoxFor(model => model.Class_Module_Note, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label>Class Status</label>
+                @*@Html.DropDownListFor(model => model.Class_Module_Status, 
+                    new SelectList(MyDictionary.GetValues(typeof(ClassModuleStatusEnum)), "Id", "Name", Model.Class_Module_Status), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(ClassModuleStatusEnum), new { Model.Class_Module_Status }))
+            </div>
+        </div>
+    </div>
+}

@@ -1,0 +1,145 @@
+﻿.login-dialog .modal-dialog{
+    width: 360px;
+}
+
+.login-dialog .modal-header{
+    display: none;
+}
+
+.login-dialog .modal-body{
+    padding: 0;
+}
+
+.login-or{
+    font-size: 14px;
+}
+
+.login-dialog #login{
+    margin: 0;
+}
+
+#login .logo{
+    width: 160px;
+}
+
+#fb-click{
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+
+.field-validation-error {
+    color: #ed3434;
+}
+
+/*user login profile*/
+/*Navigation Bar Account*/
+.navbar-nav .acc-info-container
+{
+    float: none;
+    display: inline-block;
+}
+
+.navbar-nav .acc-info
+{
+    padding-right: 10px;
+}
+
+    .navbar-nav .acc-info .acc_avatar
+    {
+        width: 20px;
+        height: 20px;
+        -moz-border-radius: 100%;
+        -webkit-border-radius: 100%;
+        border-radius: 100%;
+        margin-right: 5px;
+    }
+
+    .navbar-nav .acc-info i
+    {
+        font-size: 11px;
+        margin-left: 5px;
+    }
+
+/*.account-profile{
+    font-size: 13px!important;
+}
+
+.sticky-show .account-profile
+{
+    float: right;
+}
+
+.account-profile .btn-navigate-profile
+{
+    text-decoration: none !important;
+}
+
+.account-profile.open .btn-navigate-profile > span > b
+{
+    position: relative;
+}
+
+    .account-profile.open .btn-navigate-profile > span > b:before,
+    .account-profile.open .btn-navigate-profile > span > b:after
+    {
+        content: '';
+        border: solid transparent;
+        position: absolute;
+        right: 10px;
+        bottom: -15px;
+        border-width: 10px;
+        z-index: 1001;
+    }
+
+    .account-profile.open .btn-navigate-profile > span > b:before
+    {
+        border-bottom-color: #d6d6d6;
+    }
+
+    .account-profile.open .btn-navigate-profile > span > b:after
+    {
+        border-bottom-color: #fff;
+    }
+
+#top_links .account-profile .dropdown-menu
+{
+    margin-top: 10px !important;
+    border-radius: 4px !important;
+}*/
+
+#top_links .dropdown-menu > li > a
+{
+    color: #333 !important;
+}
+
+#top_links.unauthenticated .multilang-dropdown{
+    float: none;
+}
+
+.btn-navigate-login.active
+{
+    background-color: #2b2b2b !important;
+    color: #1dd1c6 !important;
+}
+
+.btn-navigate-profile
+{
+    font-size: 12px;
+}
+
+    .btn-navigate-profile img
+    {
+        width: 20px;
+        height: 20px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        border-radius: 2px;
+        display: inline-block;
+        margin-right: 3px;
+        margin-top: -5px;
+    }
+
+    .account-profile .dropdown-menu a
+    {
+        color: #555 !important;
+    }

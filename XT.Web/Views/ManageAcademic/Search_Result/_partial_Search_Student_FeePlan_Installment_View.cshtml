@@ -1,0 +1,57 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Student_FeePlan_Installment>();//sửa
+    //var name = ViewBag.EntityName as string;
+    //var entity = ViewBag.Entity as string;
+    var entity = "Student_FeePlan_Installment";
+    var name = "Student FeePlan Installment";
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+<table class="table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Plan Date</th>
+            <th>Actual Date</th>
+            <th>Extent Date</th>
+            @*<th>Extent Count</th>*@
+            <th>Plan Amount</th>
+            <th>Actual Amount</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            var status = (InstallmentStatusEnum)item.Installment_Status;
+            <tr id="item-@item.Id">
+                <td class="notranslate">@item.Id</td>
+                <td>@item.Date_Planning.ToDateString()</td>
+                <td>@(item.Date_Actual.HasValue ? item.Date_Actual.Value.ToDateString() : "")</td>
+                <td>@(item.Date_Extend.HasValue ? item.Date_Extend.Value.ToDateString() : "")</td>
+                @*<td>@(item.Extend_Count > 0 ? item.Extend_Count.ToString() : "")</td>*@
+                <td>@item.Amount_Planning$</td>
+                <td>@item.Amount_Actual$</td>
+                <td class="text-@Helper.GetInstallmentStatusColor(status)">@Helper.GetInstallmentStatus(status)</td>
+                @*<td class="options">
+                    @Html.Partial("../Admin/_partial_Search_Model_Options",
+                        Tuple.Create((IEntity<Int32>)item, api_delete, addview_name, name))
+                </td>*@
+            </tr>
+        }
+    </tbody>
+</table>

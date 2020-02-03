@@ -1,0 +1,149 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+@{
+    var lstItems = Model;
+
+    var entity = ViewBag.Entity as string;
+    var entityFilter = ViewBag.EntityFilter as string;
+    var new_item = ViewBag.NewEntity as IEntity;
+    var name = ViewBag.EntityName as string;
+    var filterpartial_name = ViewBag.FilterPartial as string;
+    var breadcrumbpartial_name = ViewBag.BreadCrumbPartial as string;
+    var modal_size = ViewBag.ModalSize as string;
+    var currentParentName = ViewBag.CurrentParentName as string;
+    var script = ViewBag.Script as string;
+    var canAdd = (bool)ViewBag.CanAdd;
+    var noPaging = (bool)ViewBag.NoPaging;
+    var noSearchBox = (bool)ViewBag.NoSearchBox;
+    var filterAction = ViewBag.FilterAction as string;
+
+    var hasBreadcrumb = canAdd || !string.IsNullOrEmpty(breadcrumbpartial_name);
+
+    //api
+    var controller_name = LayoutModel.GetControllerName();
+    var api_add = "/" + controller_name + "/Add" + entity;
+    var api_edit = "/" + controller_name + "/Edit" + entity;
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+
+    var title = "Manage " + name;
+    ViewBag.Title = title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+}
+
+@section Scripts{
+    @if (!string.IsNullOrEmpty(script))
+    {
+        @Scripts.Url(script)
+    }
+}
+
+@*/////////////////////////////////////////////////////////////////////////*@
+@*/////////////////////////////////////////////////////////////////////////*@
+@*/////////////////////////////////////////////////////////////////////////*@
+@*SỬA*@
+<input type="hidden" id="postAddLink" value="@api_add" />
+<input type="hidden" id="postEditLink" value="@api_edit" />
+<input type="hidden" id="postDeleteLink" value="@api_delete" />
+<input type="hidden" id="postIsUploadImage" value="true" />
+@*/////////////////////////////////////////////////////////////////////////*@
+@*/////////////////////////////////////////////////////////////////////////*@
+@*/////////////////////////////////////////////////////////////////////////*@
+
+<section class="content-header">
+    <h1>@title
+        @if (!string.IsNullOrEmpty(currentParentName))
+        { 
+            <small>@currentParentName</small>
+        }
+    </h1>
+    @if (hasBreadcrumb)
+    {
+    <div class="breadcrumb">
+        <div style="margin-bottom: 10px; margin-top: 10px;">
+            @if (canAdd)
+            {
+            <button class="btn btn-warning" data-toggle="modal" data-target="#add-modal">
+                <i class="fa fa-plus fa-fw"></i>&nbsp; @name
+            </button>
+            }
+            @if (!string.IsNullOrEmpty(breadcrumbpartial_name))
+            { 
+                @Html.Partial("BreadCrumb_Partial/" + breadcrumbpartial_name)
+            }
+        </div>
+    </div>
+    }
+</section>
+<section class="content">
+    <div class="row ajax-search-group">
+        <form id="filter-form" action="/@controller_name/@filterAction">
+            @*Sorting*@
+            <input type="hidden" name="sort_target" value="" />
+            <input type="hidden" name="sort_rank" value="false" />
+            @*Filtering*@
+            <input type="hidden" name="page" value="1" />
+            <input type="hidden" name="page_size" value="@ViewBag.PageSize" />
+            <input type="hidden" name="pageChange" value="0" />
+            <input type="hidden" name="entity" value="@entity" />
+            <input type="hidden" name="entityFilter" value="@entityFilter" />
+            <input type="hidden" name="noPaging" value="@noPaging.ToString()" />
+            <input type="hidden" name="parentId" value="@ViewBag.CurrentParentId" />
+            @*Custom*@
+            @if (!string.IsNullOrEmpty(filterpartial_name))
+            {
+                <div class="col-lg-12 @(noSearchBox ? "hide" : "")">
+                    <div class="box box-default box-solid">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Search Box</h3>
+                            <div class="box-tools pull-right">
+                                <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            @Html.Partial(filterpartial_name)
+                        </div>
+                    </div>
+                </div>
+            }
+        </form>
+        <div class="col-lg-12">
+            <div class="Search_Result">
+                @Html.Partial("../Admin/_partial_Search_Model", lstItems)
+            </div>
+        </div>
+    </div>
+</section>
+@if (canAdd)
+{
+<div class="modal fade" id="add-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog @modal_size">
+        <form enctype="multipart/form-data" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Add new @name
+                        @if (!string.IsNullOrEmpty(currentParentName))
+                        { 
+                            <span> of @currentParentName</span>
+                        }
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    @Html.Partial(addview_name, new_item)
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="btnAdd">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+}

@@ -1,0 +1,20 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+<div class="row">
+    <div class="col-md-8">
+        <label>Name</label>
+        <div style="margin-bottom: 10px">
+            <input type="text" class="form-control" name="Model_Name"
+                placeholder="Nhập tên nhân viên để tìm kiếm...">
+        </div>
+    </div>
+    <div class="col-md-2">
+        <label>Position</label>
+        @Html.Raw(XT.Web.External.ControlUlti.DropDownListForAll(typeof(RoleTypeEnum), new { Role_Type_Id = 0 }, o => (int)o != (int)RoleTypeEnum.Admin, "Position"))
+    </div>
+    <div class="col-md-2">
+        <label>Center</label>
+        @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.CompaniesAll_ToMyDictionary(), new { Company_Id = 0 }))
+    </div>
+</div>

@@ -1,0 +1,18 @@
+﻿@if (XT.Web.External.AuthenticationManager.IsMod)
+{
+<form enctype="multipart/form-data" method="post" action="@Url.Action("ImportStudent", "ManageAcademic")" class="btn-import bg-green">
+    <i class="fa fa-upload fa-fw"></i>
+    <span>Import Student</span>
+    <input type="file" class="file" name="uploadFile">
+</form>
+<form enctype="multipart/form-data" method="post" action="@Url.Action("ImportMark", "ManageAcademic")" class="btn-import bg-green">
+    <i class="fa fa-upload fa-fw"></i>
+    <span>Import Mark</span>
+    <input type="file" class="file" name="uploadFile">
+</form>
+}
+<form enctype="multipart/form-data" method="post" action="@Url.Action("ImportPortalMark", "ManageAcademic")" class="btn-import bg-green">
+    <i class="fa fa-upload fa-fw"></i>
+    <span>Import Portal Mark</span>
+    <input type="file" class="file" name="uploadFile">
+</form>

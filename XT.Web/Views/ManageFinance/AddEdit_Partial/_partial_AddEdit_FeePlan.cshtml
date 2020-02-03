@@ -1,0 +1,94 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model FeePlan
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Center Type</label>
+                @*@Html.DropDownListFor(model => model.Company_Type_Id, 
+                    new SelectList(LayoutModel.Company_Types(), "Id", "Company_Type_Name", Model.Company_Type_Id), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Company_Types_ToMyDictionary(), new { Model.Company_Type_Id }))
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                @*@Html.DropDownListFor(model => model.FeePlan_Type, 
+                    new SelectList(MyDictionary.GetValues(typeof(FeePlanTypeEnum)), "Id", "Name", Model.FeePlan_Type), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(FeePlanTypeEnum), new { Model.FeePlan_Type }))
+            </div>
+            <div class="type-upgrade" style="display: none;">
+                <div class="form-group">
+                    <label>Upgrade Type</label>
+                    @Html.DropDownList("UpgradeType",
+                    new SelectList(MyDictionary.GetValues(typeof(FeePlanTypeEnum)).Where(f => f.Id != (int)FeePlanTypeEnum.Upgrade), "Id", "Name"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>From Course</label>
+                            <select class="form-control select2" style="width: 100%;" name="FromCourses">
+                                @foreach (var c in LayoutModel.Courses())
+                                {
+                                    <option value="@c.Id" data-semcount="@c.Course_Semester_Count">@c.Course_Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>To Course</label>
+                            <select class="form-control select2" style="width: 100%;" name="ToCourses">
+                                @foreach (var c in LayoutModel.Courses())
+                                {
+                                    <option value="@c.Id" data-semcount="@c.Course_Semester_Count">@c.Course_Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="type-nonupgrade form-group">
+                <label>Course</label>
+                <select class="form-control select2" style="width: 100%;" name="Courses">
+                    @foreach (var c in LayoutModel.Courses())
+                    {
+                        <option value="@c.Id" data-semcount="@c.Course_Semester_Count">@c.Course_Name</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="title-text">Tên @name (VD: DIM, ADIM...)</label>
+                @Html.TextBoxFor(model => model.FeePlan_Name, 
+                    new { @class = "form-control", placeholder = "Nhập tên " + name })
+            </div>
+            <div class="form-group">
+                <label class="title-text">FeePlan Price (Giá tiền)</label>
+                <div class="input-group">
+                    @Html.TextBoxFor(model => model.FeePlan_Price,
+                    new { @class = "form-control", placeholder = "" })
+                    <div class="input-group-addon">
+                        $
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="title-text">FeePlan Count (Số lần đóng)</label>
+                @Html.TextBoxFor(model => model.FeePlan_Count, 
+                    new { @class = "form-control", placeholder = "Số lần đóng" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">FeePlan Months (Tổng số tháng)</label>
+                @Html.TextBoxFor(model => model.FeePlan_Months, 
+                    new { @class = "form-control", placeholder = "Tổng số tháng" })
+            </div>
+        </div>
+    </div>
+}

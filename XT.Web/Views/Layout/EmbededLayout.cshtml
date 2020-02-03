@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        @Html.Partial("../Layout/Layout_Header_Html")
+        @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">*@
+        @Styles.Render("~/Content/Stylesheets/layout")
+        @if (IsSectionDefined(@"Styles"))
+        { 
+            @RenderSection(@"Styles", false)
+        }
+    </head>
+    <body>
+        <input type="hidden" value="@XT.Web.AppSettings.FacebookAppID" id="fbAppId"/>
+        @Scripts.Render("~/Scripts/PreScript")
+        @RenderBody()
+
+        @*@Scripts.Render("~/Scripts/PreScript")*@
+
+        @*Phải đặt ở đây vì hàm IsSectionDefined chỉ dùng được ở Layout.html*@
+        <input id="layoutScripts" type="hidden" value="@Scripts.Url("~/Scripts/layout")" />
+        @if (IsSectionDefined(@"Scripts"))
+        { 
+            <div id="childSCripts">@RenderSection(@"Scripts", false)</div>
+        }
+        @Scripts.Render("~/Scripts/PreLoad")
+        @*End*@
+
+        @Html.Partial("../Layout/Layout_Footer_VendorScripts")
+    </body>
+</html>

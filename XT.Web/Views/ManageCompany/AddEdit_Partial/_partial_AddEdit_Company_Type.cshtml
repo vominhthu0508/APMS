@@ -1,0 +1,19 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Company_Type
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label class="title-text">Tên @name</label>
+                @Html.TextBoxFor(model => model.Company_Type_Name, 
+                    new { @class = "form-control", placeholder = "Nhập tên " + name })
+            </div>
+        </div>
+    </div>
+}

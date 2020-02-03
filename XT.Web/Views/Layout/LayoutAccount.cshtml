@@ -1,0 +1,44 @@
+﻿@{
+    //Layout = "~/Views/Layout/Layout.cshtml";
+    ViewBag.SearchHeader = "";
+    
+    //used in: Login, Register, ChangePassword
+}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google" value="notranslate" />
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">*@
+    <style>
+        @@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
+    </style>
+    @Styles.Render("~/Content/Stylesheets/layoutadmin")
+    @if (IsSectionDefined(@"Styles"))
+    {
+        @RenderSection(@"Styles", false)
+    }
+  </head>
+  <body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="#"><b>Admin</b>LTE</a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            @RenderBody()
+        </div>
+    </div>
+    <!-- /.login-box -->
+    <input id="layoutScripts" type="hidden" value="@Scripts.Url("~/Scripts/layoutadmin")" />
+    @if (IsSectionDefined(@"Scripts"))
+    {
+        <div id="childSCripts" class="hidden">
+            @RenderSection(@"Scripts", false)
+        </div>
+    }
+    @Scripts.Render("~/Scripts/PreLoad")
+</body>
+</html>

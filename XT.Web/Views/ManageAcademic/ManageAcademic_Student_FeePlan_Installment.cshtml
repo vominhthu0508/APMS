@@ -1,0 +1,33 @@
+﻿@using XT.Model
+@using XT.Web.External
+@using XT.BusinessService
+@using PagedList;
+@using PagedList.Mvc;
+
+@model Student_FeePlan
+@{
+    var current_feeplan = Model as Student_FeePlan;
+    var current_student = current_feeplan.Student;
+    
+    var title = "Manage Student FeePlan Installments";
+    ViewBag.Title = title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+
+    var student_name = current_student.Student_FullName;
+}
+
+<section class="content-header">
+    <h1>@title
+        @*<small>@student_name</small>*@
+    </h1>
+    <ol class="breadcrumb low">
+        <li><a href="@Url.GoAccountAdminFirstPage()"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="@Url.Action("ManageAcademic_Student")">Manage Students</a></li>
+        <li class="active">@student_name</li>
+    </ol>
+</section>
+<section class="content">
+    <section class="invoice">
+        @Html.Partial("Partial/_partial_Student_FeePlan", current_feeplan)
+    </section>
+</section>

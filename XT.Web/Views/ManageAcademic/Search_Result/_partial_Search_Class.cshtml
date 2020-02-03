@@ -1,0 +1,67 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Class>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+<table class="table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Students</th>
+            <th>Day</th>
+            <th>Hour</th>
+            <th>Center</th>
+            <th>CourseFamily</th>
+            <th>Admission Date</th>
+            <th>Status</th>
+            @*<th>Note</th>*@
+            <th>View</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            var class_id = item.Class_Name;
+            var student_count = item.Students_List.Count();
+            var color = student_count > 0 ? "primary" : "default";
+            <tr id="item-@item.Id">
+                <td class="notranslate">@item.Id</td>
+                <td>@class_id</td>
+                <td>@student_count students</td>
+                <td>@LayoutModel.GetText_ClassDayEnum((ClassDayEnum)item.Class_Day)</td>
+                <td>@(item.Class_Hour_Start.ToHourString())h-@(item.Class_Hour_End.ToHourString())h</td>
+                <td>@item.Company.Company_Name_Abbrev</td>
+                <td>@item.CourseFamily.CourseFamily_FullName</td>
+                <td>@item.Class_Admission_Date.ToDateString()</td>
+                <td>@(((ClassStatusEnum)item.Class_Studying_Status).ToString())</td>
+                @*<td></td>*@
+                <td>
+                    <a href="@Url.Action("ManageAcademic_Student", new { class_id = class_id })" class="btn btn-@color btn-xs" title="@student_count Students"><i class="fa fa-users"></i></a>
+                    <a href="@Url.Action("ManageSchedule_ClassModule", "ManageSchedule", new { class_id = class_id })" class="btn btn-warning btn-xs" title="Schedule"><i class="fa fa-calendar"></i></a>
+                </td>
+                <td class="options">
+                    @Html.Partial("../Admin/_partial_Search_Model_Options",
+                            Tuple.Create((IEntity<Int32>)item, api_delete, addview_name, name))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

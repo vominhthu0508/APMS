@@ -1,0 +1,72 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model Faculty
+@{
+    var current_user = Model as Faculty;
+    var tab = ViewBag.Tab as string;
+
+    var name_user = current_user.FC_Name;
+    
+    var title = name_user;
+    ViewBag.Title = title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+
+    
+}
+
+<section class="content-header">
+    <h1>Faculty Profile Page
+    </h1>
+    <ol class="breadcrumb low">
+        <li><a href="@Url.GoAccountAdminFirstPage()"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="@Url.Action("ManageAcademic_Faculty")">Manage Faculties</a></li>
+        <li class="active">@name_user</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.Partial("Partial/_partial_FacultyDetail_ProfileInfo", current_user)
+        </div>
+        <!-- /.col -->
+        <div class="col-md-9">
+            <div class="nav-tabs-custom">
+                <div class="tab-content">
+                    <div class="box-header">
+                        <h3 class="box-title">Danh sách kỹ năng</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding">
+                        <table class="table table-striped">
+                            <tbody>
+                                <tr>
+                                    <th>Module</th>
+                                    <th>Code</th>
+                                </tr>
+                                @{
+                                    var modules = current_user.Modules_List;
+                                }
+                                @foreach (var module in modules)
+                                {
+                                    <tr>
+                                        <td>@module.Module.Module_Name</td>
+                                        <td>@module.Module.Module_Code</td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.tab-content -->
+            </div>
+            <!-- /.nav-tabs-custom -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+
+</section>

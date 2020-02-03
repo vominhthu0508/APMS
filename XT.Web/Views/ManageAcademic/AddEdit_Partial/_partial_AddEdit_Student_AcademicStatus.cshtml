@@ -1,0 +1,54 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Student_AcademicStatus
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Student</label>
+                @if (Model.Student_Id == 0)
+                {
+                <select class="form-control select-students" style = "width: 100%;" name="Student_Id">
+                </select>
+                }
+                else
+                {
+                <input class="form-control" value="@Model.Student.Student_FullName" disabled />
+                <input type="hidden" value="@Model.Student_Id" name="Student_Id">
+                }
+            </div>
+            <div class="form-group">
+                <label>Student Status</label>
+                @*@Html.DropDownListFor(model => model.Student_Status, 
+                    new SelectList(MyDictionary.GetValues(typeof(StudentAcademicStatusEnum)), "Id", "Name", Model.Student_Status), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(StudentAcademicStatusEnum), new { Model.Student_Status }))
+            </div>
+            <div class="form-group">
+                <label>Status Date</label>
+                <input type="text" name="Student_Status_Date" 
+                               value="@Model.Student_Status_Date.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+            </div>
+            <div class="form-group">
+                <label>FeePlan Amount if Delay</label>
+                @Html.TextBoxFor(model => model.Student_FU_Amount, 
+                    new { @class = "form-control", placeholder = "Tình trạng học phí nếu delay" })
+            </div>
+            <div class="form-group">
+                <label>F/U Date</label>
+                <input type="text" name="Student_FU_Date" 
+                               value="@(Model.Student_FU_Date.HasValue ? Model.Student_FU_Date.Value.ToString("dd/MM/yyyy") : "")" class="form-control monthdatepicker">
+            </div>
+            <div class="form-group">
+                <label>Status Note</label>
+                @Html.TextAreaFor(model => model.Student_Status_Note, 
+                    new { @class = "form-control", placeholder = "Ghi chú", rows = 5 })
+            </div>
+        </div>
+    </div>
+}

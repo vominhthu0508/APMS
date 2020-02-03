@@ -1,0 +1,140 @@
+﻿@using XT.Model
+@using XT.Web.External
+@using XT.BusinessService
+@using PagedList;
+@using PagedList.Mvc;
+
+@model Student_FeePlan
+@{
+    var current_feeplan = Model as Student_FeePlan;
+    var current_student = current_feeplan.Student;
+    
+    var student_name = current_student.Student_FullName;
+    var lstItems = current_feeplan.Student_FeePlan_Installments_List;
+    var viewOnly = false;
+    if (ViewBag.ViewOnly != null)
+    {
+        viewOnly = (bool)ViewBag.ViewOnly;
+    }
+
+    //api
+    var entity = "Student_FeePlan_Installment";
+    //var name = "Student FeePlan Installment";
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_add = "/" + controller_name + "/Add" + entity;
+    var api_edit = "/" + controller_name + "/Edit" + entity;
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+@*/////////////////////////////////////////////////////////////////////////*@
+@*/////////////////////////////////////////////////////////////////////////*@
+@*/////////////////////////////////////////////////////////////////////////*@
+@*SỬA*@
+<input type="hidden" id="postAddLink" value="@api_add" />
+<input type="hidden" id="postEditLink" value="@api_edit" />
+<input type="hidden" id="postDeleteLink" value="@api_delete" />
+<input type="hidden" id="postIsUploadImage" value="true" />
+@*/////////////////////////////////////////////////////////////////////////*@
+@*/////////////////////////////////////////////////////////////////////////*@
+@*/////////////////////////////////////////////////////////////////////////*@
+
+
+<!-- title row -->
+<div class="row">
+    <div class="col-xs-12">
+        <h2 class="page-header">
+            @student_name
+            <small class="pull-right">Date: @DateTime.Today.ToDateString()</small>
+        </h2>
+    </div>
+    <!-- /.col -->
+</div>
+<!-- info row -->
+<div class="row invoice-info">
+    <div class="col-sm-4 invoice-col">
+        Student
+              <address>
+                  <strong>@student_name</strong><br>
+                  @current_student.Student_EnrollNumber<br>
+                  Address: @current_student.Student_Address<br />
+                  @current_feeplan.FeePlan.FeePlan_Name
+              </address>
+    </div>
+    <!-- /.col -->
+    <div class="col-sm-4 invoice-col">
+        Contact
+              <address>
+                  <strong>@current_student.Student_MobilePhone</strong><br>
+                  Mobile: @current_student.Student_MobilePhone<br>
+                  Home: @current_student.Student_HomePhone<br>
+                  Email: @current_student.Student_Email<br />
+              </address>
+    </div>
+    <!-- /.col -->
+    <div class="col-sm-4 invoice-col">
+        FeePlan
+              <address>
+                  <strong>@current_feeplan.FeePlan.FeePlan_Name</strong><br>
+                  Nominal Course Fee: @current_feeplan.Nominal_Course_Fee$<br>
+                  Discount Amount: @current_feeplan.Discount_Amount$<br>
+                  Actual Course Fee: @current_feeplan.Actual_Course_Fee$<br>
+              </address>
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+<div class="row">
+    <div class="col-xs-12 table-responsive">
+        @{
+            var installment_name = viewOnly ? "_partial_Search_Student_FeePlan_Installment_View" : "_partial_Search_Student_FeePlan_Installment";
+        }
+        @Html.Partial("Search_Result/" + installment_name, lstItems.ToPagedList(1, 100))
+    </div>
+    <!-- /.col -->
+</div>
+<div class="row">
+    <!-- accepted payments column -->
+    <div class="col-xs-6">
+        <p class="lead">Amount Due @DateTime.Today.ToDateString()</p>
+        <div class="table-responsive">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th style="width: 50%">Nominal Course Fee:</th>
+                        <td>@current_feeplan.Nominal_Course_Fee$</td>
+                    </tr>
+                    <tr>
+                        <th>Discount Amount:</th>
+                        <td>@current_feeplan.Discount_Amount$</td>
+                    </tr>
+                    <tr>
+                        <th>Actual Course Fee:</th>
+                        <td>@current_feeplan.Actual_Course_Fee$</td>
+                    </tr>
+                    <tr>
+                        <th>Paid:</th>
+                        <td>@current_feeplan.Paid_Fee$</td>
+                    </tr>
+                    <tr>
+                        <th>Remain:</th>
+                        <td>@current_feeplan.Remain_Fee$</td>
+                    </tr>
+                    <tr>
+                        <th>Due to @DateTime.Today.ToDateString():</th>
+                        <td class="text-red">@current_feeplan.Remain_FeeUntilNow$</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- /.col -->
+</div>
+<!-- /.row -->
+<!-- this row will not appear when printing -->
+<div class="row no-print">
+    <div class="col-xs-12">
+        <a href="@Url.Action("ManageAcademic_Student_FeePlan", new { id = current_student.Id })" class="btn btn-success pull-right"><i class="fa fa-edit"></i>&nbsp;Cập nhật FeePlan</a>
+    </div>
+</div>

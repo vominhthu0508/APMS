@@ -1,0 +1,18 @@
+﻿@using XT.Web.External
+
+@{
+    var profileUrl = XT.Web.External.AuthenticationManager.IsMod ? Url.GoAccountAdminFirstPage() : Url.GoAccountProfile();
+    if (XT.Web.External.AuthenticationManager.IsMod)
+    { 
+    @*<li><a href="@Url.GoAddNewItem()" style="color: #e04f67 !important;">@Html.GetResource("Account__partialAuthenticatedProfileMenu__line7")</a></li>*@
+    <li role="separator" class="divider"></li>
+    <li><a href="@profileUrl">@Html.GetResource("Account__partialAuthenticatedProfileMenu__line9")</a></li>
+    }
+    else
+    {
+    <li><a href="@profileUrl">@Html.GetResource("Account__partialAuthenticatedProfileMenu__line13")</a></li>
+    }
+    <li><a href="@Url.GoAccountChangePassword()">@Html.GetResource("Account_ChangePassword__line59")</a></li>
+    <li><a href="@Url.GoAccountChangeProfileInfo()">@Html.GetResource("Account__partialAuthenticatedProfileMenu__line16")</a></li>
+    <li><a href="@Url.GoAccountLogout()">@Html.GetResource("Account__partialAuthenticatedProfileMenu__line17")</a></li>
+}

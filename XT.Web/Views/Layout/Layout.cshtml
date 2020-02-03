@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+
+<html>
+    <head>
+        @Html.Partial("../Layout/Layout_Header_Html")
+        @Styles.Render("~/Content/Stylesheets/primary")
+        @if (IsSectionDefined(@"Styles"))
+        { 
+            @RenderSection(@"Styles", false)
+        }
+    </head>
+    <body>
+        <input type="hidden" value="@XT.Web.AppSettings.FacebookAppID" id="fbAppId"/>
+        <input type="hidden" value="@(XT.Web.External.AuthenticationManager.IsAuthenticated ? "true" : "false")" id="IsAuthenticated"/>
+        @Html.Partial("../Layout/Layout_Header")
+        @Html.Partial("../Layout/Layout_Header_PreScript")
+        @RenderBody()
+        @Html.Partial("../Layout/Layout_Footer")
+
+        @Styles.Render("~/Content/Stylesheets/layout")
+        @*Phải đặt ở đây vì hàm IsSectionDefined chỉ dùng được ở Layout.html*@
+        <input id="layoutScripts" type="hidden" value="@Scripts.Url("~/Scripts/layout")" />
+        @if (IsSectionDefined(@"Scripts"))
+        { 
+            <div id="childSCripts" class="hidden">@RenderSection(@"Scripts", false)</div>
+        }
+        @Scripts.Render("~/Scripts/PreLoad")
+        @*End*@
+
+        @Html.Partial("../Layout/Layout_Footer_VendorScripts")
+    </body>
+</html>

@@ -1,0 +1,65 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Faculty>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+    
+    //count
+    var count = (Model.PageNumber - 1) * Model.PageSize;
+}
+
+<table class="table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Center</th>
+            <th>Sex</th>
+            <th>Birthday</th>
+            <th>Phone</th>
+            <th>Email</th>
+            @*<th>Address</th>*@
+            <th>Salary</th>
+            <th>Quota</th>
+            <th>View</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            count++;
+            <tr id="item-@item.Id">
+                <td class="notranslate">@count</td>
+                <td><a href="@Url.GoFCProfile(item.Id)">@item.FC_Name (@item.FC_Nickname)</a></td>
+                <td>@item.Company.Company_Name_Abbrev</td>
+                <td>@(((GenderEnum)item.FC_Gender).ToString())</td>
+                <td>@item.FC_Birthday.ToDateString()</td>
+                <td>@item.FC_Phone</td>
+                <td>@item.FC_Email</td>
+                @*<td>@item.FC_Address</td>*@
+                <td>@item.FC_Salary.ToMoneyString()VNĐ/h</td>
+                <td>@(item.FC_WorkingHour)h</td>
+                <td><a href="@Url.Action("ManageAcademic_Faculty_Skills", new { id = item.Id })" class="btn btn-primary btn-xs" title="Mark">Skills</a></td>
+                <td class="options">
+                    @Html.Partial("../Admin/_partial_Search_Model_Options",
+                            Tuple.Create((IEntity<Int32>)item, api_delete, addview_name, name))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

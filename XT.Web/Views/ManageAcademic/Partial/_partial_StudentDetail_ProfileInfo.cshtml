@@ -1,0 +1,97 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+
+@model Student
+
+@{
+    var current_student = Model as Student;
+    var status_color = Helper.GetStudentStatusColor((StudentAcademicStatusEnum)current_student.Student_Status);
+}
+
+<!-- Profile Image -->
+<div class="box box-primary">
+    <div class="box-body box-profile">
+        <img class="profile-user-img img-responsive img-circle" src="@Helper.MyUrlContent_AccountAvatar(current_student.Student_Avatar)" alt="User profile picture">
+        <h3 class="profile-username text-center">@current_student.Student_FullName</h3>
+        <p class="text-muted text-center">@current_student.Class.Class_Name - <span class="text-@status_color">@((StudentAcademicStatusEnum)current_student.Student_Status)</span></p>
+
+        <ul class="list-group list-group-unbordered">
+            <li class="list-group-item">
+                <b>Enroll Number</b> <a class="pull-right">@current_student.Student_EnrollNumber</a>
+            </li>
+            <li class="list-group-item">
+                <b>Course</b> <a class="pull-right">@current_student.CourseFamily.Course.Course_Code</a>
+            </li>
+            <li class="list-group-item">
+                <b>Course Family</b> <a class="pull-right">@current_student.CourseFamily.CourseFamily_Name</a>
+            </li>
+        </ul>
+
+        <a href="@Url.Action("ManageAcademic_Student", "ManageAcademic", new { id = current_student.Id })" 
+            class="btn btn-primary btn-block">
+            <b><i class="fa fa-pencil-square-o"></i>&nbsp;Update Profile</b></a>
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->
+
+<!-- About Me Box -->
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3 class="box-title">About Me</h3>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        <strong><i class="fa fa-envelope margin-r-5"></i>Contact</strong>
+        <p class="text-muted">
+            -	Sex: @((GenderEnum)current_student.Student_Gender)<br />
+            -	Mobile Phone: @current_student.Student_MobilePhone<br />
+            -	Home Phone: @current_student.Student_HomePhone<br />
+            -	Email: @current_student.Student_Email<br />
+            -	Facebook: @current_student.Student_Facebook<br />
+            -	Address: @current_student.Student_Address<br />
+            -	Contact address: @current_student.Student_ContactAddress<br />
+            -	City: @current_student.Student_City<br />
+            -	District: @current_student.Student_District<br />
+            -	Parental: @current_student.Student_Sponsor<br />
+            -	Parental Relationship: @current_student.Student_Sponsor_Relation<br />
+            -	Parental Address: @current_student.Student_Sponsor_Address<br />
+        </p>
+        <hr>
+        <strong><i class="fa fa-info-circle margin-r-5"></i>Profile</strong>
+        <p class="text-muted">
+            -	Birthday: @current_student.Student_Birthday.ToShortDateString()<br />
+            -	High School:
+            <br />
+            -	University:
+            <br />
+            -	Working Company:
+            <br />
+            -	Company Address:
+            <br />
+            -	Company Position:
+            <br />
+            -	Company Salary:
+            <br />
+        </p>
+        <hr>
+        <strong><i class="fa fa-book margin-r-5"></i>Application Info</strong>
+        <p class="text-muted">
+            -	Application Date: @current_student.Student_Application_Date.ToShortDateString()<br />
+            -	Documents: @current_student.Student_Application_Documents<br />
+            -	CS: @current_student.Student_Application_CS<br />
+            -	FeePlan: @string.Join(",", current_student.Student_FeePlan_List.Select(f => f.FeePlan.FeePlan_Name + " (" + ((FeePlanTypeEnum)f.FeePlan.FeePlan_Type).ToString() + ")"))<br />
+            -	First Class: @current_student.FirstClass<br />
+            -	Current Class: @current_student.Class.Class_Name<br />
+            -	Status: @((StudentAcademicStatusEnum)current_student.Student_Status)<br />
+            -	Status Date: @current_student.Student_Status_Date.ToShortDateString()<br />
+            -	Promotion: @current_student.Student_Promotion%<br />
+        </p>
+        @*<hr>
+                    <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+                    <p></p>*@
+    </div>
+    <!-- /.box-body -->
+</div>
+<!-- /.box -->

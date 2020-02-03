@@ -1,0 +1,50 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Prize
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+    <input type="hidden" value="@Model.Exam_Id" name="Exam_Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Student</label>
+                @if (Model.Student_Id == 0)
+                {
+                <select class="form-control select-students" style = "width: 100%;" name="Student_Id">
+                </select>
+                }
+                else
+                {
+                <input class="form-control" value="@Model.Student.Student_FullName" disabled />
+                <input type="hidden" value="@Model.Student_Id" name="Student_Id">
+                }
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                @*@Html.DropDownListFor(model => model.Prize_Type, 
+                    new SelectList(MyDictionary.GetValues(typeof(PrizeTypeEnum)), "Id", "Name", Model.Prize_Type), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(PrizeTypeEnum), new { Model.Prize_Type }))
+            </div>
+            <div class="form-group">
+                <label>Title</label>
+                @Html.TextBoxFor(model => model.Title, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label>Semester</label>
+                @Html.TextBoxFor(model => model.Prize_Semester, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label>Date</label>
+                <input type="text" name="Prize_Date" 
+                               value="@Model.Prize_Date.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+            </div>
+        </div>
+    </div>
+}

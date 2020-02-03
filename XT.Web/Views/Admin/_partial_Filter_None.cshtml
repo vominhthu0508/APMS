@@ -1,0 +1,23 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@{
+    //Admin/SearchByName
+    var entity = ViewBag.Entity as string;
+    var name = ViewBag.EntityName as string;
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var modal_size = "";
+    if (!string.IsNullOrEmpty(ViewBag.ModalSize))
+    {
+        modal_size = ViewBag.ModalSize;
+    }
+}
+
+<form id="filter-form" action="/@controller_name/FilterByName">
+    <input type="hidden" name="model" value="@entity" />
+    <input type="hidden" name="modal_size" value="@modal_size" />
+    @*Filtering*@
+    <input type="hidden" name="page" value="1" />
+    <input type="hidden" name="page_size" value="@ViewBag.PageSize" />
+    <input type="hidden" name="pageChange" value="0" />
+</form>

@@ -1,0 +1,34 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model FeePlan_Detail
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>FeePlan</label>
+                @*@Html.DropDownListFor(model => model.FeePlan_Id, 
+                    new SelectList(LayoutModel.FeePlans(), "Id", "FeePlan_Name", Model.FeePlan_Id), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.FeePlans_ToMyDictionary(), new { Model.FeePlan_Id }))
+            </div>
+            <div class="form-group">
+                <label class="title-text">Index</label>
+                @Html.TextBoxFor(model => model.FeePlan_Index, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Price</label>
+                <div class="input-group">
+                    @Html.TextBoxFor(model => model.FeePlan_Amount,
+                    new { @class = "form-control", placeholder = "" })
+                    <div class="input-group-addon">$</div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

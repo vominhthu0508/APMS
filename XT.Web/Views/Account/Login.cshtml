@@ -1,0 +1,42 @@
+﻿@using XT.Web.Models
+@using XT.Web.External
+
+@model LoginModel
+@{
+    //ViewBag.form_id = "login";
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Layout/LayoutAccount.cshtml";
+}
+
+<p class="login-box-msg">Sign in to start your session</p>
+@using (Html.BeginForm("Login", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+ @Html.HiddenFor(m => m.ReturnUrl)
+ @Html.Partial("../Error/_partialErrorHandle")
+ 
+    <div class="form-group has-feedback">
+        @Html.TextBoxFor(model => model.Username, new { @class = "form-control", placeholder = "Nhập username hoặc email" })
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        @Html.ValidationMessageFor(model => model.Username)
+    </div>
+
+    <div class="form-group has-feedback">
+        <label>@Html.GetResource("Account_Login__line31")</label>
+        @Html.TextBoxFor(model => model.Password, new { @class = "form-control", placeholder = "Nhập mật khẩu", type = "password" })
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        @Html.ValidationMessageFor(model => model.Password)
+    </div>
+
+    <div class="row">
+        <div class="col-xs-8">
+            <a href="@Url.GoAccountRecoverPassword()">@Html.GetResource("Account_Login__line35")</a>
+        </div>
+        <!-- /.col -->
+        <div class="col-xs-4">
+            <input type="submit" class="btn btn-primary btn-block btn-flat" value="Đăng nhập" />
+        </div>
+        <!-- /.col -->
+    </div>
+}
+
+

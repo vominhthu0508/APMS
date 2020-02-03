@@ -1,0 +1,49 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+
+@model Student
+
+@{
+    var current_student = Model as Student;
+    var status_color = Helper.GetStudentStatusColor((StudentAcademicStatusEnum)current_student.Student_Status);
+}
+
+<ul class="timeline timeline-inverse">
+@foreach (var status in current_student.Student_ClassHistories_List)
+{
+    var date = status.StartDate.ToShortDateString();
+    var color = "blue";
+    <li class="time-label">
+        <span class="bg-@color">@date
+        </span>
+    </li>
+    <!-- /.timeline-label -->
+    <!-- timeline item -->
+    <li>
+        <div class="timeline-item">
+            <h3 class="timeline-header text-@color">@status.Class.Class_Name</h3>
+            <div class="timeline-body">
+                @if (status.ChangeReason != "")
+                { 
+                <p>Lý do chuyển: @status.ChangeReason</p>
+                }
+            </div>
+        </div>
+    </li>
+}
+    <li>
+        <i class="fa fa-clock-o bg-gray"></i>
+    </li>
+</ul>
+@if (XT.Web.External.AuthenticationManager.CanManageAcademic())
+{ 
+<div class="row">
+    <div class="col-md-12">
+        <a href="@Url.Action("ManageAcademic_Student_ClassChange", "ManageAcademic", new { id = current_student.Id })" 
+            class="btn btn-default bg-purple" style="margin-top: 20px;">
+            <b><i class="fa fa-pencil-square-o"></i>&nbsp;Update Class History</b></a>
+    </div>
+</div>
+
+}

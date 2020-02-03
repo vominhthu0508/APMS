@@ -1,0 +1,28 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Class_Module_Day
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+    <input type="hidden" value="@Model.Class_Module_Id" name="Class_Module_Id">
+    <input type="hidden" value="@Model.Status" name="Status">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Date</label>
+                <input type="text" name="Class_Module_Day_Date" 
+                               value="@Model.Class_Module_Day_Date.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+            </div>
+            <div class="form-group">
+                <label>Status</label>
+                @*@Html.DropDownListFor(model => model.Class_Module_Day_Status, 
+                    new SelectList(MyDictionary.GetValues(typeof(ClassModuleDayStatusEnum)), "Id", "Name", Model.Class_Module_Day_Status), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(ClassModuleDayStatusEnum), new { Model.Class_Module_Day_Status }))
+            </div>
+        </div>
+    </div>
+}

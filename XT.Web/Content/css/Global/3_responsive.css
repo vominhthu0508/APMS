@@ -1,0 +1,217 @@
+@media(min-width:768px) and (max-width:1200px) {
+    .main-menu ul li.megamenu .menu-wrapper {
+        width: 940px
+    }
+    .img_list img {
+        left: -25%
+    }
+}
+@media(max-width:991px) {
+    ul#top_tools, .sticky ul#top_tools {
+        margin: 3px 45px 0 0
+    }
+    .sticky nav {
+        margin-top: 3px
+    }
+    nav {
+        margin-top: 15px
+    }
+    header #logo img.logo_normal,
+    header #logo img.logo_sticky {
+        width: auto;
+        height: 30px
+    }
+    .main-menu ul li.megamenu .menu-wrapper {
+        width: auto
+    }
+    #single_tour_feat ul {
+        margin-bottom: 10px
+    }
+    a#phone,
+    a#email_footer {
+        font-size: 12px;
+        padding-left: 25px;
+        margin: 15px 0
+    }
+    a#phone:before,
+    a#email_footer:before {
+        font-size: 18px
+    }
+}
+@media(max-width:768px) {
+    .parallax-content-1 div {
+        font-size: 14px
+    }
+    .step {
+        padding: 20px 31px
+    }
+    #single_tour_feat ul li i {
+        font-size: 28px
+    }
+    .login_social {
+        margin-bottom: 5px
+    }
+    .parallax-content-1 div h1:before,
+    .parallax-content-1 div h1:after {
+        width: 30px
+    }
+}
+@media(max-width:767px) {
+    #top_line {
+        display: none
+    }
+    .strip_all_tour_list {
+        text-align: center
+    }
+    .img_list {
+        width: 100%;
+        margin: auto
+    }
+    .img_list img {
+        left: 0;
+        width: 100%;
+        height: auto;
+        top: -45%
+    }
+    .tour_list_desc {
+        padding: 10px 15px 0;
+        border-right: none;
+        height: auto
+    }
+    .price_list {
+        display: block;
+        height: auto;
+        margin-left: 0;
+        text-align: center;
+        padding: 25px 0 15px
+    }
+    .price_list div {
+        display: block;
+        text-align: center
+    }
+    .main_title {
+        font-size: 14px
+    }
+    .main_title h2 {
+        font-size: 24px
+    }
+    .main_title p {
+        font-size: 16px
+    }
+    .styled-select-cat::-ms-expand,
+    {
+        display: none
+    }
+    #single_tour_feat ul {
+        display: block;
+        margin-bottom: 10px
+    }
+    #single_tour_feat ul li {
+        display: inline-block;
+        width: auto;
+        font-size: 11px
+    }
+    .margin_60 {
+        padding-top: 30px;
+        padding-bottom: 30px
+    }
+    .margin_30 {
+        margin-top: 15px;
+        margin-bottom: 15px
+    }
+    .parallax-window,
+    {
+        height: 340px;
+        min-height: 340px
+    }
+    .parallax-content-1 {
+        height: 340px
+    }
+    .parallax-content-1>div {
+        padding: 0 5%;
+        font-size: 12px;
+        padding-top: 20px
+    }
+    .parallax-content-1 div h1,
+    {
+        font-size: 20px;
+        padding-top: 15px
+    }
+    .strip_all_tour_list .tooltip-content-flip {
+        width: 70px
+    }
+    .parallax-content-2 {
+        padding-bottom: 15px
+    }
+    .parallax-content-2 div h1 {
+        font-size: 22px
+    }
+    #price_single_main,
+    {
+        font-size: 11px;
+        text-align: left;
+        padding-top: 0
+    }
+    #hero {
+        height: 300px;
+        font-size: 12px
+    }
+    .intro_title h1 {
+        font-size: 26px;
+        margin-bottom: 5px;
+        color: #fff;
+        font-weight: 700;
+        text-transform: uppercase
+    }
+}
+@media(max-width:480px) {
+    .box_style_1 {
+        padding: 15px
+    }
+    .img_list img {
+        left: 0;
+        width: 100%;
+        height: auto;
+        top: -5%
+    }
+    .tooltip-item::after {
+        width: 180px
+    }
+    .tooltip-content {
+        width: 180px;
+        margin: 0 0 20px -90px
+    }
+    .search_bar {
+        width: 100%
+    }
+    a#access_link,
+    {
+        position: relative;
+        text-indent: -999px;
+        width: 20px;
+        height: 20px;
+        display: block
+    }
+    #access_link:before {
+        text-indent: 0;
+        font-size: 20px
+    }
+    #hero {
+        height: 200px
+    }
+    .intro_title {
+        display: none
+    }
+    ul#top_tools {
+        margin: 0 25px 0 0
+    }
+    .sticky ul#top_tools {
+        margin: 0 25px 0 0
+    }
+    .dropdown.dropdown-cart {
+        display: none
+    }
+    .dropdown.dropdown-search {
+        font-size: 20px
+    }
+}

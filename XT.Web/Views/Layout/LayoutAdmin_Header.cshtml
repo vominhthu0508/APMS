@@ -1,0 +1,78 @@
+﻿@using XT.Web.External
+
+<header class="main-header">
+    <!-- Logo -->
+    <a href="@Url.GoAccountAdminFirstPage()" class="logo">
+        <!-- mini logo for sidebar mini 50x50 pixels -->
+        <span class="logo-mini"><b><i class="fa fa-home"></i></b></span>
+        <!-- logo for regular state and mobile devices -->
+        <span class="logo-lg">@XT.Web.External.AuthenticationManager.Company_Name</span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top" role="navigation">
+        <!-- Sidebar toggle button-->
+        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+            <span class="sr-only">@Html.GetResource("Layout_LayoutAdmin_Header__line14")</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                @* <li>
+                    <a href="#">
+                        <strong>@action</strong>
+                    </a>
+                </li>*@
+                <li class="dropdown user user-menu">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="@Helper.MyUrlContent_AccountAvatar(XT.Web.External.AuthenticationManager.Account_Avatar)" class="user-image" alt="User Image">
+                        <span class="hidden-xs">Welcome @XT.Web.External.AuthenticationManager.Account_Name_Center</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <!-- User image -->
+                        <li class="user-header">
+                            <img src="@Helper.MyUrlContent_AccountAvatar(XT.Web.External.AuthenticationManager.Account_Avatar)" class="img-circle" alt="User Image">
+                            <p>
+                                @XT.Web.External.AuthenticationManager.Account_Name
+                            </p>
+                        </li>
+                        <!-- Menu Footer-->
+                        <li class="user-footer">
+                            <div class="pull-left">
+                                <a href="@Url.GoAccountLogout()" class="btn btn-default btn-flat">@Html.GetResource("Layout_LayoutAdmin__line156")</a>
+                            </div>
+                            <div class="pull-right">
+                                <a href="@Url.GoAccountChangePassword()" class="btn btn-default btn-flat">@Html.GetResource("Layout_LayoutAdmin__line162")</a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+                @{
+                    var user = XT.Web.IoCConfig.Service<XT.BusinessService.IUserProfileService>().FindById(XT.Web.External.AuthenticationManager.User_Profile_Id);
+                    var center_count = user.Companies_List.Count();
+                    if (center_count > 1)
+                    {
+                    <li class="dropdown notifications-menu">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <i class="fa fa-chevron-down"></i>
+                        </a>
+                        <ul class="dropdown-menu">
+                            @foreach (var center in user.Companies_List)
+                            {
+
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu">
+                                        <li>
+                                            <a href="@Url.Action("SetCenterAuthentication", "Account", new { Id = center.Id, ReturnUrl = Request.RawUrl })">@center.Company_Name (@center.Company_Name_Abbrev)</a>
+                                        </li>
+
+                                    </ul>
+                                </li>
+                            }
+                        </ul>
+                    </li>
+                    }
+                }
+            </ul>
+        </div>
+    </nav>
+</header>

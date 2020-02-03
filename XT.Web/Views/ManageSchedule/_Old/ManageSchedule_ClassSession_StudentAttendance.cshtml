@@ -1,0 +1,42 @@
+﻿@using XT.Web.External
+
+@{
+    ViewBag.Title = "[Schedule] Quản lý điểm danh của HV";
+    var name = "Student Attendance";
+    var title = ViewBag.Title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+
+    var day = (int)ViewBag.Day;
+    var student_id = (int)ViewBag.StudentID;
+}
+
+<section class="content-header">
+    <h1>@title<br />
+        <small>C1504L - Typography Techniques (1/5/2016 - 27/5/2016) - FC Đậu Ngọc Hà Dương</small>
+    </h1>
+    <ol class="breadcrumb low">
+        <li><a href="@Url.GoAccountAdminFirstPage()"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li><a href="@Url.Action("ManageSchedule_ClassSession")">Danh sách lịch học</a></li>
+        <li><a href="@Url.Action("ManageSchedule_ClassSession_Attendance", new { type = true })">Danh sách ngày học</a></li>
+        <li class="active">C1504L - Typography Techniques</li>
+    </ol>
+    @*<div class="breadcrumb">
+        <div style="margin-bottom: 10px; margin-top: 10px;">
+            <button class="btn btn-warning" data-toggle="modal" data-target="#add-modal">
+                <i class="fa fa-plus fa-fw"></i>&nbsp;@name
+            </button>
+            <a href="@Url.Action("ManageAcademic_ClassSession_Attendance", new { type = true })" class="btn btn-danger">
+                <i class="fa fa-refresh fa-fw"></i>&nbsp;Generate Attendance
+            </a>
+        </div>
+    </div>*@
+</section>
+<section class="content">
+    <div class="row ajax-search-group">
+        <div class="col-lg-12">
+            <div class="Search_Result">
+                @Html.Partial("Search_Result/_partial_Search_ClassSession_StudentAttendance", Tuple.Create(day, student_id))
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,63 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Class_Module_StudentExam
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    var module_type = Model.Class_Module != null ? (ModuleTypeEnum)Model.Class_Module.Module.Module_Type : ModuleTypeEnum.LT_TH;
+    
+    <input type="hidden" value="@Model.Id" name="Id">
+    <input type="hidden" value="@Model.Class_Module_Id" name="Class_Module_Id">
+    <input type="hidden" value="@Model.Status" name="Status">@*
+    if (Model.Id != 0)
+    {
+    <input type="hidden" value="@Model.Student_Id" name="Student_Id">
+    }
+
+    *@<div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Student</label>
+                @if (Model.Student_Id == 0)
+                {
+                <select class="form-control select-students" style = "width: 100%;" name="Student_Id">
+                </select>
+                }
+                else
+                {
+                <input class="form-control" value="@Model.Student.Student_FullName" disabled />
+                <input type="hidden" value="@Model.Student_Id" name="Student_Id">
+                }
+            </div>
+            <div class="form-group">
+                <label>Student Status</label>
+                @*@Html.DropDownListFor(model => model.Student_Status, 
+                    new SelectList(MyDictionary.GetValues(typeof(StudentClassModuleStatusEnum)), "Id", "Name", Model.Student_Status), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(StudentClassModuleStatusEnum), new { Model.Student_Status }))
+            </div>
+            <div class="form-group">
+                <label>Exam Count</label>
+                @Html.TextBoxFor(model => model.Exam_Count, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            @if (module_type == ModuleTypeEnum.LT || module_type == ModuleTypeEnum.LT_TH)
+            {
+            <div class="form-group">
+                <label>Mark LT</label>
+                @Html.TextBoxFor(model => model.Mark_LT, 
+                    new { @class = "form-control textbox-float", placeholder = "" })
+            </div>
+            }
+            @if (module_type == ModuleTypeEnum.TH || module_type == ModuleTypeEnum.LT_TH)
+            {
+            <div class="form-group">
+                <label>Mark TH</label>
+                @Html.TextBoxFor(model => model.Mark_TH, 
+                    new { @class = "form-control textbox-float", placeholder = "" })
+            </div>
+            }
+        </div>
+    </div>
+}

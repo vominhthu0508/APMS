@@ -1,0 +1,19 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model User_Company
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+    <input type="hidden" value="@Model.User_Id" name="User_Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Center</label>
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Companies_ToMyDictionary(), new { Model.Company_Id }))
+            </div>
+        </div>
+    </div>
+}

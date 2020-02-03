@@ -1,0 +1,59 @@
+﻿@using XT.Model
+@using XT.BusinessService
+
+@model IEnumerable<Class_Module>
+@{
+    var items = Model;
+    var hasData = items != null && items.Count() > 0;
+    
+    var Start_Date = (DateTime)ViewBag.Start_Date;
+    var End_Date = (DateTime)ViewBag.End_Date;
+    var Start_Date_String = Start_Date.ToString("dd/MM/yyyy");
+    var End_Date_String = End_Date.ToString("dd/MM/yyyy");
+}
+
+<div class="box">
+    @if (hasData)
+    {
+        <div class="box-header">
+            <h3 class="box-title">Từ <b>@Start_Date_String</b> đến <b>@End_Date_String</b></h3>
+        </div>
+        <div class="box-body no-padding">
+            <table class="table table-bordered table-hover dataTable">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Môn</th>
+                        <th>Lớp</th>
+                        <th>Ngày</th>
+                        <th>Thời gian</th>
+                        <th>Địa điểm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in items)
+                    {
+                       <tr>
+                           <td>@item.Id</td>
+                           <td>@item.Module.Module_Code</td>
+                           <td>@item.Class_Name</td>
+                           <td>@item.Class_Module_Date_Exam.ToDateString()</td>
+                           <td>@item.Class_Module_Hour_Start.ToHourString() - @item.Class_Module_Hour_End.ToHourString()</td>
+                           <td>@item.Class.Company.Company_Name</td>
+                       </tr>
+                        
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="box-header with-border">
+            <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i>Không có dữ liệu nào!</h4>
+            </div>
+        </div>
+    }
+</div>

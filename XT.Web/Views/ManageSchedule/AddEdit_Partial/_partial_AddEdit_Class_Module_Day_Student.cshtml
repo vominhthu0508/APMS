@@ -1,0 +1,29 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Class_Module_Day_Student
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+    <input type="hidden" value="@Model.Class_Module_Day_Id" name="Class_Module_Day_Id">
+    <input type="hidden" value="@Model.Student_Id" name="Student_Id">
+    <input type="hidden" value="@Model.Status" name="Status">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Status</label>
+                @*@Html.DropDownListFor(model => model.Attendance_Status, 
+                    new SelectList(MyDictionary.GetValues(typeof(StudentClassModuleAttendanceEnum)), "Id", "Name", Model.Attendance_Status), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListForAll(typeof(StudentClassModuleAttendanceEnum), new { Model.Attendance_Status }, name: "None"))
+            </div>
+            <div class="form-group">
+                <label>Note</label>
+                @Html.TextBoxFor(model => model.Attendance_Note, 
+                    new { @class = "form-control", placeholder = "Ghi chú" })
+            </div>
+        </div>
+    </div>
+}

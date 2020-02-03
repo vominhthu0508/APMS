@@ -1,0 +1,18 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    //Admin/SearchByName
+    var entity = ViewBag.Entity as string;
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+}
+
+<div class="search-form" data-model="@entity" data-action="/@controller_name/SearchByName">
+    <div style="margin-bottom: 10px">
+        <input type="text" class="form-control txtSearchBox"
+            placeholder="Nhập thông tin cần tìm...">
+    </div>
+</div>

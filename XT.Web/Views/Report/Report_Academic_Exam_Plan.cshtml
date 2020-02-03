@@ -1,0 +1,48 @@
+﻿@using XT.Model
+@using XT.BusinessService
+
+@model IEnumerable<Class_Module>
+@{
+    var title = "Report Academic - Exam Plan";
+    ViewBag.Title = title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+}
+
+@section Scripts{
+    @Scripts.Url("~/Scripts/Admin/Report")
+}
+
+<section class="content-header">
+    <div class="row">
+        <div class="col-md-5 content-header" style="padding-top: 0;"><h1>@title</h1></div>
+        <div class="col-md-7 content-header-actions">
+            <div class="form-group pull-right by-month">
+                <div class="input-group fake-button" style="width: 120px; margin-right: 10px;">
+                    <i class="fa fa-calendar"></i>
+                    <input type="text" class="form-control date" value="Theo tháng">
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+            <div class="form-group pull-right by-date" style="margin-right: 10px;">
+                <div class="input-group">
+                    <a href="javascript:void(0)" class="btn btn-default pull-right" id="daterange-btn">
+                        <i class="fa fa-calendar"></i>&nbsp;<span>Theo ngày</span>&nbsp;<i class="fa fa-caret-down"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="content" id="filter-container">
+    <div class="row ajax-search-group">
+        <form id="filter-form" action="@Url.Action("FilterReport_Academic_Exam_Plan", "Report")">
+            <input type="hidden" name="Start_Date" value="" />
+            <input type="hidden" name="End_Date" value="" />
+        </form>
+        <div class="col-sm-12">
+            <div class="Search_Result">
+                @Html.Partial("_partial_Report_Academic_Exam_Plan", Model)
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,34 @@
+﻿@using XT.Model;
+@using XT.Web.External;
+
+@model Tuple<Account, string, string>
+
+@{
+    Layout = "EmailTemplate_Main.cshtml";    
+}
+
+@if (Model != null)
+{
+    var account = Model.Item1;
+    var name = Model.Item2;
+    var email = Model.Item3;
+
+    var website = XT.Web.AppSettings.Website;
+    var website_url = Url.Action("Index", "Home", new { }, Request.Url.Scheme);
+    var active_account_url = Url.Action("Active", "Account", new { key = account.Account_ActiveKey }, Request.Url.Scheme);
+    var register_account_url = Url.Action("RegisterUser", "Account", new { }, Request.Url.Scheme);
+
+    ViewBag.title = "Xin chào " + name;
+    ViewBag.sub_title = "Chúc mừng bạn đã chính thức gia nhập vào hệ thống của " + website;
+    
+    @*<div>
+        <p>Xin chào @name</p>
+        <p>Chúc mừng bạn đã chính thức gia nhập vào hệ thống của @website.</p>
+        <p>Hãy truy cập vào <a href="@website">trang chủ</a> để cùng @website trải nghiệm</p>
+        <br />
+        <p>Cảm ơn bạn</p>
+        <p>@website</p>
+    </div>*@
+    
+    <p>Hãy truy cập vào <a href="@website">trang chủ</a> để cùng @website trải nghiệm</p>
+}

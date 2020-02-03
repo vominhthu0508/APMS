@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "[Academic] Quản lý danh sách lớp";
+    var name = "Class";
+    var title = ViewBag.Title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+}
+
+<section class="content-header">
+    <h1>@title</h1>
+    <div class="breadcrumb">
+        <div style="margin-bottom: 10px; margin-top: 10px;">
+            <button class="btn btn-warning" data-toggle="modal" data-target="#add-modal">
+                <i class="fa fa-plus fa-fw"></i>&nbsp;@name
+            </button>
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="row ajax-search-group">
+        <div class="col-md-12">
+            @Html.Partial("../Admin/_partial_Search_Form", "")
+        </div>
+        <div class="col-md-12">
+            <div class="Search_Result">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            Danh sách các lớp đang học
+                        </h3>
+                        <div class="box-tools">
+                            <select name="" class="form-control select2">
+                                <option value="1">Studying</option>
+                                <option value="2">Finish</option>
+                            </select>
+                            <select name="" class="form-control select2" style="width: 100px;">
+                                <option value="0">All classes</option>
+                                <option value="1">Aptech HCM</option>
+                                <option value="2">Arena HCM</option>
+                            </select>
+                            <select name="" class="form-control select2" style="width: 100px;">
+                                <option value="0">All days</option>
+                                <option value="1">2,4,6</option>
+                                <option value="2">3,5,7</option>
+                                <option value="3">CN</option>
+                            </select>
+                        </div>
+                    </div>
+                    @Html.Partial("Search_Result/_partial_Search_" + name, "")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

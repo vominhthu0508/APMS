@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "[Academic] Quản lý giảng viên";
+    var name = "Faculty";
+    var title = ViewBag.Title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+}
+
+<section class="content-header">
+    <h1>@title</h1>
+    <div class="breadcrumb">
+        <div style="margin-bottom: 10px; margin-top: 10px;">
+            <button class="btn btn-warning" data-toggle="modal" data-target="#add-modal">
+                <i class="fa fa-plus fa-fw"></i>&nbsp;@name
+            </button>
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="row ajax-search-group">
+        <div class="col-lg-12">
+            <div class="row">
+                <div class="col-md-10">
+                    @Html.Partial("../Admin/_partial_Search_Form", "")
+                </div>
+                <div class="col-md-2">
+                    <select name="" class="form-control select2">
+                        <option value="1">Aptech HCM</option>
+                        <option value="2">Arena HCM</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12">
+            <div class="Search_Result">
+                @Html.Partial("Search_Result/_partial_Search_" + name, "")
+            </div>
+        </div>
+    </div>
+</section>

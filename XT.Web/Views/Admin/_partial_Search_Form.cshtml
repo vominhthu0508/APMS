@@ -1,0 +1,17 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model string
+@{
+    var action = Model;
+    //Dùng cho ManageRoomBlock/Floor/Flat vì có đụng đến ViewBag.Room
+}
+
+<div class="search-form" data-action="@action">
+    <div style="margin-bottom: 10px">
+        <input type="text" class="form-control textboxSearch" name="search" placeholder="Nhập thông tin cần tìm...">
+    </div>
+</div>

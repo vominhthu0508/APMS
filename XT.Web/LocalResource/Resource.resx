@@ -1,0 +1,1599 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Account_Active__line29" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_Active__line34" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_ChangePassword__line17" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_ChangePassword__line32" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_ChangePassword__line46" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_ChangePassword__line59" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_ChangeProfileInfo__line14" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_ChangeProfileInfo__line27" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_Login__line18" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_Login__line23" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_Login__line31" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_Login__line35" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_Login__line37" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_RecoverPassword__line24" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_RecoverPassword__line44" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_RecoverPasswordFinish__line26" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_RecoverPasswordFinish__line36" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_RecoverPasswordFinish__line57" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_RecoverPasswordFinish__line78" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_RegisterSucccess__line24" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account_RegisterSucccess__line29" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account__partialAuthenticatedProfileMenu__line7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account__partialAuthenticatedProfileMenu__line9" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account__partialAuthenticatedProfileMenu__line13" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account__partialAuthenticatedProfileMenu__line16" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account__partialAuthenticatedProfileMenu__line17" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account__partialContactBox__line3" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account__partialContactBox__line5" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account__partialContactBox__line8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account__partialContactBox__line10" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account__partialContactBox__line19" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Account__partialContactBox__line21" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ChangeProfileInfoAccount__line23" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ChangeProfileInfoAccount__line35" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ChangeProfileInfoAccount__line47" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ChangeProfileInfoAccount__line60" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ChangeProfileInfoAccount__line72" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ChangeProfileInfoAccount__line84" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ChangeProfileInfoAccount__line86" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ChangeProfileInfoAccount__line87" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ChangeProfileInfoAccount__line92" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ChangeProfileInfoAccount__line100" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ChangeProfileInfoAccount__line104" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageAmentity__line69" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageAmentity__line70" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageAmentityTranslation__line30" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageAmentityTranslation__line41" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageAmentityTranslation__line42" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageAmentityTranslation__line43" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageAmentityTranslation__line44" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageAmentityTranslation__line45" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageAmentityTranslation__line67" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageAmentity_PartialForm2__line11" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageAmentity_PartialForm2__line24" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageCity__line54" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageCity__line57" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageCity__line58" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageCity__line74" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageCity__line75" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageCityTranslation__line43" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageDistrictTranslation__line41" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageFavorite__line31" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageFavorite__line32" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageFlatAmenity__line70" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageFlatAmenity_PartialForm2__line10" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageHostTranslation__line43" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageHostTranslation__line68" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageHost_PartialForm2__line62" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageImage__line73" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageImage__line74" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageImage__line76" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageImage__line77" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageImage__line78" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageImage__line100" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageImage_EditModal__line14" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageImage_EditModal__line25" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageImage_EditModal__line59" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManagePossession_Status_Type_PartialForm2__line10" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageProject__line98" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageProject__line118" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageProject__line119" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageProject__line130" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageProject__line136" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageProject__line140" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageProject__line144" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageProject__line148" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageProject__line154" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageProject__line155" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock__line71" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock__line72" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock__line73" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock__line74" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock__line76" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock__line98" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock__line101" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock_PartialForm2__line17" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock_PartialForm_Translation__line18" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock_PartialForm_Translation__line24" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock_PartialForm_Translation__line28" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomBlock_PartialForm_Translation__line32" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2__line19" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2__line27" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2__line43" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2__line56" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2__line71" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2__line88" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2__line92" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2__line98" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2__line116" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2__line130" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2_Old__line28" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFlat_PartialForm2_Old__line38" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomFloor__line82" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomProgress__line74" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomProgress__line75" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomProgressTranslation__line67" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomProgress_PartialForm__line32" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomProgress_PartialForm__line48" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomProgress_PartialForm__line70" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomRating__line31" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomRating__line32" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomRating__line33" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomRating__line34" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomRating__line35" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomRating__line36" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomTranslation__line40" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomTranslation__line42" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomTranslation__line43" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomTranslation__line44" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomTranslation__line45" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomTranslation__line86" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomTranslation__line96" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomTranslation__line100" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomTranslation__line104" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomTranslation__line108" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomType__line52" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomTypeTranslation__line40" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoomType_PartialForm2__line10" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoom_FlatTranslation__line41" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoom_FloorTranslation__line42" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoom_PartialForm_Translation__line12" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRoom_PartialForm_Translation__line25" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRSS__line58" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRSS__line59" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin_ManageRSSEntry__line37" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Account_Search__line25" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Account_Search__line55" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Account_Search__line59" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Account_Search__line61" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Account_Search__line66" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Compare_Search__line22" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Contact_Search__line23" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Contact_Search__line26" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Contact_Search__line42" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Contact_Search__line50" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Contact_Search__line52" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Contact_Search__line54" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_District_Search__line70" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Host_Search__line22" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Host_Search__line24" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Host_Search__line25" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Host_Search__line27" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Host_Search__line52" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Host_Search__line61" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Host_Search__line85" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Host_Search__line97" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Room_Flat_Search__line21" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Room_Flat_Search__line22" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Room_Flat_Search__line23" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Room_Flat_Search__line24" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Room_Flat_Search__line25" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Room_Floor_Search__line38" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Room_Search__line22" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Room_Search__line26" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Admin__partial_Room_Search__line30" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Agent_Search__line46" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Agent_Search__line48" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Agent_Search__line66" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Agent_Search__line67" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Agent_Search__line68" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Agent_Search__line69" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Agent_Search__line70" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Agent_Search__line71" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_Index__line27" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_Index__line37" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_Index__line50" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_Index__line87" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_UpdateImages__line25" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_UpdateImages__line32" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_UpdateImages__line33" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_UpdateImages__line34" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_UpdateImages__line48" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_UpdateImages__line51" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_UpdateImages__line95" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_UpdateInfo__line96" xml:space="preserve">
+    <value />
+  </data>
+  <data name="City_UpdateInfo__line111" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare_Index__line48" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare_Index__line70" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare_Index__line71" xml:space="preserve">
+    <value />
+  </data>
+  <data name="compare project" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare_Index__line86" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare_Index__line90" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare__partial_CompareConfiguration__line24" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare__partial_CompareConfiguration__line28" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare__partial_CompareConfiguration__line32" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare__partial_CompareConfiguration__line36" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare__partial_CompareConfiguration__line40" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare__partial_ComparePayment__line18" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Compare__partial_ComparePayment__line32" xml:space="preserve">
+    <value />
+  </data>
+  <data name="District_Areas__line11" xml:space="preserve">
+    <value />
+  </data>
+  <data name="District_Index__line22" xml:space="preserve">
+    <value />
+  </data>
+  <data name="District_Index__line32" xml:space="preserve">
+    <value />
+  </data>
+  <data name="District_Index__line53" xml:space="preserve">
+    <value />
+  </data>
+  <data name="District_UpdateImages__line32" xml:space="preserve">
+    <value />
+  </data>
+  <data name="District_UpdateImages__line33" xml:space="preserve">
+    <value />
+  </data>
+  <data name="District_UpdateImages__line48" xml:space="preserve">
+    <value />
+  </data>
+  <data name="District_UpdateInfo__line108" xml:space="preserve">
+    <value />
+  </data>
+  <data name="District_UpdateInfo__line115" xml:space="preserve">
+    <value />
+  </data>
+  <data name="District_Utilities__line10" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DrawServices_Index__line36" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DrawServices_Index__line58" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DrawServices_Index__line60" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DrawServices_Index__line120" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DrawServices_Index__line124" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DrawServices_Index__line128" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DrawServices_Index__line132" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DrawServices_Index__line148" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EmailTemplate_EmailTemplate_Main__line38" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EmailTemplate_EmailTemplate_Main__line319" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EmailTemplate_PartialRegisterEmailTemplate_Inform__line38" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EmailTemplate_PartialRegisterEmailTemplate_RecoverPassword__line34" xml:space="preserve">
+    <value />
+  </data>
+  <data name="EmailTemplate_PartialRegisterEmailTemplate_RecoverPassword__line37" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Error_Index__line41" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Error_Index__line46" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Error_Index__line47" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global_CitiesLayout__line16" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAdvanceSearchHorizon__line55" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAdvanceSearchHorizon__line78" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAdvanceSearchHorizon__line94" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAdvanceSearchHorizon__line97" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAdvanceSearchHorizon__line112" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAdvanceSearchHorizon__line143" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAdvanceSearchHorizon__line170" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAdvanceSearchHorizon__line177" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAgentContainer_ListItem__line18" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAgentContainer_ListItem__line19" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAgentContainer_ListItem__line30" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAgentContainer_ListItem__line31" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAgentContainer_ListItem__line36" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAgentContainer_ListItem__line37" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAgentContainer_ListItem__line42" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialAgentContainer_ListItem__line43" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialRoomContainer_GridItem__line35" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialRoomContainer_ListContainer_Small__line18" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialRoomContainer_ListItem__line61" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialRoomContainer_ListItem__line84" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialRoomContainer_ListItem__line106" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialRoomContainer_ListItem__line139" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialRoomContainer_ListItem__line151" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialRoomContainer_ListItem_ExternalAmenities__line16" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Global__partialRoomContainer_ListItem_RoomFlatTypes__line39" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line15" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line17" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line19" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line21" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line30" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line35" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line36" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line38" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line40" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line49" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line50" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line52" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line54" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line64" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line65" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line67" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line69" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line79" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line80" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line82" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line94" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line106" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line107" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line109" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line121" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line122" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_About__line124" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Contact__line20" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Contact__line28" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line48" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line56" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line70" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line71" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line88" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line89" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line100" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line161" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line162" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line168" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line170" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line178" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line180" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line188" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Index__line190" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_PRoomVerificationHorizon__line6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_PRoomVerificationHorizon__line20" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_PRoomVerificationHorizon__line42" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_PRoomVerificationHorizon__line95" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_PRoomVerificationHorizon__line134" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_RoomVerification__line141" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_RoomVerification__line158" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_RoomVerification__line159" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Search__line185" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home_Search__line203" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home__partial_Contact_Form__line4" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home__partial_Contact_Form__line6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home__partial_Contact_Form__line33" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home__partial_Contact_Form__line43" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home__partial_DistrictDetail__line53" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home__partial_DistrictDetail__line63" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Home__partial_Index_HostList__line29" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host_AddNewProject__line34" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host_AddNewProject__line92" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host_AddNewProject__line119" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host_AddNewProject__line146" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host_AddNewProject__line187" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host_AddNewProject__line206" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host_Index__line80" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host_Index__line154" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host_Index__line163" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_BasicInfo__line15" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_BasicInfo__line25" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_BasicInfo__line30" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_BasicInfo__line41" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_BasicInfo__line49" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_BasicInfo__line62" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_BasicInfo__line90" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_BasicInfo__line101" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_Image__line7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_Image__line29" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_Image__line51" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_Image__line73" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_Image__line95" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_Image__line121" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoAmenity__line7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoAmenity__line14" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoAmenity__line21" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line16" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line21" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line22" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line26" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line46" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line58" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line63" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line72" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line76" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line83" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line92" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line101" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line121" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line130" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line138" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line156" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line174" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Host__partialAddProject_InfoDetail__line179" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock_partialAddModal_UniqueFloor__line7" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock_partialAddModal_UniqueFloor__line11" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock_partialAddModal_UniqueFloor__line26" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialAddModal_Block__line11" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialAddModal_Block__line26" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialAddModal_Block__line31" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialAddModal_Flat_Container__line21" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialAddModal_Flat_Container__line87" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialAddModal_Flat_Container__line106" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialAddModal_Floor__line11" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialAddModal_Floor__line30" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialAddModal_Floor__line35" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialDraw_Block__line61" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialDraw_Block__line66" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialDraw_Block__line68" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialDraw_Block__line83" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialDraw_Flat__line28" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialDraw_Flat__line43" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialDraw_Flat__line45" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialDraw_Flat__line58" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialDraw_Flat__line60" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialDraw_InstructionText__line8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IdentifyBlock__partialDraw_InstructionText__line13" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line51" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line52" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line67" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line70" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line73" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line76" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line77" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line78" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line79" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line80" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line112" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line156" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin__line162" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line6" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line8" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line14" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line20" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line26" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line33" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line34" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line40" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line43" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line46" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line52" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutAdmin_Header__line55" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutUser__line56" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutUser__line57" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_LayoutUser__line59" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line12" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line20" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line21" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line24" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line28" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line30" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line31" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line32" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line33" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line34" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line35" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Footer__line49" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Header__line39" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Header__line42" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Header__line59" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Header__line62" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Header__line88" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Header__line97" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Header__line103" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Layout_Layout_Header__line226" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_EmbedSliceView__line56" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_EmbedSliceView__line69" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_EmbedSliceView__line112" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_EmbedSliceView__line114" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_EmbedSliceView__line124" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_EmbedSliceView__line127" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_EmbedSliceView__line215" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_Index__line59" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_Index__line61" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_Index__line62" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_Index__line117" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_Index__line118" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_Index__line134" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_Index__line139" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_Index__line155" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_Index__line181" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room_Index__line203" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Configuration_FlatTypesMenu__line82" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Configuration_SubRoom__line30" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Configuration_SubRoom__line41" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Configuration_SubRoom__line46" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Configuration_SubRoom__line74" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_HostInfo__line34" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Images__line66" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Images__line72" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Introduction__line26" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Introduction__line31" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Introduction__line41" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_MenuHeader__line19" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_MenuHeader__line20" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_MenuHeader__line21" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Payment_Container__line23" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Payment_Container__line84" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Progress__line18" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Progress__line41" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Reviews__line15" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Reviews__line33" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Reviews__line73" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Reviews__line98" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Reviews__line139" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_Reviews__line148" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_RoomContact__line11" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_RoomContact__line14" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_RoomContact__line18" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_ShortInfo__line74" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_ShortInfo__line78" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_ShortInfo__line80" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_ShortInfo__line85" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_ShortInfo__line124" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Room__partialRoom_SimilarRooms__line26" xml:space="preserve">
+    <value />
+  </data>
+  <data name="User_Inbox__line22" xml:space="preserve">
+    <value />
+  </data>
+  <data name="User_Inbox__line27" xml:space="preserve">
+    <value />
+  </data>
+  <data name="User_Inbox__line48" xml:space="preserve">
+    <value />
+  </data>
+  <data name="User_Saves__line68" xml:space="preserve">
+    <value />
+  </data>
+  <data name="User_Saves__line74" xml:space="preserve">
+    <value />
+  </data>
+  <data name="monirazor" xml:space="preserve">
+    <value />
+  </data>
+</root>

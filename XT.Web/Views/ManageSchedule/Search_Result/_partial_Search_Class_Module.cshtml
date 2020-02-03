@@ -1,0 +1,120 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Class_Module>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+    
+    //api
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+}
+
+<table class="table table-bordered table-hover dataTable table-class-module">
+    <thead>
+        <tr>
+            @*<th>Id</th>*@
+            <th></th>
+            <th>Start Date</th>
+            <th>Module</th>
+            <th>Class</th>
+            <th>FC</th>
+            <th>Resource</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            
+            @*<th>To</th>
+            <th>Exam</th>*@
+            @*<th>Sem</th>*@
+            
+            
+            <th>Note</th>
+            <th>Status</th>
+            <th>View</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            var FC = item.Faculty;
+            var color = item.Class_Module_Status == (int)ClassModuleStatusEnum.Scheduled ? "" : "green";
+            <tr id="item-@item.Id">
+                @*<td class="notranslate">@item.Id</td>*@
+                <td><a href="#" class="viewdetail" title="Chi tiết"><i class="fa fa-chevron-down" aria-hidden="true"></i></a></td>
+                <td>@item.Class_Module_Date_Start.ToDateString()
+                    <ul class="list-unstyled data-hide">
+                        <li>End: @item.Class_Module_Date_End.ToDateString()</li>
+                        <li>Exam: @item.Class_Module_Date_Exam.ToDateString()</li>
+                    </ul>
+                </td>
+                <td class="text-@color">@item.Module.Module_Name (@item.Module.Module_Code)</td>
+                <td>@item.Class_Name</td>
+                <td><a href="@Url.GoFCProfile(FC.Id)">@FC.FC_Name</a></td>
+                <td>
+                    @if (item.Resource_LT_Id == item.Resource_TH_Id)
+                    {
+                        <span>@item.Resource_LT.Resource_Name</span>
+                    }
+                    else
+                    {
+                        <span>
+                            <b>LT:</b> @item.Resource_LT.Resource_Name<br />
+                            <b>TH:</b> @item.Resource_TH.Resource_Name
+                        </span>
+                    }
+                    <ul class="list-unstyled data-hide">
+                        <li><b>Exam:</b> @item.Resource_Exam.Resource_Name</li>
+                    </ul>
+                </td>
+                <td>@(item.Class_Module_Hour_Start.ToHourString())h</td>
+                <td>@(item.Class_Module_Hour_End.ToHourString())h</td>
+                <td>@item.Class_Module_Note</td>
+
+                <td class="text-@color">@(((ClassModuleStatusEnum)item.Class_Module_Status).ToString())</td>
+                @*<td>@item.Class_Name<br />
+                    <small>@LayoutModel.GetText_ClassDayEnum((ClassDayEnum)item.Class_Module_Day)</small><br />
+                    <small>@(item.Class_Module_Hour_Start.ToHourString())h-@(item.Class_Module_Hour_End.ToHourString())h</small>
+                </td>
+                <td>@item.Class_Module_Date_Start.ToDateString()
+                </td>
+                <td>@item.Class_Module_Date_End.ToDateString()</td>
+                <td>@item.Class_Module_Date_Exam.ToDateString()</td>
+                <td>Sem @item.Module.Semester</td>
+                <td><a href="@Url.GoFCProfile(FC.Id)">@FC.FC_Name</a></td>
+                <td>LT: @item.Resource_LT.Resource_Name<br />
+                    TH: @item.Resource_TH.Resource_Name<br />
+                    Exam: @item.Resource_Exam.Resource_Name
+                </td>*@
+                
+                <td>
+                    <div class="btn-group-view">
+                        @{
+                            var day_count = item.Class_Module_Days_List.Count();
+                            var btn_color = day_count > 0 ? "bg-maroon" : "";
+                        }
+                        <a href="@Url.Action("ManageSchedule_ClassModule_Attendance", new { id = item.Id })" class="btn btn-default @btn_color btn-xs" title="@day_count ngày học"><i class="fa fa-calendar fa-fw"></i></a>
+                        <a href="@Url.Action("ManageSchedule_ClassModule_Students", new { id = item.Id })" class="btn btn-primary btn-xs" title="Danh sách HV"><i class="fa fa-users fa-fw"></i></a>
+                        <br />
+                        <a href="@Url.Action("ManageSchedule_ClassModule_Exam", new { id = item.Id })" class="btn btn-success btn-xs" title="Danh sách thi"><i class="fa fa-bar-chart fa-fw"></i></a>
+                        <a href="@Url.Action("ManageSchedule_ClassModule_StudentAttendance", new { id = item.Id })" class="btn btn-warning btn-xs" title="Điểm danh của HV"><i class="fa fa-star fa-fw"></i></a>
+                    </div>
+                </td>
+                <td class="options">
+                    @Html.Partial("../Admin/_partial_Search_Model_Options",
+                            Tuple.Create((IEntity<Int32>)item, api_delete, addview_name, name))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

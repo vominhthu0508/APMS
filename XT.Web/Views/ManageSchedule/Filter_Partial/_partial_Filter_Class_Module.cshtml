@@ -1,0 +1,75 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@{
+    var currentParentName = ViewBag.CurrentParentName as string;
+    var class_id = ViewBag.CurrentParentId;
+}
+
+<input type="hidden" name="class_id" value="@currentParentName" />
+<div class="row" style="margin-bottom: 10px">
+    <div class="col-md-9">
+        <input type="text" class="form-control" name="Model_Name"
+            placeholder="Nhập tên môn để tìm kiếm...">
+    </div>
+    <div class="col-md-3">
+        <input type="hidden" name="Start_Date" value="" />
+        <input type="hidden" name="End_Date" value="" />
+        <a href="#" class="btn btn-default" id="form-daterange-btn" style="width: 100%;">
+            <i class="fa fa-calendar"></i>&nbsp;
+                    <span>Tất cả ngày tháng</span>&nbsp;
+                    <i class="fa fa-caret-down"></i>
+        </a>
+    </div>
+</div>
+<div class="row" style="margin-bottom: 10px">
+    <div class="col-md-2">
+        @Html.DropDownList("Company_Id",
+                    new SelectList(LayoutModel.CompaniesAll(), "Id", "Company_Name_Abbrev"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+    </div>
+    <div class="col-md-2">
+        @Html.DropDownList("Semester",
+                    new SelectList(MyDictionary.GetValuesWithAll(typeof(SemesterEnum)), "Id", "Name"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+    </div>
+    <div class="col-md-2">
+        @Html.DropDownList("Class_Module_Day",
+                    new SelectList(MyDictionary.GetValuesWithAll(typeof(ClassDayEnum)), "Id", "Name"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+    </div>
+    <div class="col-md-3">
+        @*@Html.DropDownList("Module_Id",
+                    new SelectList(LayoutModel.ClassesAll(), "Id", "Module_Name"),
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+        @*@Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.ClassesAll_ToMyDictionary(), new { Id_Class = 0 }))*@
+        @if (string.IsNullOrEmpty(currentParentName))
+        {
+        @Html.DropDownList("Id_Class",
+                    new SelectList(LayoutModel.ClassesAll(), "Id", "Class_Name"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+        }
+        else
+        {
+        @Html.DropDownList("Id_Class",
+                    new SelectList(LayoutModel.ClassesAll(), "Id", "Class_Name"),
+                    new { @class = "form-control select2", style = "width: 100%;", disabled = "disabled" })
+        }
+    </div>
+    <div class="col-md-3">
+        @Html.DropDownList("Faculty_Id",
+                    new SelectList(LayoutModel.FacultiesAll(), "Id", "FC_Name"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+    </div>
+</div>
+@*@if (class_id > 0)
+{
+<div class="row" style="margin-bottom: 10px">
+    <div class="col-md-12">
+        <a href="@Url.Action("Generate_ClassModule", new { id = class_id, sem = 1 })" class="btn btn-success">Generate Schedule - Sem 1</a>
+        <a href="@Url.Action("Generate_ClassModule", new { id = class_id, sem = 2 })" class="btn btn-warning">Generate Schedule - Sem 2</a>
+        <a href="@Url.Action("Generate_ClassModule", new { id = class_id, sem = 3 })" class="btn btn-primary">Generate Schedule - Sem 3</a>
+        <a href="@Url.Action("Generate_ClassModule", new { id = class_id, sem = 4 })" class="btn btn-danger">Generate Schedule - Sem 4</a>
+    </div>
+</div>
+}*@

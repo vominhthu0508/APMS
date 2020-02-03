@@ -1,0 +1,19 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@{
+    //filter search name theo parent (vd: company theo company type)
+    var entity = ViewBag.Entity as string;
+    var currentParentId = ViewBag.CurrentParentId;
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+}
+
+<input type="hidden" name="id" value="@currentParentId" />
+<div class="row">
+    <div class="col-md-12">
+        <div style="margin-bottom: 10px">
+            <input type="text" class="form-control" name="Model_Name"
+                    placeholder="Nhập tên @entity để tìm kiếm...">
+        </div>
+    </div>
+</div>

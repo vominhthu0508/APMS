@@ -1,0 +1,42 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+
+@model Student
+
+@{
+    var current_student = Model as Student;
+    var status_color = Helper.GetStudentStatusColor((StudentAcademicStatusEnum)current_student.Student_Status);
+}
+
+<ul class="timeline timeline-inverse">
+@foreach (var status in current_student.Student_AcademicStatuses_List)
+{
+    var date = status.Student_Status_Date.ToShortDateString();
+    var color = Helper.GetStudentStatusColor((StudentAcademicStatusEnum)status.Student_Status);
+    <li class="time-label">
+        <span class="bg-@color">@date
+        </span>
+    </li>
+    <!-- /.timeline-label -->
+    <!-- timeline item -->
+    <li>
+        <div class="timeline-item">
+            <h3 class="timeline-header text-@color">@((StudentAcademicStatusEnum)status.Student_Status)</h3>
+            <div class="timeline-body">
+                @if (status.Student_Status != (int)StudentAcademicStatusEnum.Studying)
+                { 
+                    <p>Lý do: @status.Student_Status_Note</p>
+                    if (status.Student_Status == (int)StudentAcademicStatusEnum.Delay)
+                    { 
+                    <p>Tình trạng học phí: @status.Student_FU_Amount$</p>
+                    }
+                }
+            </div>
+        </div>
+    </li>
+}
+    <li>
+        <i class="fa fa-clock-o bg-gray"></i>
+    </li>
+</ul>

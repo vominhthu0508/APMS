@@ -1,0 +1,74 @@
+﻿@{
+    var hasData = Model;
+}
+
+@if (hasData)
+{
+    <div class="box-body">
+        <table class="table table-bordered table-hover dataTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Class</th>
+                    <th>Batch</th>
+                    <th>Hour</th>
+                    <th>Day</th>
+                    <th>Module</th>
+                    <th>Sem</th>
+                    <th>FC</th>
+                    <th>Room</th>
+                    <th>Note</th>
+                    <th>View</th>
+                    <th>Option</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (var i = 1; i <= 10; i++)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>C1504L</td>
+                        <td>2,4,6</td>
+                        <td>19h-21h</td>
+                        <td>@i/5/2016</td>
+                        <td>Typography Techniques</td>
+                        <td>Sem I</td>
+                        <td>Đậu Ngọc Hà Dương</td>
+                        <td>LT: Class 1<br />
+                            TH: Lab 1
+                        </td>
+                        <td></td>
+                        <td>
+                            @{ var color = "danger";}
+                            @if (i <= 6)
+                            {
+                                color = "primary";
+                            }
+                            <a href="@Url.Action("ManageSchedule_ClassSession_StudentAttendance", new { day_id = i })" class="btn btn-@color btn-xs">Detail</a>
+                        </td>
+                        <td class="options">
+                            <div class="btn-group pull-left">
+                                <a class="btn btn-default" title="Chỉnh sửa">
+                                    <i class="fa fa-edit fa-fw"></i>
+                                </a>
+                                <a class="btn btn-default btn-admin-action" data-action="xóa" title="Xóa">
+                                    <i class="fa fa-trash fa-fw"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="box-body">
+        <div class="alert alert-info alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4><i class="icon fa fa-ban"></i>Hiện không có ngày học nào!</h4>
+            Hãy click button Tạo ds để tạo mới danh sách ngày học
+        </div>
+    </div>
+}

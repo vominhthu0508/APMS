@@ -1,0 +1,42 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+
+@model Student
+
+@{
+    var current_student = Model as Student;
+    var status_color = Helper.GetStudentStatusColor((StudentAcademicStatusEnum)current_student.Student_Status);
+}
+
+<ul class="timeline timeline-inverse">
+@foreach (var status in current_student.Exam_Modules_Guest_List)
+{
+    var module = status.Class_Module;
+    var date = module.Class_Module_Date_Start.ToShortDateString();
+    var color = "blue";
+    <li class="time-label">
+        <span class="bg-@color">@date
+        </span>
+    </li>
+    <!-- /.timeline-label -->
+    <!-- timeline item -->
+    <li>
+        @*<i class="fa fa-trophy bg-@color"></i>*@
+        <div class="timeline-item">
+            <h3 class="timeline-header text-@color">
+                <a href="@Url.Action("ManageSchedule_ClassModule_Students", "ManageSchedule", new { id = module.Id })">@status.Class_Module.Class_Name</a>
+            </h3>
+            <div class="timeline-body">
+                Module: @module.Module.Module_Name<br />
+                Date: @module.Class_Module_Date_Start.ToShortDateString() - @module.Class_Module_Date_End.ToShortDateString()
+                <br />
+                FC: @module.Faculty.FC_Name
+            </div>
+        </div>
+    </li>
+}
+    <li>
+        <i class="fa fa-clock-o bg-gray"></i>
+    </li>
+</ul>

@@ -1,0 +1,38 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model CourseFamily
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="form-group">
+                <label>Course</label>
+               @* <select class="form-control" style="width: 100%;" name="Course_Id">
+                    @foreach (var item in CourseFamilyModel.Courses())
+                    {
+                        <option @(Model.Course_Id == item.Id ? "selected=selected" : "") 
+                            value="@item.Id">@item.Course_Code</option>
+                    }
+                </select>*@
+                @*@Html.DropDownListFor(model => model.Course_Id, 
+                    new SelectList(LayoutModel.Courses(), "Id", "Course_Code", Model.Course_Id), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Courses_ToMyDictionary(), new { Model.Course_Id }))
+            </div>
+            <div class="form-group">
+                <label class="title-text">Tên @name</label>
+                @Html.TextBoxFor(model => model.CourseFamily_Name, 
+                    new { @class = "form-control", placeholder = "Nhập tên " + name })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Năm phát hành</label>
+                @Html.TextBoxFor(model => model.CourseFamily_Year, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+        </div>
+    </div>
+}

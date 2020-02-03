@@ -1,0 +1,121 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model User_ProfileModel
+@{
+    ViewBag.Title = "Cập nhật thông tin thành viên";
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">@ViewBag.Title</h3>
+    </div>
+    <div class="panel-body">
+        <div>
+            @using (Html.BeginForm("ChangeProfileInfoAccount", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.ValidationSummary(true)
+                <input type="hidden" name="Id" value="@Model.Id" />
+                <input type="hidden" name="Account_Id" value="@Model.Account_Id" />
+                <div class="group-content">
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="abc">Họ tên <span class="text-danger">*</span></label>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.User_Profile_Name, new
+                       {
+                           @class = "form-control input-sm",
+                           placeholder = "Nhập họ tên"
+                       })
+                            @Html.ValidationMessageFor(model => model.User_Profile_Name)
+                        </div>
+                        <span class="clearfix"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="abc">Ngày tháng năm sinh</label>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.User_Profile_Birthday, new
+                       {
+                           @class = "form-control input-sm",
+                           placeholder = "Nhập ngày tháng năm sinh"
+                       })
+                            @Html.ValidationMessageFor(model => model.User_Profile_Birthday)
+                        </div>
+                        <span class="clearfix"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="abc">Điện thoại</label>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.User_Profile_Phone, new
+                       {
+                           @class = "form-control input-sm",
+                           placeholder = "Nhập số điện thoại"
+                       })
+                            @Html.ValidationMessageFor(model => model.User_Profile_Phone)
+                        </div>
+                        <span class="clearfix"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="abc">Email <span class="text-danger">*</span></label>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.User_Profile_Email, new
+                       {
+                           @class = "form-control input-sm",
+                           placeholder = "Nhập email"
+                       })
+                            @Html.ValidationMessageFor(model => model.User_Profile_Email)
+                        </div>
+                        <span class="clearfix"></span>
+                    </div>
+                    @*<div class="form-group">
+                        <label class="col-xs-4 control-label" for="abc">Role <span class="required-star">*</span></label>
+                        <div class="col-xs-8">
+                            @Html.TextBoxFor(model => model.User_Profile_Phone, new
+                       {
+                           @class = "form-control input-sm",
+                           placeholder = "Nhập số điện thoại"
+                       })
+                            @Html.ValidationMessageFor(model => model.User_Profile_Phone)
+                        </div>
+                        <span class="clearfix"></span>
+                    </div>*@
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="abc">Giới tính</label>
+                        <div class="col-xs-8">
+                            <input type="radio" name="User_Profile_Gender" value="1" checked>@Html.GetResource("Admin_ChangeProfileInfoAccount__line86")
+                            <input type="radio" name="User_Profile_Gender" value="2">@Html.GetResource("Admin_ChangeProfileInfoAccount__line87")
+                        </div>
+                        <span class="clearfix"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-xs-4 control-label" for="abc">Địa chỉ</label>
+                        <div class="col-xs-8">
+                            <textarea name="User_Profile_Address" class="form-control input-sm">@Model.User_Profile_Address</textarea>
+                            @Html.ValidationMessageFor(model => model.User_Profile_Address)
+                        </div>
+                        <span class="clearfix"></span>
+                    </div>
+                    <div class="form-group form-upload-images clearfix">
+                        <label class="col-xs-4 control-label" for="abc">@Html.GetResource("Admin_ChangeProfileInfoAccount__line100")</label>
+                        <div class="col-sm-8">
+                            <div>
+                                <i class="fa fa-camera"></i>
+                                <span>@Html.GetResource("Admin_ChangeProfileInfoAccount__line104")</span>
+                                <input type="file" class="file" name="uploadFile"/>
+                            </div>
+                            <div>
+                                <input type="hidden" value="@Model.User_Profile_Avatar" name="User_Profile_Avatar">
+                                <img src="@XT.Web.External.Helper.MyUrlContent_DefaultImage(Model.User_Profile_Avatar)" 
+                                    class="img-responsive"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <input class="btn btn-primary btn-lg" type="submit" value="Cập nhật">
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

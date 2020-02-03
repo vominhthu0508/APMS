@@ -1,0 +1,25 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@{
+    var entity = ViewBag.Entity as string;
+    var entityFilter = ViewBag.EntityFilter as string;
+    var noPaging = (bool)ViewBag.NoPaging;
+    
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+}
+
+<form id="filter-form" action="/@controller_name/Filter@(entityFilter)">
+    @*Sorting*@
+    <input type="hidden" name="sort_target" value="" />
+    <input type="hidden" name="sort_rank" value="false" />
+    @*Filtering*@
+    <input type="hidden" name="page" value="1" />
+    <input type="hidden" name="page_size" value="@ViewBag.PageSize" />
+    <input type="hidden" name="pageChange" value="0" />
+    <input type="hidden" name="entity" value="@entity" />
+    <input type="hidden" name="entityFilter" value="@entityFilter" />
+    <input type="hidden" name="noPaging" value="@noPaging.ToString()" />
+    @*Custom*@
+    @RenderBody()
+</form>

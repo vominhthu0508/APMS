@@ -1,0 +1,23 @@
+﻿@{
+    var errorType = "danger";
+    if (ViewBag.Success != null && ViewBag.Success == true)
+    {
+        errorType = "success";
+    }
+    var errors = XT.Web.External.Helper.GetCustomErrorFromModelValidation(ViewData);
+    if (errors.Count() > 0)
+    {
+    <div class="form-group">
+        <div class="alert alert-@errorType alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <ul>
+                @*<li>@Html.ValidationMessage("CustomError")</li>*@
+                @foreach (var error in errors)
+                {
+                    <li>@error</li>
+                }
+            </ul>
+        </div>
+    </div>
+    }
+}

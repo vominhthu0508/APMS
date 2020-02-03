@@ -1,0 +1,110 @@
+﻿@using XT.BusinessService
+@using XT.Model
+@using XT.Web
+@using XT.Web.External
+@using XT.Web.Models
+@{
+    var headerCss = "sticky fixed";
+    if (ViewBag.SearchHeader != null)
+    {
+        headerCss = ViewBag.SearchHeader;
+    }
+
+    var isAuthenticated = XT.Web.External.AuthenticationManager.IsAuthenticated;
+    var lang = int.Parse(HttpContext.Current.Request.Cookies["Lang_Id"].Value) == (int)LanguageEnum.en ? "en" : "vi";
+
+    var phone = ViewBag.Phone != null ? ViewBag.Phone : AppSettings.ContactPhone;
+}
+<div class="layer"></div>
+<!-- Mobile menu overlay mask -->
+<!-- Header================================================== -->
+<header @*id="colored"*@ class="@headerCss">
+    <div id="top_line">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-6"><i class="icon-phone"></i><strong>&nbsp;Phòng kinh doanh @phone</strong></div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                    <ul id="top_links" class="@(!isAuthenticated ? "unauthenticated" : "")">
+                        @if (!isAuthenticated)
+                        {
+                            <li id="menu-login">
+                                <div class="dropdown-access">
+                                    <a href="javascript:showLoginDialog()" id="access_link">Đăng nhập</a>
+                                </div>
+                            </li>
+                            <li id="menu-register"><a href="@Url.GoAccountRegisterUser()">Đăng ký</a></li>
+                        }
+                        else
+                        {
+                            <li id="menu-accountprofile">
+                                @Html.Partial("../Account/_partialAuthenticatedProfile")
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <!-- End row -->
+        </div>
+        <!-- End container-->
+    </div>
+    <!-- End top line-->
+    <div class="container" style="clear: both;">
+        <div class="row">
+            <div class="col-md-3 col-sm-3 col-xs-3">
+                <div id="logo">
+                    <a href="@Url.GoIndex()">
+                        <img src="/images/logo.png" width="160" height="42" alt="Homely" data-retina="true" class="logo_normal">
+                    </a>
+                    <a href="@Url.GoIndex()">
+                        <img src="/images/logo_sticky.png" width="160" height="42" alt="Homely" data-retina="true" class="logo_sticky">
+                    </a>
+                </div>
+            </div>
+            <nav class="col-md-9 col-sm-9 col-xs-9">
+                <a class="cmn-toggle-switch cmn-toggle-switch__htx open_close" href="javascript:void(0);"><span>Menu mobile</span></a>
+                <div class="main-menu">
+                    <div id="header_menu">
+                        <img src="/images/logo_sticky.png" width="160" alt="Homely" data-retina="true">
+                    </div>
+                    <a href="#" class="open_close" id="close_in"><i class="icon_set_1_icon-77"></i></a>
+                    <ul>
+                        @*Profile*@
+                        <li class="submenu visible-sm visible-xs profile-menu">
+                            @if (!isAuthenticated)
+                            {
+                                <a href="javascript:showLoginDialog()" class="login-link"><i class="fa fa-user"></i>&nbsp;Đăng Nhập</a>
+                            }
+                            else
+                            {
+                                <a href="javascript:void(0);" class="show-submenu">
+                                    <img src="@Helper.MyUrlContent_AccountAvatar(XT.Web.External.AuthenticationManager.Account_Avatar)" />
+                                    <span><b>@XT.Web.External.AuthenticationManager.Account_Name</b></span><i class="icon-down-open-mini"></i>
+                                </a>
+                                <ul>
+                                    @Html.Partial("../Account/_partialAuthenticatedProfileMenu")
+                                </ul>
+                            }
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- End main-menu -->
+                @*Tìm kiếm & Yêu thích*@
+                <ul id="top_tools">
+                    @*Login*@
+                    <li class="sticky-show hidden-xs" style="border-right: 1px solid #ddd;padding-right: 10px;">
+                        @if (!isAuthenticated)
+                        {
+                            <a href="javascript:showLoginDialog()" id="access_link">Đăng nhập</a>
+                        }
+                        else
+                        {
+                            @Html.Partial("../Account/_partialAuthenticatedProfile")
+                        }
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+    <!-- container -->
+</header>

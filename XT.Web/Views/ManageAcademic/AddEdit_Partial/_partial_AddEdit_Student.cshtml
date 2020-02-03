@@ -1,0 +1,219 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Student
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+    
+    <h4><b>SEARCH FOR EXISTED STUDENT</b></h4>
+    <select class="form-control select-students" style="width: 100%;" name="Student_Id">
+    </select>
+    <p class="text-center text-bold">- OR -</p>
+    <h4><b>ADD NEW STUDENT</b></h4>
+    <hr />
+    <h4>Basic Information</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="title-text">EnrollNumber</label>
+                @Html.TextBoxFor(model => model.Student_EnrollNumber, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">First Name</label>
+                @Html.TextBoxFor(model => model.Student_FirstName, 
+                    new { @class = "form-control", placeholder = "Nhập tên " + name })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Last Name</label>
+                @Html.TextBoxFor(model => model.Student_LastName, 
+                    new { @class = "form-control", placeholder = "Nhập họ " + name })
+            </div>
+            <div class="form-group">
+                <label>Class</label>
+                @*@Html.DropDownListFor(model => model.Class_Id, 
+                    new SelectList(LayoutModel.Classes(), "Id", "Class_Name", Model.Class_Id), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @*<select name="Class_Id" class="form-control select2">
+                    @foreach (var c in LayoutModel.Classes())
+                    {
+                        <option value="@c.Id" @(Model.Class_Id == c.Id ? "selected" : "")>@c.Class_Name</option>
+                    }
+                </select>*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Classes_ToMyDictionary(), new { Class_Id = Model.Class_Id }))
+            </div>
+            <div class="form-group">
+                <label>Course Family</label>
+                @*@Html.DropDownListFor(model => model.CourseFamily_Id, 
+                    new SelectList(LayoutModel.CourseFamilies(), "Id", "CourseFamily_FullName", Model.CourseFamily_Id), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.CourseFamilies_ToMyDictionary(), new { Model.CourseFamily_Id }))
+            </div>
+            <div class="form-group">
+                <label>Birthday</label>
+                <input type="text" name="Student_Birthday" 
+                       value="@Model.Student_Birthday.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Application Date</label>
+                <input type="text" name="Student_Application_Date" 
+                       value="@Model.Student_Application_Date.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+            </div>
+            <div class="form-group">
+                <label class="title-text">Consultant</label>
+                @Html.TextBoxFor(model => model.Student_Application_CS, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Application Documents</label>
+                @Html.TextBoxFor(model => model.Student_Application_Documents, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label>Student Status</label>
+                @*@Html.DropDownListFor(model => model.Student_Status, 
+                    new SelectList(MyDictionary.GetValues(typeof(StudentAcademicStatusEnum)), "Id", "Name", Model.Student_Status), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(StudentAcademicStatusEnum), new { Model.Student_Status }))
+            </div>
+            <div class="form-group">
+                <label>Student Status Date</label>
+                <input type="text" name="Student_Status_Date" 
+                       value="@Model.Student_Status_Date.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+            </div>
+            <div class="form-group">
+                <label class="title-text">Promotion</label>
+                @Html.TextBoxFor(model => model.Student_Promotion, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group form-upload-images clearfix">
+                <label>Hình ảnh</label>
+                <div class="btn-upload-image">
+                    <i class="fa fa-camera"></i>
+                    <span>Upload hình</span>
+                    <input type="file" class="file" name="uploadFile" />
+                </div>
+                <div class="form-photos">
+                    <input type="hidden" value="@Model.Student_Avatar" name="Student_Avatar">
+                    <img style="width:100%" src="@XT.Web.External.Helper.MyUrlContent_DefaultImage(Model.Student_Avatar)" class="upload-image-container"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Gender</label>
+                @*@Html.DropDownListFor(model => model.Student_Gender, 
+                    new SelectList(MyDictionary.GetValues(typeof(GenderEnum)), "Id", "Name", Model.Student_Gender), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(GenderEnum), new { Model.Student_Gender }))
+            </div>
+        </div>
+    </div>
+    <h4>Advanced Information</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="title-text">Mobile Phone</label>
+                @Html.TextBoxFor(model => model.Student_MobilePhone, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Home Phone</label>
+                @Html.TextBoxFor(model => model.Student_HomePhone, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Email</label>
+                @Html.TextBoxFor(model => model.Student_Email, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Facebook</label>
+                @Html.TextBoxFor(model => model.Student_Facebook, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="title-text">City</label>
+                @Html.TextBoxFor(model => model.Student_City, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">District</label>
+                @Html.TextBoxFor(model => model.Student_District, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Sponsor Name</label>
+                @Html.TextBoxFor(model => model.Student_Sponsor, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Sponsor Relation</label>
+                @Html.TextBoxFor(model => model.Student_Sponsor_Relation, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="title-text">Address</label>
+                @Html.TextBoxFor(model => model.Student_Address, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Contact Address</label>
+                @Html.TextBoxFor(model => model.Student_ContactAddress, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Sponsor Address</label>
+                @Html.TextBoxFor(model => model.Student_Sponsor_Address, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+        </div>
+    </div>
+    <h4>Job Information</h4>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="title-text">High School</label>
+                @Html.TextBoxFor(model => model.HighSchool, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">University</label>
+                @Html.TextBoxFor(model => model.University, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="title-text">Working Company</label>
+                @Html.TextBoxFor(model => model.Company, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Company Address</label>
+                @Html.TextBoxFor(model => model.Company_Address, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="title-text">Company Position:</label>
+                @Html.TextBoxFor(model => model.Company_Position, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">Company Salary</label>
+                @Html.TextBoxFor(model => model.Company_Salary, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+        </div>
+    </div>
+}

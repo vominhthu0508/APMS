@@ -1,0 +1,13 @@
+﻿@using XT.Model
+@using XT.Web.External
+
+@model Student
+
+<div class="user-block">
+    <img class="img-circle img-bordered-sm" src="@Helper.MyUrlContent_AccountAvatar(Model.Student_Avatar)" alt="user image">
+    <span class="username">
+        <a href="@Url.GoUserProfile(Model.Id)">@Model.Student_FullName</a>
+    </span>
+    <span class="description">@Model.Student_EnrollNumber</span>
+    <span class="description">@((GenderEnum)Model.Student_Gender) - @Model.Student_MobilePhone</span>
+</div>

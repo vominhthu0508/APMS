@@ -1,0 +1,200 @@
+﻿@using XT.Model;
+@using XT.Web;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<IEntity>
+
+@{
+    var lstItems = Model.ToList<Student>();//sửa
+    var name = ViewBag.EntityName as string;
+    var entity = ViewBag.Entity as string;
+
+    //sorting
+    var sort_target = ViewBag.sort_target as string;
+    var sort_rank = ViewBag.sort_rank as string;
+    var sort_Student_Name = sort_target != null && sort_target == "Student_FullName" ? sort_rank : "";
+    var sort_Remain_Fee = sort_target != null && sort_target == "Remain_Fee" ? sort_rank : "";
+
+    //api
+    var action_name = XT.Web.Models.LayoutModel.GetCurrentActionName();
+    var controller_name = XT.Web.Models.LayoutModel.GetControllerName();
+    var api_delete = "/" + controller_name + "/Delete" + entity;
+    //partial
+    var addview_name = "AddEdit_Partial/_partial_AddEdit_" + entity;
+
+    //statistics
+    var students = ViewBag.Students as IEnumerable<Student>;// IoCConfig.Service<IStudentService>().FindAllValid();
+    var count_all = students.Count();
+    var count_studying = students.Count(s => s.Student_Status == (int)StudentAcademicStatusEnum.Studying);
+    var count_delay = students.Count(s => s.Student_Status == (int)StudentAcademicStatusEnum.Delay);
+    var count_dropout = students.Count(s => s.Student_Status == (int)StudentAcademicStatusEnum.Dropout);
+    var count_finish = students.Count(s => s.Student_Status == (int)StudentAcademicStatusEnum.Finished);
+}
+
+<div style="padding: 20px; padding-bottom: 0px;">
+    <div class="row">
+        <div class="col-lg-4 col-xs-6">
+            <!-- small box -->
+            <a href="@Url.Action("ManageAcademic_Student", new { status = 0 })">
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>@count_all</h3>
+                        <p>All Students</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-users"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-2 col-xs-6">
+            <!-- small box -->
+            <a href="@Url.Action("ManageAcademic_Student", new { status = (int)StudentAcademicStatusEnum.Studying })">
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>@count_studying</h3>
+                        <p>Studying</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-smile-o"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-2 col-xs-6">
+            <!-- small box -->
+            <a href="@Url.Action("ManageAcademic_Student", new { status = (int)StudentAcademicStatusEnum.Delay })">
+                <div class="small-box bg-yellow">
+                    <div class="inner">
+                        <h3>@count_delay</h3>
+                        <p>Delay</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-meh-o"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-2 col-xs-6">
+            <!-- small box -->
+            <a href="@Url.Action("ManageAcademic_Student", new { status = (int)StudentAcademicStatusEnum.Dropout })">
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>@count_dropout</h3>
+                        <p>Dropout</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-frown-o"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-2 col-xs-6">
+            <!-- small box -->
+            <a href="@Url.Action("ManageAcademic_Student", new { status = (int)StudentAcademicStatusEnum.Finished })">
+                <div class="small-box bg-blue">
+                    <div class="inner">
+                        <h3>@count_finish</h3>
+                        <p>Finish</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-graduation-cap"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <!-- ./col -->
+    </div>
+</div>
+
+<table class="table table-bordered table-hover dataTable">
+    <thead>
+        <tr>
+            <th></th>
+            <th class="sorting @sort_Student_Name" data-sorting="Student_FullName">Name</th>
+            <th>Class</th>
+            <th>Status</th>
+            <th>Status Date</th>
+            <th>Birthday</th>
+            <th>Course Fee</th>
+            <th class="sorting @sort_Remain_Fee" data-sorting="Remain_Fee">Remain Fee</th>
+            <th>View</th>
+            <th>Option</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in lstItems)
+        {
+            var Student_Status = (StudentAcademicStatusEnum)item.Student_Status;
+            <tr>
+                <td><a href="#" class="viewdetail" title="Chi tiết"><i class="fa fa-chevron-down" aria-hidden="true"></i></a></td>
+                <td>
+                    @Html.Partial("../ManageAcademic/Partial/_partial_Search_Student_SmallInfo", item)
+                </td>
+                <td>@item.Class.Class_Name_Company
+                    <ul class="list-unstyled data-hide">
+                        <li>First Class: @item.FirstClass</li>
+                        <li>Course: @item.CourseFamily.Course.Course_Code - @item.CourseFamily.CourseFamily_Name</li>
+                    </ul>
+                </td>
+                <td><a href="@Url.Action("ManageAcademic_Student_AcademicStatus", "ManageAcademic", new { id = item.Id })" class="btn btn-default bg-@Helper.GetStudentStatusColor(Student_Status) btn-xs">@Student_Status.ToString()</a></td>
+                <td>@item.Student_Status_Date.ToDateString()
+                    @*<ul class="list-unstyled data-hide">
+                        <li>Mobile: @item.Student_MobilePhone</li>
+                        <li>Home: @item.Student_HomePhone</li>
+                        <li>Contact: @item.Student_ContactPhone</li>
+                    </ul>*@
+                </td>
+                <td>@item.Student_Birthday.ToDateString()
+                    <ul class="list-unstyled data-hide">
+                        <li>CS: @item.Student_Application_CS</li>
+                        <li>Hồ sơ: @item.Student_Application_Documents
+                        </li>
+                    </ul>
+                </td>
+                <td class="text-bold">@item.Actual_Course_Fee$</td>
+                <td class="text-bold text-red">@item.Remain_Fee$</td>
+                <td style="width: 120px;">
+                    <a href="@Url.GoUserProfile(item.Id)" class="btn btn-primary btn-xs" title="Mark"><i class="fa fa-line-chart fa-fw"></i></a>
+                    @*<a href="@Url.Action("ManageExam_Mark", "ManageExam")" class="btn btn-warning btn-xs" title="Mark"><i class="fa fa-star fa-fw"></i></a>*@
+                    <a href="@Url.Action("ManageAcademic_Student_Attendance", "ManageAcademic", new { id = item.Id })" class="btn btn-warning btn-xs" title="Điểm danh của HV"><i class="fa fa-star fa-fw"></i></a>
+                    <a href="@Url.Action("ManageAcademic_Student_Prize", "ManageAcademic", new { id = item.Id })" class="btn btn-default bg-maroon btn-xs" title="Prize"><i class="fa fa-trophy fa-fw"></i></a>
+                    <br />
+                    <a href="@Url.Action("ManageAcademic_Student_ClassChange", "ManageAcademic", new { id = item.Id })" class="btn btn-default bg-purple btn-xs" title="Class Change"><i class="fa fa-puzzle-piece fa-fw"></i></a>
+                    <a href="@Url.Action("ManageAcademic_Student_BookOrder", "ManageAcademic", new { id = item.Id })" class="btn btn-default bg-red btn-xs" title="Book Order"><i class="fa fa-book fa-fw"></i></a>
+                    @*<a href="@Url.Action("ManageAcademic_Student_FeePlan", "ManageAcademic", new { id = item.Id })" class="btn btn-success btn-xs" title="FeePlan"><i class="fa fa-dollar fa-fw"></i></a>*@
+                    <a href="#" class="btn btn-success btn-xs feeplan-status" title="Chi tiết FeePlan" data-id="@item.Id"><i class="fa fa-dollar fa-fw"></i></a>
+                </td>
+                <td class="options">
+                    @Html.Partial("../Admin/_partial_Search_Model_Options",
+                        Tuple.Create((IEntity<Int32>)item, api_delete, addview_name, name))
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="modal fade" id="feeplan-modal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">Xem lịch sử giao dịch</h4>
+            </div>
+            <div class="modal-body">
+                Loading...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                @*<a href="#" class="btn btn-success">Cập nhật lịch sử giao dịch</a>*@
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,106 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@model Faculty
+@if (Model != null)
+{
+    var name = ViewBag.EntityName;
+    <input type="hidden" value="@Model.Id" name="Id">
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="title-text">@name name</label>
+                @Html.TextBoxFor(model => model.FC_Name, 
+                    new { @class = "form-control", placeholder = "Nhập tên " + name })
+            </div>
+            <div class="form-group">
+                <label class="title-text">@name nickname</label>
+                @Html.TextBoxFor(model => model.FC_Nickname, 
+                    new { @class = "form-control", placeholder = "Nhập nickname của " + name })
+            </div>
+            <div class="form-group">
+                <label>Center</label>
+                @*@Html.DropDownListFor(model => model.Company_Id, 
+                    new SelectList(LayoutModel.Companies(), "Id", "Company_Name", Model.Company_Id), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(LayoutModel.Companies_ToMyDictionary(), new { Model.Company_Id }))
+            </div>
+            <div class="form-group">
+                <label>FC Type</label>
+                @*@Html.DropDownListFor(model => model.FC_Type, 
+                    new SelectList(MyDictionary.GetValues(typeof(FacultyTypeEnum)), "Id", "Name", Model.FC_Type), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(FacultyTypeEnum), new { Model.FC_Type }))
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>FC Gender</label>
+                @*@Html.DropDownListFor(model => model.FC_Gender, 
+                    new SelectList(MyDictionary.GetValues(typeof(GenderEnum)), "Id", "Name", Model.FC_Gender), 
+                    new { @class = "form-control select2", style = "width: 100%;" })*@
+                @Html.Raw(XT.Web.External.ControlUlti.DropDownListFor(typeof(GenderEnum), new { Model.FC_Gender }))
+            </div>
+            <div class="form-group">
+                <label class="title-text">FC Phone</label>
+                @Html.TextBoxFor(model => model.FC_Phone, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">FC Email</label>
+                @Html.TextBoxFor(model => model.FC_Email, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">FC Address</label>
+                @Html.TextBoxFor(model => model.FC_Address, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">FC Company Address</label>
+                @Html.TextBoxFor(model => model.FC_Address_Company, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">FC Birthday</label>
+                <input type="text" 
+                        name="FC_Birthday" 
+                        value="@Model.FC_Birthday.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label class="title-text">FC Salary</label>
+                @Html.TextBoxFor(model => model.FC_Salary, 
+                    new { @class = "form-control textbox-price", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">FC Working Hour</label>
+                @Html.TextBoxFor(model => model.FC_WorkingHour, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">FC CMND</label>
+                @Html.TextBoxFor(model => model.FC_CMND, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">FC CMND Noi Cap</label>
+                @Html.TextBoxFor(model => model.FC_CMND_NoiCap, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+            <div class="form-group">
+                <label class="title-text">FC CMND Ngay Cap</label>
+                <input type="text" 
+                        name="FC_CMND_NgayCap" 
+                        value="@Model.FC_CMND_NgayCap.ToString("dd/MM/yyyy")" class="form-control monthdatepicker">
+            </div>
+            <div class="form-group">
+                <label class="title-text">FC MST</label>
+                @Html.TextBoxFor(model => model.FC_MST, 
+                    new { @class = "form-control", placeholder = "" })
+            </div>
+        </div>
+    </div>
+}

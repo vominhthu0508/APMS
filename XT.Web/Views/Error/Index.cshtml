@@ -1,0 +1,76 @@
+﻿@using XT.Web.External
+@using XT.Web.Models
+
+@model ErrorModel
+@{
+    ViewBag.Title = ":( Có lỗi xảy ra";
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+    ViewBag.SearchHeader = "";
+}
+
+@{
+    string message = null;
+    int code = Model.HttpStatusCode;
+    switch (Model.HttpStatusCode)
+    {
+        case 404:
+            message = "Trang bạn tìm không tồn tại rồi!";
+            break;
+        case 500:
+            //message = string.Concat("Có lỗi xảy ra:<br /> ", Model.Exception.Message);
+            message = "Chúng tôi đang cố gắng để khắc phục sự cố!";
+            break;
+    }
+}
+
+<section class="content-header">
+    <h1>@code Error Page
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i>Home</a></li>
+        <li class="active">@code error</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="error-page">
+        <h2 class="headline text-yellow">@code</h2>
+        <div class="error-content">
+            <h3><i class="fa fa-warning text-yellow"></i> Có lỗi xảy ra!</h3>
+            <p>
+                @Html.Raw(message).
+            </p>
+            <p>
+                <a href="@Url.GoAccountAdminFirstPage()" class="animated fadeInUp button_intro">Về trang chủ</a>
+            </p>
+        </div>
+        <!-- /.error-content -->
+    </div>
+    <!-- /.error-page -->
+</section>
+
+@*@section Scripts{
+    @Scripts.Url("~/Scripts/Home/Contact")
+}*@
+
+@*<style>
+    p
+    {
+        margin: 0 0 20px;
+    }
+</style>
+
+<section id="hero">
+    <div class="searchbox-media"></div>
+    <div class="intro_title error">
+        <h1 class="animated fadeInDown"><i class="fa fa-frown-o"></i></h1>
+        <p class="animated fadeInDown">Hix, @Html.Raw(message)</p>
+        <a href="@Url.GoIndex()" class="animated fadeInUp button_intro">Về trang chủ</a>
+    </div>
+</section>
+<div class="container margin_60">
+    <div class="main_title">
+        <h2><span>Đừng lo!</span> Đã có chúng tôi ở đây.</h2>
+        <p>@Html.GetResource("Error_Index__line47")</p>
+    </div>
+</div>
+<div id="map_contact"></div>*@

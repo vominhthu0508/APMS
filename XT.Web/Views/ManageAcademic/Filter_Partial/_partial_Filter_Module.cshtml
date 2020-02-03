@@ -1,0 +1,42 @@
+﻿@using XT.Model
+@using XT.Web.Models
+
+@{
+    //Layout = "~/Views/Admin/_partial_Filter_Model.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div style="margin-bottom: 10px">
+            <input type="text" class="form-control" name="Model_Name"
+                placeholder="Nhập tên môn học để tìm kiếm...">
+        </div>
+    </div>
+    @*<div class="col-md-2">
+            @Html.DropDownList("Course_Id",
+                    new SelectList(LayoutModel.CoursesAll(), "Id", "Course_Code"),
+                    new { @class = "form-control", style = "width: 100%;" })
+        </div>*@
+    <div class="col-md-2">
+        <select name="CourseFamily_Id" class="form-control select2">
+            <option value="0">Course Family</option>
+            @foreach (var c in LayoutModel.CourseFamilies())
+            {
+                <option value="@c.Id">@c.CourseFamily_FullName</option>
+            }
+        </select>
+        @*@Html.DropDownList("CourseFamily_Id",
+                    new SelectList(LayoutModel.CourseFamiliesAll(), "Id", "CourseFamily_Name"),
+                    new { @class = "form-control", style = "width: 100%;" })*@
+    </div>
+    <div class="col-md-2">
+        @Html.DropDownList("Semester",
+                    new SelectList(MyDictionary.GetValuesWithAll(typeof(SemesterEnum)), "Id", "Name"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+    </div>
+    <div class="col-md-2">
+        @Html.DropDownList("Module_Portal_Type",
+                    new SelectList(MyDictionary.GetValuesWithAll(typeof(ModulePortalTypeEnum)), "Id", "Name"),
+                    new { @class = "form-control select2", style = "width: 100%;" })
+    </div>
+</div>

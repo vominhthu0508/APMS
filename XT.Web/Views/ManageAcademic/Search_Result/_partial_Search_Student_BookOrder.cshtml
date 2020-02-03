@@ -1,0 +1,53 @@
+﻿@*[Chưa làm] Danh sách BookOrder của Student*@
+@using XT.Web.External
+
+<div class="box-body">
+    <table class="table table-bordered table-hover dataTable">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Student</th>
+                <th>Book Code</th>
+                <th>Price</th>
+                <th>Sem</th>
+                <th>Indent Date</th>
+                <th>Indent No.</th>
+                <th>Center</th>
+                <th>Indent Status</th>
+                <th>SAP Customer ID</th>
+                <th>Option</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (var i = 1; i <= 100; i++)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>
+                        <a href="@Url.GoUserProfile()">Nguyễn Văn A</a><br />
+                        <small>Student927106</small>
+                    </td>
+                    <td>OV-6824KIT01-G</td>
+                    <td>20</td>
+                    <td>1</td>
+                    <td>1/6/2016</td>
+                    <td>91</td>
+                    <td>ARENA-HANOI-4-APROTRAIN</td>
+                    <td>Pending</td>
+                    <td>1001283</td>
+                    <td class="options">
+                        <div class="btn-group pull-left">
+                            <a class="btn btn-default" title="Chỉnh sửa">
+                                <i class="fa fa-edit fa-fw"></i>
+                            </a>
+                            <a class="btn btn-default btn-admin-action" data-action="xóa" title="Xóa">
+                                <i class="fa fa-trash fa-fw"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+@Html.Partial("../Admin/_partial_Search_Paging")

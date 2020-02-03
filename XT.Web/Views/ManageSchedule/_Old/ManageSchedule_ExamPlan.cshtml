@@ -1,0 +1,78 @@
+﻿@using XT.BusinessService;
+
+@{
+    ViewBag.Title = "[Schedule] Quản lý kế hoạch thi";
+    var name = "ExamPlan";
+    var title = ViewBag.Title;
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+
+    var ClassID = ViewBag.ClassID as string;
+    var StartDate = (DateTime)ViewBag.StartDate;
+    var EndDate = (DateTime)ViewBag.EndDate;
+}
+
+@section Scripts{
+    @Scripts.Url("~/Scripts/Admin/ManageSchedule_ClassSession_Calendar")
+}
+
+<section class="content-header">
+    <h1>@title
+        @*<small>@ClassID (@StartDate.ToDateString() - @EndDate.ToDateString())</small>*@
+    </h1>
+    <div class="breadcrumb">
+        <div style="margin-bottom: 10px; margin-top: 10px;">
+            @*<select name="" class="form-control select2" style="width: 150px;">
+                <option value="0">All modules</option>
+                @foreach (var module in XT.Utilities.SampleData.SampleData.GetAllModules())
+                { 
+                <option value="1">@module</option>
+                }
+            </select>
+            <select name="" class="form-control select2" style="width: 100px;">
+                <option value="0">All classes</option>
+                <option value="1">Aptech HCM</option>
+                <option value="2">Arena HCM</option>
+            </select>
+            <select name="" class="form-control select2" style="width: 100px;">
+                <option value="0">All days</option>
+                <option value="1">2,4,6</option>
+                <option value="2">3,5,7</option>
+                <option value="3">CN</option>
+            </select>*@
+            <a href="#" class="btn btn-default" id="daterange-btn">
+                <i class="fa fa-calendar"></i>&nbsp;<i class="fa fa-caret-down"></i>
+            </a>
+        </div>
+    </div>
+</section>
+<section class="content">
+    <div class="row ajax-search-group">
+        <div class="col-lg-12">
+            @Html.Partial("../Admin/_partial_Search_Form", "")
+        </div>
+        <div class="col-lg-12">
+            <div class="Search_Result">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">@ClassID (@StartDate.ToDateString() - @EndDate.ToDateString())</h3>
+                        <div class="box-tools">
+                            <select name="" class="form-control select2" style="width: 200px;">
+                                <option value="0">All modules</option>
+                                @foreach (var module in XT.Utilities.SampleData.SampleData.GetAllModules())
+                                { 
+                                    <option value="1">@module</option>
+                                }
+                            </select>
+                            <select name="" class="form-control select2" style="width: 100px;">
+                                <option value="0">All classes</option>
+                                <option value="1">Aptech HCM</option>
+                                <option value="2">Arena HCM</option>
+                            </select>
+                        </div>
+                    </div>
+                    @Html.Partial("Search_Result/_partial_Search_" + name, "")
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

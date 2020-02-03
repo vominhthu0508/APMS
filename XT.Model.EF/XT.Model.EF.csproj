@@ -1,0 +1,290 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{691F60CB-82C0-487B-AA20-D92EF6D493B6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>XT.Model.EF</RootNamespace>
+    <AssemblyName>XT.Model.EF</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account.cs" />
+    <Compile Include="Company_Type.cs" />
+    <Compile Include="Company.cs" />
+    <Compile Include="Class_Module.cs" />
+    <Compile Include="Class.cs" />
+    <Compile Include="Class_Module_Day.cs" />
+    <Compile Include="Class_Module_StudentExam.cs" />
+    <Compile Include="BookOrder.cs" />
+    <Compile Include="BookOrder_Detail.cs" />
+    <Compile Include="Migrations\201711071043288_AddTableUser_Company.cs" />
+    <Compile Include="Migrations\201711071043288_AddTableUser_Company.Designer.cs">
+      <DependentUpon>201711071043288_AddTableUser_Company.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711100435295_EditTableUser_Company_CreatedDate.cs" />
+    <Compile Include="Migrations\201711100435295_EditTableUser_Company_CreatedDate.Designer.cs">
+      <DependentUpon>201711100435295_EditTableUser_Company_CreatedDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712260757152_EditTable_Module_ExamType.cs" />
+    <Compile Include="Migrations\201712260757152_EditTable_Module_ExamType.Designer.cs">
+      <DependentUpon>201712260757152_EditTable_Module_ExamType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User_Company.cs" />
+    <Compile Include="Migrations\201607062207478_CreateDBDesign.cs" />
+    <Compile Include="Migrations\201607062207478_CreateDBDesign.Designer.cs">
+      <DependentUpon>201607062207478_CreateDBDesign.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607171230568_DBDesign_1.cs" />
+    <Compile Include="Migrations\201607171230568_DBDesign_1.Designer.cs">
+      <DependentUpon>201607171230568_DBDesign_1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607180150574_DBDesign_2.cs" />
+    <Compile Include="Migrations\201607180150574_DBDesign_2.Designer.cs">
+      <DependentUpon>201607180150574_DBDesign_2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607180153054_DBDesign_3.cs" />
+    <Compile Include="Migrations\201607180153054_DBDesign_3.Designer.cs">
+      <DependentUpon>201607180153054_DBDesign_3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608020605065_DBDesign_4.cs" />
+    <Compile Include="Migrations\201608020605065_DBDesign_4.Designer.cs">
+      <DependentUpon>201608020605065_DBDesign_4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608020626334_DBDesign_5.cs" />
+    <Compile Include="Migrations\201608020626334_DBDesign_5.Designer.cs">
+      <DependentUpon>201608020626334_DBDesign_5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608211048503_DBDesign_6.cs" />
+    <Compile Include="Migrations\201608211048503_DBDesign_6.Designer.cs">
+      <DependentUpon>201608211048503_DBDesign_6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608211123521_DBDesign_7.cs" />
+    <Compile Include="Migrations\201608211123521_DBDesign_7.Designer.cs">
+      <DependentUpon>201608211123521_DBDesign_7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608231455016_DBDesign_8.cs" />
+    <Compile Include="Migrations\201608231455016_DBDesign_8.Designer.cs">
+      <DependentUpon>201608231455016_DBDesign_8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608251426313_DBDesign_9.cs" />
+    <Compile Include="Migrations\201608251426313_DBDesign_9.Designer.cs">
+      <DependentUpon>201608251426313_DBDesign_9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608251435579_DBDesign_10.cs" />
+    <Compile Include="Migrations\201608251435579_DBDesign_10.Designer.cs">
+      <DependentUpon>201608251435579_DBDesign_10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608260430006_DBDesign_11.cs" />
+    <Compile Include="Migrations\201608260430006_DBDesign_11.Designer.cs">
+      <DependentUpon>201608260430006_DBDesign_11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608260437315_DBDesign_12.cs" />
+    <Compile Include="Migrations\201608260437315_DBDesign_12.Designer.cs">
+      <DependentUpon>201608260437315_DBDesign_12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608260541124_DBDesign_13.cs" />
+    <Compile Include="Migrations\201608260541124_DBDesign_13.Designer.cs">
+      <DependentUpon>201608260541124_DBDesign_13.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608270927582_DBDesign_14.cs" />
+    <Compile Include="Migrations\201608270927582_DBDesign_14.Designer.cs">
+      <DependentUpon>201608270927582_DBDesign_14.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612181010504_EditTableStudent_AddEducation.cs" />
+    <Compile Include="Migrations\201612181010504_EditTableStudent_AddEducation.Designer.cs">
+      <DependentUpon>201612181010504_EditTableStudent_AddEducation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612181109568_EditTableStudent_AddContactPhone.cs" />
+    <Compile Include="Migrations\201612181109568_EditTableStudent_AddContactPhone.Designer.cs">
+      <DependentUpon>201612181109568_EditTableStudent_AddContactPhone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612181946553_EditTableStudentExam_ChangeIntToFloat.cs" />
+    <Compile Include="Migrations\201612181946553_EditTableStudentExam_ChangeIntToFloat.Designer.cs">
+      <DependentUpon>201612181946553_EditTableStudentExam_ChangeIntToFloat.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201707300905233_EditTableClassModuleDayStudent_AddNote.cs" />
+    <Compile Include="Migrations\201707300905233_EditTableClassModuleDayStudent_AddNote.Designer.cs">
+      <DependentUpon>201707300905233_EditTableClassModuleDayStudent_AddNote.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201708090839551_EditTable_Faculty_Nickname.cs" />
+    <Compile Include="Migrations\201708090839551_EditTable_Faculty_Nickname.Designer.cs">
+      <DependentUpon>201708090839551_EditTable_Faculty_Nickname.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710250920169_EditTable_Module_DurationByHour.cs" />
+    <Compile Include="Migrations\201710250920169_EditTable_Module_DurationByHour.Designer.cs">
+      <DependentUpon>201710250920169_EditTable_Module_DurationByHour.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201710250931051_EditTable_Module_PortalType.cs" />
+    <Compile Include="Migrations\201710250931051_EditTable_Module_PortalType.Designer.cs">
+      <DependentUpon>201710250931051_EditTable_Module_PortalType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Student_FeePlan_Installment.cs" />
+    <Compile Include="Student_FeePlan.cs" />
+    <Compile Include="FeePlan_Detail.cs" />
+    <Compile Include="FeePlan.cs" />
+    <Compile Include="Prize.cs" />
+    <Compile Include="Faculty_Module.cs" />
+    <Compile Include="Class_Module_Day_Student.cs" />
+    <Compile Include="Student_AcademicStatus.cs" />
+    <Compile Include="Student_ClassHistory.cs" />
+    <Compile Include="Student.cs" />
+    <Compile Include="Resource.cs" />
+    <Compile Include="Faculty.cs" />
+    <Compile Include="Module.cs" />
+    <Compile Include="CourseFamily.cs" />
+    <Compile Include="Course.cs" />
+    <Compile Include="Migrations\201605231202200_InitCreate.cs" />
+    <Compile Include="Migrations\201605231202200_InitCreate.Designer.cs">
+      <DependentUpon>201605231202200_InitCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Role_Type.cs" />
+    <Compile Include="User_Type.cs" />
+    <Compile Include="Entity\DataContext.cs" />
+    <Compile Include="Entity\ModelsExtension.cs" />
+    <Compile Include="MyDataContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shared\ModelsBase_Shared.cs" />
+    <Compile Include="Shared\ModelsExtension_Shared.cs" />
+    <Compile Include="User_Profile.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\XT.Model\XT.Model.csproj">
+      <Project>{dc25e832-3410-4ead-b4ab-911628144596}</Project>
+      <Name>XT.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201605231202200_InitCreate.resx">
+      <DependentUpon>201605231202200_InitCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607062207478_CreateDBDesign.resx">
+      <DependentUpon>201607062207478_CreateDBDesign.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607171230568_DBDesign_1.resx">
+      <DependentUpon>201607171230568_DBDesign_1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607180150574_DBDesign_2.resx">
+      <DependentUpon>201607180150574_DBDesign_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607180153054_DBDesign_3.resx">
+      <DependentUpon>201607180153054_DBDesign_3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608020605065_DBDesign_4.resx">
+      <DependentUpon>201608020605065_DBDesign_4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608020626334_DBDesign_5.resx">
+      <DependentUpon>201608020626334_DBDesign_5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608211048503_DBDesign_6.resx">
+      <DependentUpon>201608211048503_DBDesign_6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608211123521_DBDesign_7.resx">
+      <DependentUpon>201608211123521_DBDesign_7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608231455016_DBDesign_8.resx">
+      <DependentUpon>201608231455016_DBDesign_8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608251426313_DBDesign_9.resx">
+      <DependentUpon>201608251426313_DBDesign_9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608251435579_DBDesign_10.resx">
+      <DependentUpon>201608251435579_DBDesign_10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608260430006_DBDesign_11.resx">
+      <DependentUpon>201608260430006_DBDesign_11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608260437315_DBDesign_12.resx">
+      <DependentUpon>201608260437315_DBDesign_12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608260541124_DBDesign_13.resx">
+      <DependentUpon>201608260541124_DBDesign_13.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608270927582_DBDesign_14.resx">
+      <DependentUpon>201608270927582_DBDesign_14.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612181010504_EditTableStudent_AddEducation.resx">
+      <DependentUpon>201612181010504_EditTableStudent_AddEducation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612181109568_EditTableStudent_AddContactPhone.resx">
+      <DependentUpon>201612181109568_EditTableStudent_AddContactPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612181946553_EditTableStudentExam_ChangeIntToFloat.resx">
+      <DependentUpon>201612181946553_EditTableStudentExam_ChangeIntToFloat.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201707300905233_EditTableClassModuleDayStudent_AddNote.resx">
+      <DependentUpon>201707300905233_EditTableClassModuleDayStudent_AddNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201708090839551_EditTable_Faculty_Nickname.resx">
+      <DependentUpon>201708090839551_EditTable_Faculty_Nickname.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710250920169_EditTable_Module_DurationByHour.resx">
+      <DependentUpon>201710250920169_EditTable_Module_DurationByHour.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201710250931051_EditTable_Module_PortalType.resx">
+      <DependentUpon>201710250931051_EditTable_Module_PortalType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711071043288_AddTableUser_Company.resx">
+      <DependentUpon>201711071043288_AddTableUser_Company.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711100435295_EditTableUser_Company_CreatedDate.resx">
+      <DependentUpon>201711100435295_EditTableUser_Company_CreatedDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712260757152_EditTable_Module_ExamType.resx">
+      <DependentUpon>201712260757152_EditTable_Module_ExamType.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
