@@ -1,0 +1,475 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="apms.cocome.vn_official" Class="MyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-MO33L1P;Initial Catalog=apms.cocome.vn_official;Integrated Security=True;MultipleActiveResultSets=True" SettingsObjectName="XT.Model.Properties.Settings" SettingsPropertyName="apms_cocome_vn_officialConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Account" Member="Accounts">
+    <Type Name="Account">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Account_Username" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="Account_Password" Type="System.String" DbType="NVarChar(300) NOT NULL" CanBeNull="false" />
+      <Column Name="Account_Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="Account_Avatar" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Account_Email" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="HasSetPassword" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="User_Profile_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Account_ActiveKey" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Account_RecoverPasswordKey" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="Account_RecoverPasswordExpired" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_Profile_Account" Member="User_Profile" ThisKey="User_Profile_Id" OtherKey="Id" Type="User_Profile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Type" Member="User_Types">
+    <Type Name="User_Type">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Type_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_Type_User_Profile" Member="User_Profiles" ThisKey="Id" OtherKey="User_Type_Id" Type="User_Profile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BookOrder" Member="BookOrders">
+    <Type Name="BookOrder">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Company_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Indent_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Indent_Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Center" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Indent_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SAP_Customer_ID" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="BookOrder_BookOrder_Detail" Member="BookOrder_Details" ThisKey="Id" OtherKey="BookOrder_Id" Type="BookOrder_Detail" />
+      <Association Name="Company_BookOrder" Member="Company" ThisKey="Company_Id" OtherKey="Id" Type="Company" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BookOrder_Detail" Member="BookOrder_Details">
+    <Type Name="BookOrder_Detail">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Student_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BookOrder_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Semester" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="BookCode" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="BookPrice" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="BookOrder_BookOrder_Detail" Member="BookOrder" ThisKey="BookOrder_Id" OtherKey="Id" Type="BookOrder" IsForeignKey="true" />
+      <Association Name="Student_BookOrder_Detail" Member="Student" ThisKey="Student_Id" OtherKey="Id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Class" Member="Classes">
+    <Type Name="Class">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Company_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CourseFamily_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Admission_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Completion_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Class_Graduation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Class_Day" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Hour_Start" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Hour_End" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Studying_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Class_Class_Module" Member="Class_Modules" ThisKey="Id" OtherKey="Class_Id" Type="Class_Module" />
+      <Association Name="Class_Student" Member="Students" ThisKey="Id" OtherKey="Class_Id" Type="Student" />
+      <Association Name="Class_Student_ClassHistory" Member="Student_ClassHistories" ThisKey="Id" OtherKey="Class_Id" Type="Student_ClassHistory" />
+      <Association Name="Company_Class" Member="Company" ThisKey="Company_Id" OtherKey="Id" Type="Company" IsForeignKey="true" />
+      <Association Name="CourseFamily_Class" Member="CourseFamily" ThisKey="CourseFamily_Id" OtherKey="Id" Type="CourseFamily" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Class_Module" Member="Class_Modules">
+    <Type Name="Class_Module">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Class_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Module_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Faculty_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Resource_LT_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Resource_TH_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Resource_Exam_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Class_Module_Date_Start" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Date_End" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Date_Exam" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Hour_Start" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Hour_End" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_DurationByDay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Class_Module_RenderColor" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Class_Module_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Day" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Class_Module_Class_Module_Day" Member="Class_Module_Days" ThisKey="Id" OtherKey="Class_Module_Id" Type="Class_Module_Day" />
+      <Association Name="Class_Module_Class_Module_StudentExam" Member="Class_Module_StudentExams" ThisKey="Id" OtherKey="Class_Module_Id" Type="Class_Module_StudentExam" />
+      <Association Name="Class_Class_Module" Member="Class" ThisKey="Class_Id" OtherKey="Id" Type="Class" IsForeignKey="true" />
+      <Association Name="Faculty_Class_Module" Member="Faculty" ThisKey="Faculty_Id" OtherKey="Id" Type="Faculty" IsForeignKey="true" />
+      <Association Name="Module_Class_Module" Member="Module" ThisKey="Module_Id" OtherKey="Id" Type="Module" IsForeignKey="true" />
+      <Association Name="Resource_Class_Module" Member="Resource" ThisKey="Resource_Exam_Id" OtherKey="Id" Type="Resource" IsForeignKey="true" />
+      <Association Name="Resource_Class_Module1" Member="Resource1" ThisKey="Resource_LT_Id" OtherKey="Id" Type="Resource" IsForeignKey="true" />
+      <Association Name="Resource_Class_Module2" Member="Resource2" ThisKey="Resource_TH_Id" OtherKey="Id" Type="Resource" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Class_Module_Day" Member="Class_Module_Days">
+    <Type Name="Class_Module_Day">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Class_Module_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Day_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Day_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Day_Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Class_Module_Day_Class_Module_Day_Student" Member="Class_Module_Day_Students" ThisKey="Id" OtherKey="Class_Module_Day_Id" Type="Class_Module_Day_Student" />
+      <Association Name="Class_Module_Class_Module_Day" Member="Class_Module" ThisKey="Class_Module_Id" OtherKey="Id" Type="Class_Module" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Class_Module_Day_Student" Member="Class_Module_Day_Students">
+    <Type Name="Class_Module_Day_Student">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Student_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Day_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Attendance_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Attendance_Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Class_Module_Day_Class_Module_Day_Student" Member="Class_Module_Day" ThisKey="Class_Module_Day_Id" OtherKey="Id" Type="Class_Module_Day" IsForeignKey="true" />
+      <Association Name="Student_Class_Module_Day_Student" Member="Student" ThisKey="Student_Id" OtherKey="Id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Class_Module_StudentExam" Member="Class_Module_StudentExams">
+    <Type Name="Class_Module_StudentExam">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Student_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mark_LT" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Mark_TH" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Mark_LT_Percentage" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Mark_TH_Percentage" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Exam_Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Class_Module_StudentExam_Prize" Member="Prizes" ThisKey="Id" OtherKey="Exam_Id" Type="Prize" />
+      <Association Name="Class_Module_Class_Module_StudentExam" Member="Class_Module" ThisKey="Class_Module_Id" OtherKey="Id" Type="Class_Module" IsForeignKey="true" />
+      <Association Name="Student_Class_Module_StudentExam" Member="Student" ThisKey="Student_Id" OtherKey="Id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Company" Member="Companies">
+    <Type Name="Company">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Company_Type_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Company_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Company_Name_Abbrev" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Company_Logo" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Company_Name_Portal" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Company_BookOrder" Member="BookOrders" ThisKey="Id" OtherKey="Company_Id" Type="BookOrder" />
+      <Association Name="Company_Class" Member="Classes" ThisKey="Id" OtherKey="Company_Id" Type="Class" />
+      <Association Name="Company_Faculty" Member="Faculties" ThisKey="Id" OtherKey="Company_Id" Type="Faculty" />
+      <Association Name="Company_Resource" Member="Resources" ThisKey="Id" OtherKey="Company_Id" Type="Resource" />
+      <Association Name="Company_User_Company" Member="User_Companies" ThisKey="Id" OtherKey="Company_Id" Type="User_Company" />
+      <Association Name="Company_Type_Company" Member="Company_Type" ThisKey="Company_Type_Id" OtherKey="Id" Type="Company_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Company_Type" Member="Company_Types">
+    <Type Name="Company_Type">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Company_Type_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Company_Type_Company" Member="Companies" ThisKey="Id" OtherKey="Company_Type_Id" Type="Company" />
+      <Association Name="Company_Type_Course" Member="Courses" ThisKey="Id" OtherKey="Company_Type_Id" Type="Course" />
+      <Association Name="Company_Type_FeePlan" Member="FeePlans" ThisKey="Id" OtherKey="Company_Type_Id" Type="FeePlan" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Course" Member="Courses">
+    <Type Name="Course">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Company_Type_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Course_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Course_Code" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Course_Semester_Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Course_CourseFamily" Member="CourseFamilies" ThisKey="Id" OtherKey="Course_Id" Type="CourseFamily" />
+      <Association Name="Company_Type_Course" Member="Company_Type" ThisKey="Company_Type_Id" OtherKey="Id" Type="Company_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CourseFamily" Member="CourseFamilies">
+    <Type Name="CourseFamily">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Course_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CourseFamily_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="CourseFamily_Year" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="CourseFamily_Class" Member="Classes" ThisKey="Id" OtherKey="CourseFamily_Id" Type="Class" />
+      <Association Name="CourseFamily_Module" Member="Modules" ThisKey="Id" OtherKey="CourseFamily_Id" Type="Module" />
+      <Association Name="CourseFamily_Student" Member="Students" ThisKey="Id" OtherKey="CourseFamily_Id" Type="Student" />
+      <Association Name="Course_CourseFamily" Member="Course" ThisKey="Course_Id" OtherKey="Id" Type="Course" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Faculty" Member="Faculties">
+    <Type Name="Faculty">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Company_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FC_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="FC_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FC_Gender" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FC_Phone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FC_Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FC_Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FC_Address_Company" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FC_Birthday" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FC_Salary" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="FC_WorkingHour" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FC_CMND" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FC_CMND_NoiCap" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FC_CMND_NgayCap" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FC_MST" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FC_Nickname" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Faculty_Class_Module" Member="Class_Modules" ThisKey="Id" OtherKey="Faculty_Id" Type="Class_Module" />
+      <Association Name="Faculty_Faculty_Module" Member="Faculty_Modules" ThisKey="Id" OtherKey="Faculty_Id" Type="Faculty_Module" />
+      <Association Name="Company_Faculty" Member="Company" ThisKey="Company_Id" OtherKey="Id" Type="Company" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Faculty_Module" Member="Faculty_Modules">
+    <Type Name="Faculty_Module">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Faculty_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Module_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Faculty_Faculty_Module" Member="Faculty" ThisKey="Faculty_Id" OtherKey="Id" Type="Faculty" IsForeignKey="true" />
+      <Association Name="Module_Faculty_Module" Member="Module" ThisKey="Module_Id" OtherKey="Id" Type="Module" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FeePlan" Member="FeePlans">
+    <Type Name="FeePlan">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Company_Type_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeePlan_Name" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FeePlan_Price" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeePlan_Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FeePlan_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeePlan_Months" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="FeePlan_FeePlan_Detail" Member="FeePlan_Details" ThisKey="Id" OtherKey="FeePlan_Id" Type="FeePlan_Detail" />
+      <Association Name="FeePlan_Student_FeePlan" Member="Student_FeePlans" ThisKey="Id" OtherKey="FeePlan_Id" Type="Student_FeePlan" />
+      <Association Name="Company_Type_FeePlan" Member="Company_Type" ThisKey="Company_Type_Id" OtherKey="Id" Type="Company_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.FeePlan_Detail" Member="FeePlan_Details">
+    <Type Name="FeePlan_Detail">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="FeePlan_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeePlan_Index" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeePlan_Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="FeePlan_Detail_Student_FeePlan_Installment" Member="Student_FeePlan_Installments" ThisKey="Id" OtherKey="FeePlan_Detail_Id" Type="Student_FeePlan_Installment" />
+      <Association Name="FeePlan_FeePlan_Detail" Member="FeePlan" ThisKey="FeePlan_Id" OtherKey="Id" Type="FeePlan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Module" Member="Modules">
+    <Type Name="Module">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CourseFamily_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Semester" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Module_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Module_Code" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Module_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Module_Max_LT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Module_Max_TH" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Module_DurationByHour" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Module_DurationByDay" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Module_Portal_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="Module_Class_Module" Member="Class_Modules" ThisKey="Id" OtherKey="Module_Id" Type="Class_Module" />
+      <Association Name="Module_Faculty_Module" Member="Faculty_Modules" ThisKey="Id" OtherKey="Module_Id" Type="Faculty_Module" />
+      <Association Name="CourseFamily_Module" Member="CourseFamily" ThisKey="CourseFamily_Id" OtherKey="Id" Type="CourseFamily" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Prize" Member="Prizes">
+    <Type Name="Prize">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Student_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Exam_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Title" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Prize_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Prize_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Prize_Semester" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Class_Module_StudentExam_Prize" Member="Class_Module_StudentExam" ThisKey="Exam_Id" OtherKey="Id" Type="Class_Module_StudentExam" IsForeignKey="true" />
+      <Association Name="Student_Prize" Member="Student" ThisKey="Student_Id" OtherKey="Id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Resource" Member="Resources">
+    <Type Name="Resource">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Company_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Resource_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Resource_Capacity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Resource_Class_Module" Member="Class_Modules" ThisKey="Id" OtherKey="Resource_Exam_Id" Type="Class_Module" />
+      <Association Name="Resource_Class_Module1" Member="Class_Modules1" ThisKey="Id" OtherKey="Resource_LT_Id" Type="Class_Module" />
+      <Association Name="Resource_Class_Module2" Member="Class_Modules2" ThisKey="Id" OtherKey="Resource_TH_Id" Type="Class_Module" />
+      <Association Name="Company_Resource" Member="Company" ThisKey="Company_Id" OtherKey="Id" Type="Company" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Role_Type" Member="Role_Types">
+    <Type Name="Role_Type">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Role_Type_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Role_Type_User_Profile" Member="User_Profiles" ThisKey="Id" OtherKey="Role_Type_Id" Type="User_Profile" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Student" Member="Students">
+    <Type Name="Student">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="CourseFamily_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Student_EnrollNumber" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_FirstName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_LastName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_Gender" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Birthday" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Avatar" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_MobilePhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_HomePhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_ContactPhone" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_Email" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_Facebook" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_ContactAddress" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_City" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_District" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_Sponsor" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_Sponsor_Relation" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_Sponsor_Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_Application_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Application_CS" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_Application_Documents" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Status_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Promotion" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="HighSchool" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="University" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Company" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Company_Address" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Company_Position" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Company_Salary" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Student_BookOrder_Detail" Member="BookOrder_Details" ThisKey="Id" OtherKey="Student_Id" Type="BookOrder_Detail" />
+      <Association Name="Student_Class_Module_Day_Student" Member="Class_Module_Day_Students" ThisKey="Id" OtherKey="Student_Id" Type="Class_Module_Day_Student" />
+      <Association Name="Student_Class_Module_StudentExam" Member="Class_Module_StudentExams" ThisKey="Id" OtherKey="Student_Id" Type="Class_Module_StudentExam" />
+      <Association Name="Student_Prize" Member="Prizes" ThisKey="Id" OtherKey="Student_Id" Type="Prize" />
+      <Association Name="Student_Student_AcademicStatus" Member="Student_AcademicStatus" ThisKey="Id" OtherKey="Student_Id" Type="Student_AcademicStatus" />
+      <Association Name="Student_Student_ClassHistory" Member="Student_ClassHistories" ThisKey="Id" OtherKey="Student_Id" Type="Student_ClassHistory" />
+      <Association Name="Student_Student_FeePlan" Member="Student_FeePlans" ThisKey="Id" OtherKey="Student_Id" Type="Student_FeePlan" />
+      <Association Name="Class_Student" Member="Class" ThisKey="Class_Id" OtherKey="Id" Type="Class" IsForeignKey="true" />
+      <Association Name="CourseFamily_Student" Member="CourseFamily" ThisKey="CourseFamily_Id" OtherKey="Id" Type="CourseFamily" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Student_AcademicStatus" Member="Student_AcademicStatus">
+    <Type Name="Student_AcademicStatus">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Student_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Status_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Student_Status_Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Student_FU_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Student_FU_Amount" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Student_Student_AcademicStatus" Member="Student" ThisKey="Student_Id" OtherKey="Id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Student_ClassHistory" Member="Student_ClassHistories">
+    <Type Name="Student_ClassHistory">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Student_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="EndDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ChangeReason" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Class_Student_ClassHistory" Member="Class" ThisKey="Class_Id" OtherKey="Id" Type="Class" IsForeignKey="true" />
+      <Association Name="Student_Student_ClassHistory" Member="Student" ThisKey="Student_Id" OtherKey="Id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Student_FeePlan" Member="Student_FeePlans">
+    <Type Name="Student_FeePlan">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Student_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeePlan_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Nominal_Course_Fee" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Discount_Amount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Actual_Course_Fee" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="FeePlan_StartDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Student_FeePlan_Student_FeePlan_Installment" Member="Student_FeePlan_Installments" ThisKey="Id" OtherKey="Student_FeePlan_Id" Type="Student_FeePlan_Installment" />
+      <Association Name="FeePlan_Student_FeePlan" Member="FeePlan" ThisKey="FeePlan_Id" OtherKey="Id" Type="FeePlan" IsForeignKey="true" />
+      <Association Name="Student_Student_FeePlan" Member="Student" ThisKey="Student_Id" OtherKey="Id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Student_FeePlan_Installment" Member="Student_FeePlan_Installments">
+    <Type Name="Student_FeePlan_Installment">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Student_FeePlan_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="FeePlan_Detail_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Date_Planning" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Date_Actual" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Date_Extend" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Extend_Count" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Installment_Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Amount_Planning" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Amount_Actual" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="FeePlan_Detail_Student_FeePlan_Installment" Member="FeePlan_Detail" ThisKey="FeePlan_Detail_Id" OtherKey="Id" Type="FeePlan_Detail" IsForeignKey="true" />
+      <Association Name="Student_FeePlan_Student_FeePlan_Installment" Member="Student_FeePlan" ThisKey="Student_FeePlan_Id" OtherKey="Id" Type="Student_FeePlan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Company" Member="User_Companies">
+    <Type Name="User_Company">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Company_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="Company_User_Company" Member="Company" ThisKey="Company_Id" OtherKey="Id" Type="Company" IsForeignKey="true" />
+      <Association Name="User_Profile_User_Company" Member="User_Profile" ThisKey="User_Id" OtherKey="Id" Type="User_Profile" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.User_Profile" Member="User_Profiles">
+    <Type Name="User_Profile">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Profile_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Profile_Phone" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="User_Profile_Email" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Type_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Role_Type_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_Profile_Avatar" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="User_Profile_Facebook" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="User_Profile_Address" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="User_Profile_Gender" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="User_Profile_Birthday" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Association Name="User_Profile_Account" Member="Accounts" ThisKey="Id" OtherKey="User_Profile_Id" Type="Account" />
+      <Association Name="User_Profile_User_Company" Member="User_Companies" ThisKey="Id" OtherKey="User_Id" Type="User_Company" />
+      <Association Name="Role_Type_User_Profile" Member="Role_Type" ThisKey="Role_Type_Id" OtherKey="Id" Type="Role_Type" IsForeignKey="true" />
+      <Association Name="User_Type_User_Profile" Member="User_Type" ThisKey="User_Type_Id" OtherKey="Id" Type="User_Type" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>

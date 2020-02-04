@@ -35,7 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NLipsum.Core">
-      <HintPath>..\packages\NLipsum.Core.dll\NLipsum.Core.dll</HintPath>
+      <HintPath>..\packages\NLipsum.1.0.1\lib\portable-net403+sl50+netcore45+wpa81+wp8\NLipsum.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

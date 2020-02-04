@@ -16,10 +16,6 @@ XT.Utilities/obj/
 XT.Web/bin/
 XT.Web/obj/
 
-XT.Model.LINQ/app.config
-XT.Model.LINQ/My.dbml
-XT.Model.LINQ/My.dbml.layout
-XT.Model.LINQ/My.designer.cs
 XT.Model.LINQ/Properties/Settings.Designer.cs
 XT.Model.LINQ/Properties/Settings.settings
 
