@@ -1,0 +1,31 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using PagedList;
+@using PagedList.Mvc;
+@using XT.BusinessService;
+@using XT.Utilities;
+@using System.Globalization;
+
+@model CalendarTimeKeeperModel.CalendarData
+@{
+    var calendar_data = Model as CalendarTimeKeeperModel.CalendarData;
+    var calendar_Timekeepers = calendar_data.Timekeepers.Valid();
+}
+@if (calendar_Timekeepers.Any())
+{
+    var content = calendar_data.ToTimekeeperHtmlLabel();
+    var class_status = "btn-primary";
+    var update_Action = "";
+    if (!calendar_data.IsWork)
+    {
+        class_status = "btn-danger";
+    }
+
+    <a style="margin-bottom:5px; width: 30px" class="btn btn-xs btn-block @class_status btn-timekeeper"
+       data-toggle="popover" data-placement="top" data-html="true"
+       data-trigger="focus" tabindex="0"
+       data-content="@content<div class='text-right'><a href='@Url.Action("ReportByTimeKeeperWithUser", new { Start_Date = ViewBag.Start_Date.ToString("dd/MM/yyyy"), End_Date = ViewBag.End_Date.ToString("dd/MM/yyyy"), id = calendar_data.User_Id })' target='_blank'>Chi tiết</a>&nbsp;&nbsp;&nbsp;@update_Action</div>">
+        @calendar_data.Label_Timekeeper
+    </a>
+}

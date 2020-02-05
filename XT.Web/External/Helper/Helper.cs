@@ -285,6 +285,29 @@ namespace XT.Web.External
             return smallName;
         }
 
+        public static string SaveAs(string image_path, string uploadFile, string fileName)
+        {
+            var StorageRoot = Path.Combine(HttpContext.Current.Server.MapPath(image_path));
+
+            var ext = Path.GetExtension(fileName);
+            var fname = Path.GetFileNameWithoutExtension(fileName) + "_" + Guid.NewGuid().ToString();
+            var fullName = image_path + fname + "" + ext;
+            var fullPath = Path.Combine(HttpContext.Current.Server.MapPath(fullName));
+
+            string x = uploadFile.Replace("data:image/png;base64,", "");
+
+            // Convert Base64 String to byte[]
+            byte[] imageBytes = Convert.FromBase64String(x);
+            MemoryStream ms = new MemoryStream(imageBytes, 0, imageBytes.Length);
+
+            // Convert byte[] to Image
+            ms.Write(imageBytes, 0, imageBytes.Length);
+            Image image = Image.FromStream(ms, true);
+            image.Save(fullPath, ImageFormat.Png);
+
+            return fullName;
+        }
+
         #endregion
 
 

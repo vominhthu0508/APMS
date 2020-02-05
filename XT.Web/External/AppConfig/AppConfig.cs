@@ -60,5 +60,18 @@ namespace XT.Web
         public static string EmailToken { get { return ConfigurationManager.AppSettings["EmailToken"]; }}
         public static string RootPath { get { return ConfigurationManager.AppSettings["RootPath"]; }}
         public static int ImportingCenter { get { return int.Parse(ConfigurationManager.AppSettings["ImportingCenter"]); }}
+        public static string GGMapApiKey { get { return ConfigurationManager.AppSettings["GGMapApiKey"]; } }
+        public static string TimeStartWork_1 { get { return (ConfigurationManager.AppSettings["TimeStartWork_1"]); } }
+        public static string TimeEndWork_1 { get { return (ConfigurationManager.AppSettings["TimeEndWork_1"]); } }
+        public static string TimeStartWork_2 { get { return (ConfigurationManager.AppSettings["TimeStartWork_2"]); } }
+        public static string TimeEndWork_2 { get { return (ConfigurationManager.AppSettings["TimeEndWork_2"]); } }
+        public static string TimeEndWork_Saturday { get { return (ConfigurationManager.AppSettings["TimeEndWork_Saturday"]); } }
+        public static string MaxLateStartWork { get { return (ConfigurationManager.AppSettings["MaxLateStartWork"]); } }
+        public static int MaxLateTimesPerMonth { get { return int.Parse(ConfigurationManager.AppSettings["MaxLateTimesPerMonth"]); } }
+        public static int MaxWaitingMinutesBetweenTimekeepers { get { return int.Parse(ConfigurationManager.AppSettings["MaxWaitingMinutesBetweenTimekeepers"]); } }
+        public static string DateOff { get { return (ConfigurationManager.AppSettings["DateOff"]); } }
+        public static double MaxWorkHour { get { return double.Parse(ConfigurationManager.AppSettings["MaxWorkHour"]); } }
+        public static int SaturdayWorkDay { get { return int.Parse(ConfigurationManager.AppSettings["SaturdayWorkDay"]); } }
+        public static int WeekWorkDay { get { return int.Parse(ConfigurationManager.AppSettings["WeekWorkDay"]); } }
     }
 }

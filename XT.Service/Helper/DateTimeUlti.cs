@@ -60,6 +60,45 @@ namespace XT.BusinessService
             return new DateTime(dt.Year, dt.Month, DateTime.DaysInMonth(dt.Year, dt.Month));
         }
 
+        public static int Current_Quarter(this DateTime dt)
+        {
+            return (dt.Month - 1) / 3 + 1;
+        }
+
+        public static int Current_WeekOfMonth(this DateTime date)
+        {
+            date = date.Date;
+            DateTime firstMonthDay = new DateTime(date.Year, date.Month, 1);
+            DateTime firstMonthMonday = firstMonthDay.AddDays((DayOfWeek.Monday + 7 - firstMonthDay.DayOfWeek) % 7);
+            if (firstMonthMonday > date)
+            {
+                firstMonthDay = firstMonthDay.AddMonths(-1);
+                firstMonthMonday = firstMonthDay.AddDays((DayOfWeek.Monday + 7 - firstMonthDay.DayOfWeek) % 7);
+            }
+            return (date - firstMonthMonday).Days / 7 + 1;
+        }
+
+        public static DateTime StartOfQuarter(this DateTime dt)
+        {
+            int quarterNumber = dt.Current_Quarter();
+            return new DateTime(dt.Year, (quarterNumber - 1) * 3 + 1, 1);
+        }
+
+        public static DateTime EndOfQuarter(this DateTime dt)
+        {
+            return dt.StartOfQuarter().AddMonths(3).AddDays(-1);
+        }
+
+        public static DateTime StartOfYear(this DateTime dt)
+        {
+            return new DateTime(dt.Year, 1, 1);
+        }
+
+        public static DateTime EndOfYear(this DateTime dt)
+        {
+            return new DateTime(dt.Year, 12, 31);
+        }
+
         public static DateTime Parse(string date)
         {
             //return DateTime.ParseExact(date, "dd/MM/yyyy", new CultureInfo("vi-VN"), DateTimeStyles.AssumeUniversal);
@@ -76,6 +115,36 @@ namespace XT.BusinessService
             return dt.AddDays(1).Day == 1;
         }
 
+        public static bool IsValid(this DateTime dt)
+        {
+            return dt != DateTime.MinValue && dt != DateTime.MaxValue;
+        }
+
+        public static bool IsValid(this DateTime? dt)
+        {
+            return dt != null && dt != DateTime.MinValue && dt != DateTime.MaxValue;
+        }
+
+        public static bool IsTimeNull(this DateTime dt)
+        {
+            return dt.Hour == 0 && dt.Minute == 0;
+        }
+
+        public static bool IsTimeNullValid(this DateTime? dt)
+        {
+            return dt.IsValid() && !dt.IsTimeNull();
+        }
+
+        public static bool IsTimeNull(this DateTime? dt)
+        {
+            return dt != null && dt.Value.Hour == 0;
+        }
+
+        public static bool IsTimeNullValid(this DateTime dt)
+        {
+            return dt.IsValid() && !dt.IsTimeNull();
+        }
+
         public static string ToDateString(this DateTime date)
         {
             return date.ToString("dd/MM/yyyy");
@@ -84,6 +153,11 @@ namespace XT.BusinessService
         public static string ToDateString(this DateTime? date)
         {
             return date.HasValue ? date.Value.ToString("dd/MM/yyyy") : "";
+        }
+
+        public static string ToHoursString(this DateTime date)
+        {
+            return date.ToString("HH:mm");
         }
 
         public static string ToMonthString(this DateTime? date)

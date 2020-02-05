@@ -216,18 +216,18 @@ namespace XT.BusinessService
             }
         }
     }
-    //public class User_ProfileService : Service<User_Profile, Int32>, IUser_ProfileService
-    //{
-    //    public User_ProfileService(IUow uow) : base(uow) { }
-    //    //used for FindByName in Manage
-    //    public override string NameForFinding
-    //    {
-    //        get
-    //        {
-    //            return "User_Profile_Name";
-    //        }
-    //    }
-    //}
+    public class User_ProfileService : Service<User_Profile, Int32>, IUser_ProfileService
+    {
+        public User_ProfileService(IUow uow) : base(uow) { }
+        //used for FindByName in Manage
+        //public override string NameForFinding
+        //{
+        //    get
+        //    {
+        //        return "User_Profile_Name";
+        //    }
+        //}
+    }
     public class User_CompanyService : Service<User_Company, Int32>, IUser_CompanyService
     {
         public User_CompanyService(IUow uow) : base(uow) { }
@@ -238,6 +238,29 @@ namespace XT.BusinessService
             {
                 return "User_Id";
             }
+        }
+    }
+
+    public class TimekeeperService : Service<Timekeeper, Int32>, ITimekeeperService
+    {
+        public TimekeeperService(IUow uow) : base(uow) { }
+
+        public override string NameForParent
+        {
+            get
+            {
+                return "User_Id";
+            }
+        }
+
+        public Timekeeper CheckExistTimekeeper(Timekeeper current, int maxWaitingMinutes)
+        {
+            return FindByCriteria(u =>
+                u.Status == (int)EntityStatus.Visible &&
+                u.Id != current.Id &&
+                u.User_Id == current.User_Id &&
+                (DateTime.Now - u.Checkin_Date).TotalMinutes < maxWaitingMinutes
+                );
         }
     }
 }

@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using XT.BusinessService;
 using XT.Model;
 using XT.Web.External;
+using XT.Web.External.Constants;
 
 namespace XT.Web.Controllers
 {
@@ -167,6 +168,24 @@ namespace XT.Web.Controllers
         protected override bool DisableAsyncSupport
         {
             get { return true; }
+        }
+        #endregion
+
+        #region Current User
+        public static int Current_User_Id
+        {
+            get
+            {
+                return External.AuthenticationManager.User_Profile_Id;
+            }
+        }
+        #endregion
+
+        #region RedirectAction
+
+        protected Exception UnauthorizedAccessException()
+        {
+            return new HttpException((int)System.Net.HttpStatusCode.Unauthorized, MessageConstants.Unauthorized);
         }
         #endregion
     }

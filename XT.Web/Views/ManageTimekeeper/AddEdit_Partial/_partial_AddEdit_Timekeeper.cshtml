@@ -1,0 +1,32 @@
+﻿@using XT.Model
+@using XT.Web.Models
+@using XT.Web.External
+
+@model Timekeeper
+@if (Model != null)
+{
+    <input type="hidden" value="@Model.Id" name="Id">
+    <div class="row cam">
+        <div class="col-md-6 margin-bottom" align="center">
+            <div id="my_camera" style="border:1px solid #000000;margin-bottom: 20px;"></div>
+            <div align="center">
+                <button type="button" class="btn btn-success" onclick="take_snapshot()"><i class="fa fa-camera"></i> Chụp hình</button>
+            </div>
+        </div>
+        <div class="col-md-6 margin-bottom preview">
+            <input type="hidden" value="" name="imageData" id="file" />
+            <input type="hidden" name="IP" id="IP" />
+            <input type="hidden" name="Location" id="Location" />
+            <img id="previewImg" src="/Images/default_avatar.jpg" class="img-responsive" />
+            <canvas id="canvas" style="display: none;"></canvas>
+            <div id="my_result"></div>
+        </div>
+        <div class="col-md-12 margin-bottom">
+
+        </div>
+    </div>
+
+    <div class="row ip hidden" align="center">
+        <h3>Không tìm thấy camera, bạn đã được chuyển sang hệ thống chấm công bằng IP</h3>
+    </div>
+}

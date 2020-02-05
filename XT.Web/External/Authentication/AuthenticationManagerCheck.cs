@@ -47,5 +47,20 @@ namespace XT.Web.External
             return IsAcademic;
         }
         #endregion
+
+        #region Timekeeper
+        public static bool CanViewEmployeeTimekeeperData(int user_Id)
+        {
+            if (user_Id == User_Profile_Id || CanManageEmployee())
+                return true;
+
+            var user = IoCConfig.Service<IUser_ProfileService>().FindById(user_Id);
+            if (user != null)
+            {
+                return true;
+            }
+            return false;
+        }
+        #endregion
     }
 }

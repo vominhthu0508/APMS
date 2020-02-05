@@ -86,6 +86,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Device" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -171,6 +172,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Admin\Home\AdminController.cs" />
+    <Compile Include="Controllers\Admin\Manage\ManageTimekeeperController.cs" />
     <Compile Include="Controllers\Admin\Manage\ManageScheduleController.cs" />
     <Compile Include="Controllers\Admin\Report\ReportController.cs" />
     <Compile Include="Controllers\Admin\Manage\ManageCompanyController.cs" />
@@ -194,8 +196,10 @@
     <Compile Include="External\Authentication\AuthenticationSession.cs" />
     <Compile Include="External\Authentication\AuthenticationManager_Extend.cs" />
     <Compile Include="External\Authentication\AuthenticationManagerCheck.cs" />
+    <Compile Include="External\Constants\StringConstants.cs" />
     <Compile Include="External\Helper\CultureHelper.cs" />
     <Compile Include="External\Helper\EmailHelper.cs" />
+    <Compile Include="External\Helper\TimeKeeperHelper.cs" />
     <Compile Include="External\Helper\Helper.cs" />
     <Compile Include="External\Helper\LocalHelper.cs" />
     <Compile Include="External\Helper\RecaptchaHelper.cs" />
@@ -221,6 +225,7 @@
     <Compile Include="Models\Admin\Class_ModuleModel.cs" />
     <Compile Include="Models\Admin\ModuleModel.cs" />
     <Compile Include="Models\Admin\EmployeeModel.cs" />
+    <Compile Include="Models\Admin\TimekeeperModel.cs" />
     <Compile Include="Models\Admin\Student_MarkModel.cs" />
     <Compile Include="Models\Admin\Student_FeePlanModel.cs" />
     <Compile Include="Models\Admin\FeePlanModel.cs" />
@@ -232,6 +237,8 @@
     <Compile Include="Models\Account\RecoverPasswordModel.cs" />
     <Compile Include="Models\Account\RegisterModel.cs" />
     <Compile Include="Models\Account\User_ProfileModel.cs" />
+    <Compile Include="Models\Admin\ViewModel\QuarterModel.cs" />
+    <Compile Include="Models\Admin\ViewModel\TimekeeperReportModel.cs" />
     <Compile Include="Models\CaptchaResponse.cs" />
     <Compile Include="Models\Filter\FilterModel.cs" />
     <Compile Include="Models\LayoutModel.cs" />
@@ -1090,7 +1097,12 @@
     <Content Include="Scripts\Admin\ManageSchedule_ClassModule.js" />
     <Content Include="Scripts\Admin\ManageSchedule_ClassSession_Calendar.js" />
     <Content Include="Scripts\Admin\Index.js" />
+    <Content Include="Scripts\Admin\ManageTimekeeper.js" />
     <Content Include="Scripts\Admin\Report.js" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\flash\README.txt" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\webcam.js" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\webcam.min.js" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\webcam.swf" />
     <Content Include="Scripts\vendors\bootstrap-datetimepicker.js" />
     <Content Include="Scripts\vendors\bootstrap-datetimepicker.min.js" />
     <Content Include="Scripts\vendors\bootstrap-dialog.js" />
@@ -2094,6 +2106,38 @@
     <Content Include="Scripts\vendors\bootstrap-dialog.min.js.map">
       <DependentUpon>bootstrap-dialog.js</DependentUpon>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ManageTimekeeper\ReportByTimeKeeperWithUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Admin\_partial_Report_FilterForm.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ManageTimekeeper\_partial_Report_TimekeeperWithUser_Search.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ManageTimekeeper\_partial_Report_TimeKeeperCalendar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ManageTimekeeper\AddEdit_Partial\_partial_AddEdit_Timekeeper.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\bower.json" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\build.sh" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\DOCS.md" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\flash\com\adobe\images\BitString.as" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\flash\com\adobe\images\JPGEncoder.as" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\flash\com\adobe\images\PNGEncoder.as" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\flash\mx\utils\Base64Encoder.as" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\flash\Webcam.as" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\flash\Webcam.fla" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\LICENSE" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\package.json" />
+    <Content Include="Scripts\Admin\plugins\webcamjs-master\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ManageTimekeeper\_partial_Report_TimeKeeperCalendar_TimeKeeper.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
