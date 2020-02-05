@@ -206,4 +206,13 @@ namespace XT.Model
         HasDue = 2
     }
     #endregion
+
+    #region Timekeeper
+    public enum TimekeeperInOutEnum
+    {
+        In = 1,
+        Out = -1
+    }
+
+    #endregion
 }

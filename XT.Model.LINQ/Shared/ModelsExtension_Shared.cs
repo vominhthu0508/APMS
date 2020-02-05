@@ -126,6 +126,70 @@ namespace XT.Model
         {
             return User_Companies_List.Any(uc => uc.Company_Id == Company_Id);
         }
+
+        #region TimeKeeper
+        public IEnumerable<Timekeeper> ValidTimekeepers
+        {
+            get
+            {
+                return this.Timekeepers.Valid().Where(t => t.Checkin_Date.Hour != 0);
+            }
+        }
+
+        public IEnumerable<Timekeeper> GetValidCheckinsByDate(DateTime date)
+        {
+            return GetCheckinsByDate(date).Where(e => e.Checkin_Date.Hour != 0);
+        }
+
+        public IEnumerable<Timekeeper> GetCheckinsByDate(DateTime date)
+        {
+            return this.ValidTimekeepers.Where(e => e.Checkin_Date.Date == date);
+        }
+
+        public IEnumerable<Timekeeper> GetValidCheckinsByStartAndEndDate(DateTime Start_Date, DateTime End_Date)
+        {
+            return this.Timekeepers.Where(t =>
+                t.Status == (int)EntityStatus.Visible &&
+                Start_Date.Date <= t.Checkin_Date.Date && t.Checkin_Date.Date <= End_Date.Date &&
+                t.Checkin_Date.Hour != 0);
+        }
+
+        private double GetWorkTime(TimeSpan first_check, TimeSpan last_check)
+        {
+            var time_In = new TimeSpan(8, 30, 0);
+            var time_Out = new TimeSpan(17, 30, 0);
+            var start_lunch_break = new TimeSpan(12, 0, 0);
+            var end_lunch_break = new TimeSpan(13, 30, 0);
+            double time_lunch_break = (end_lunch_break - start_lunch_break).TotalHours;
+            double time_work = 0;
+            //check firstcheck
+            if (first_check < time_In) first_check = time_In;
+            if (first_check >= start_lunch_break && first_check < end_lunch_break)
+                first_check = end_lunch_break;
+
+            if (first_check >= time_Out) return 0;
+            //
+            if (last_check <= start_lunch_break)
+            {
+                time_work = (last_check - first_check).TotalHours;
+            }
+            else
+            {
+                if (last_check <= end_lunch_break)
+                {
+                    time_work = (start_lunch_break - first_check).TotalHours;
+                }
+                else
+                {
+                    if (last_check > time_Out) last_check = time_Out;
+                    time_work = (last_check - first_check).TotalHours;
+                    if (first_check < start_lunch_break) time_work -= time_lunch_break;
+                }
+            }
+            return Math.Abs(time_work);
+        }
+
+        #endregion
     }
 
     public partial class CourseFamily

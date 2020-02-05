@@ -70,6 +70,25 @@ $('.by-month .input-group .date').datepicker({
     ReloadFilterReport(start.ddmmyyyy(), end.ddmmyyyy());
 });
 
+//by-quater
+$(".by-quater .dropdown-menu li a").click(function (e) {
+    e.preventDefault();
+
+    var start_date = $(this).attr("data-start-date");
+    var end_date = $(this).attr("data-end-date");
+
+    //$("input[name='Start_Date']").val(start);
+    //$("input[name='End_Date']").val(end);
+
+    resetByDateText();
+    $(".by-quater .by-quater-text").html($(this).html());
+    $(".content-header .form-group").removeClass("active");
+    $(this).parents(".form-group").addClass("active");
+
+    //FilterReport();
+    ReloadFilterReport(start_date, end_date);
+});
+
 //////////////////////////////////////////////////////
 /////////////////////////////////////////////////////
 //Filter Report

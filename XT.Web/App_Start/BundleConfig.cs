@@ -171,6 +171,11 @@ namespace XT.Web
                     "~/Scripts/Admin/Report.js"
                 ));
 
+            bundles.Add(new ScriptBundle("~/Scripts/Admin/ManageTimekeeper").Include(
+                    "~/Scripts/Admin/plugins/webcamjs-master/webcam.js",
+                    "~/Scripts/Admin/ManageTimekeeper.js"
+                ));
+
             #endregion
 
             // If optimizations aren't enabled

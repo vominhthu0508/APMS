@@ -19,6 +19,9 @@ namespace XT.BusinessService
     public interface IStudent_ClassHistoryService : IService<Student_ClassHistory, Int32> { }
     public interface IRole_TypeService : IService<Role_Type, Int32> { }
     public interface IUser_TypeService : IService<User_Type, Int32> { }
-    //public interface IUser_ProfileService : IService<User_Profile, Int32> { }
+    public interface IUser_ProfileService : IService<User_Profile, Int32> { }
     public interface IUser_CompanyService : IService<User_Company, Int32> { }
+    public interface ITimekeeperService : IService<Timekeeper, Int32> {
+        Timekeeper CheckExistTimekeeper(Timekeeper current, int maxWaitingMinutes);
+    }
 }

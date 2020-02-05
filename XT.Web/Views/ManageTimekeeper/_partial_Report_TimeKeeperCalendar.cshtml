@@ -1,0 +1,137 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using PagedList;
+@using PagedList.Mvc;
+@using XT.BusinessService;
+@using XT.Utilities;
+@using System.Globalization;
+
+@model IEnumerable<CalendarTimeKeeperModel>
+@{
+    var lstItems = Model;
+
+    var hasData = lstItems.Any();
+    var Start_Date = (DateTime)ViewBag.Start_Date;
+    var End_Date = (DateTime)ViewBag.End_Date;
+    var Start_Date_String = Start_Date.ToString("dd/MM/yyyy");
+    var End_Date_String = End_Date.ToString("dd/MM/yyyy");
+    var WorkDays = ViewBag.Work_Days as IEnumerable<DateTime>;
+}
+<style>
+    .popover {
+        width: auto !important;
+        max-width: none;
+    }
+</style>
+<div class="box">
+    <div class="box-header">
+        <h3 class="box-title">Từ <b>@Start_Date_String</b> đến <b>@End_Date_String</b></h3>
+        <div class="box-tools pull-right hidden-xs">
+            <button class="btn btn-sm btn-primary"></button>&nbsp;&nbsp;Chấm công&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-danger"></button>&nbsp;&nbsp;Không chấm công&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="box-tools visible-xs" style="position: static;">
+            <div class="row">
+                <div class="col-xs-6">
+                    <button class="btn btn-sm btn-primary"></button>&nbsp;&nbsp;Chấm công<br />
+                    <button class="btn btn-sm btn-danger"></button>&nbsp;&nbsp;Không chấm công<br />
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-xs btn-primary" style="margin-bottom: 3px;">X</button>&nbsp;&nbsp;Đúng giờ&nbsp;&nbsp;&nbsp;&nbsp;<button class="btn btn-xs btn-danger" style="margin-bottom: 3px;">S</button>&nbsp;&nbsp;Ra sớm<br />
+                    <button class="btn btn-xs btn-danger" style="margin-bottom: 3px;">M</button>&nbsp;&nbsp;Vào muộn<br />
+                    <button class="btn btn-xs btn-danger" style="margin-bottom: 3px;">MX</button>&nbsp;&nbsp;Vào muộn cho phép<br />
+                    <button class="btn btn-xs btn-danger" style="margin-bottom: 3px;">Ro</button>&nbsp;&nbsp;Chưa hoàn tất<br />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="box-header hidden-xs" style="height: 40px;">
+        <div class="box-tools pull-right">
+            <button class="btn btn-xs btn-primary">X</button>&nbsp;&nbsp;Đúng giờ&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-xs btn-danger">M</button>&nbsp;&nbsp;Vào muộn&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-xs btn-danger">MX</button>&nbsp;&nbsp;Vào muộn cho phép&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-xs btn-danger">S</button>&nbsp;&nbsp;Ra sớm&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-xs btn-danger">Ro</button>&nbsp;&nbsp;Chưa hoàn tất&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+    @if (hasData)
+    {
+        var bg_day = "";
+        <div class="box-body no-padding">
+            <table class="table table-bordered table-hover frozen-table">
+                <thead>
+                    <tr class="text-nowrap">
+                        <th class="headcol bg-white"><div>Nhân viên</div></th>
+                        @foreach (var day in WorkDays)
+                        {
+                            var WeekWorkDay = XT.Web.AppSettings.WeekWorkDay;
+                            bg_day = "bg-gray";
+                            if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday)
+                            {
+                                bg_day = "bg-yellow";
+                                if (day.DayOfWeek == DayOfWeek.Sunday)
+                                {
+                                    WeekWorkDay = 1;
+                                }
+                            }
+                            <th class="text-center @bg_day" title="@day.ToString("dddd")" colspan="@WeekWorkDay">
+                                @day.ToString("ddd")
+                                <br />
+                                @day.ToString("dd/MM")
+                            </th>
+                        }
+                        <th>Ngày công</th>
+                        <th>Đi muộn (M/MX)</th>
+                        <th>Về sớm</th>
+                        <th>Đi muộn về sớm</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in lstItems)
+                    {
+                        var user = item.User_Profile;
+                    <tr>
+                        <td class="text-nowrap headcol bg-white" style="min-height:45px !important">
+                            @user.User_Profile_Name
+                        </td>
+                        @foreach (var calendar_data in item.Calendar_Datas)
+                        {
+                            bg_day = "bg-gray";
+                            if (!calendar_data.CheckinTime.IsWorking)
+                            {
+                                bg_day = "bg-yellow";
+                            }
+                            <td class="calendar-data @bg_day" style="min-width: 50px;" data-Vao="@calendar_data.CheckinTime.Vao.ToString()" data-Ra="@calendar_data.CheckinTime.Ra.ToString()">
+                                @Html.Partial("_partial_Report_TimeKeeperCalendar_TimeKeeper", calendar_data)
+                            </td>
+                        }
+                        <td>@item.Count_X</td>
+                        <td>@item.Count_M / @item.Count_MX</td>
+                        <td>@item.Count_S</td>
+                        <td>@item.Count_MS</td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="box-header with-border">
+            <div class="alert alert-warning alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                <h4><i class="icon fa fa-ban"></i>Không có dữ liệu nào!</h4>
+            </div>
+        </div>
+    }
+</div>
+<div class="modal fade" role="dialog" id="myModaldetail" aria-labelledby="myModalLabeldetail" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-body">
+
+            </div>
+        </div>
+    </div>
+</div>

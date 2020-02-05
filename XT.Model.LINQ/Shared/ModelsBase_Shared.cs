@@ -201,6 +201,15 @@ namespace XT.Model
         }
     }
     #endregion
+
+    public partial class Timekeeper : StoredModelBase<Int32>
+    {
+        public override int Obj_Id { get { return this.Id; } }
+        public override bool IsCenter(int Center_Id)
+        {
+            return this.Company_Id == Center_Id;
+        }
+    }
     #endregion
 
     #region ModelBase

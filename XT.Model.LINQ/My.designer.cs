@@ -22,7 +22,7 @@ namespace XT.Model
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="apms.cocome.vn_server_final_aahcm")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name= "apms.cocome.vn_official")]
 	public partial class MyDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -114,6 +114,9 @@ namespace XT.Model
     partial void InsertUser_Profile(User_Profile instance);
     partial void UpdateUser_Profile(User_Profile instance);
     partial void DeleteUser_Profile(User_Profile instance);
+	partial void InsertTimekeeper(Timekeeper instance);
+    partial void UpdateTimekeeper(Timekeeper instance);
+    partial void DeleteTimekeeper(Timekeeper instance);
     #endregion
 		
 		public MyDataContext() : 
@@ -369,8 +372,15 @@ namespace XT.Model
 				return this.GetTable<User_Profile>();
 			}
 		}
+		public System.Data.Linq.Table<Timekeeper> Timekeepers
+		{
+			get
+			{
+				return this.GetTable<Timekeeper>();
+			}
+		}
 	}
-	
+
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Account")]
 	public partial class Account : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -10669,7 +10679,9 @@ namespace XT.Model
 		private EntitySet<Account> _Accounts;
 		
 		private EntitySet<User_Company> _User_Companies;
-		
+
+		private EntitySet<Timekeeper> _Timekeepers;
+
 		private EntityRef<Role_Type> _Role_Type;
 		
 		private EntityRef<User_Type> _User_Type;
@@ -10710,6 +10722,7 @@ namespace XT.Model
 		{
 			this._Accounts = new EntitySet<Account>(new Action<Account>(this.attach_Accounts), new Action<Account>(this.detach_Accounts));
 			this._User_Companies = new EntitySet<User_Company>(new Action<User_Company>(this.attach_User_Companies), new Action<User_Company>(this.detach_User_Companies));
+			this._Timekeepers = new EntitySet<Timekeeper>(new Action<Timekeeper>(this.attach_Timekeepers), new Action<Timekeeper>(this.detach_Timekeepers));
 			this._Role_Type = default(EntityRef<Role_Type>);
 			this._User_Type = default(EntityRef<User_Type>);
 			OnCreated();
@@ -11008,7 +11021,20 @@ namespace XT.Model
 				this._User_Companies.Assign(value);
 			}
 		}
-		
+
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name = "User_Profile_Timekeeper", Storage = "_Timekeepers", ThisKey = "Id", OtherKey = "User_Id")]
+		public EntitySet<Timekeeper> Timekeepers
+		{
+			get
+			{
+				return this._Timekeepers;
+			}
+			set
+			{
+				this._Timekeepers.Assign(value);
+			}
+		}
+
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Role_Type_User_Profile", Storage="_Role_Type", ThisKey="Role_Type_Id", OtherKey="Id", IsForeignKey=true)]
 		public Role_Type Role_Type
 		{
@@ -11119,6 +11145,360 @@ namespace XT.Model
 		{
 			this.SendPropertyChanging();
 			entity.User_Profile = null;
+		}
+		private void attach_Timekeepers(Timekeeper entity)
+		{
+			this.SendPropertyChanging();
+			entity.User_Profile = this;
+		}
+
+		private void detach_Timekeepers(Timekeeper entity)
+		{
+			this.SendPropertyChanging();
+			entity.User_Profile = null;
+		}
+	}
+
+	[global::System.Data.Linq.Mapping.TableAttribute(Name = "dbo.Timekeeper")]
+	public partial class Timekeeper : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+
+		private int _Id;
+
+		private int _User_Id;
+
+		private string _Photo;
+
+		private string _IP;
+
+		private string _IP_Modem;
+
+		private string _Location;
+
+		private System.DateTime _Checkin_Date;
+
+		private int _Status;
+
+		private System.DateTime _Created_Date;
+
+		private int _InOrOut;
+
+		private int _Company_Id;
+
+		private EntityRef<User_Profile> _User_Profile;
+
+		#region Extensibility Method Definitions
+		partial void OnLoaded();
+		partial void OnValidate(System.Data.Linq.ChangeAction action);
+		partial void OnCreated();
+		partial void OnIdChanging(int value);
+		partial void OnIdChanged();
+		partial void OnUser_IdChanging(int value);
+		partial void OnUser_IdChanged();
+		partial void OnPhotoChanging(string value);
+		partial void OnPhotoChanged();
+		partial void OnIPChanging(string value);
+		partial void OnIPChanged();
+		partial void OnIP_ModemChanging(string value);
+		partial void OnIP_ModemChanged();
+		partial void OnLocationChanging(string value);
+		partial void OnLocationChanged();
+		partial void OnCheckin_DateChanging(System.DateTime value);
+		partial void OnCheckin_DateChanged();
+		partial void OnStatusChanging(int value);
+		partial void OnStatusChanged();
+		partial void OnCreated_DateChanging(System.DateTime value);
+		partial void OnCreated_DateChanged();
+		partial void OnInOrOutChanging(int value);
+		partial void OnInOrOutChanged();
+		partial void OnCompany_IdChanging(int value);
+		partial void OnCompany_IdChanged();
+		#endregion
+
+		public Timekeeper()
+		{
+			this._User_Profile = default(EntityRef<User_Profile>);
+			OnCreated();
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Id", AutoSync = AutoSync.OnInsert, DbType = "Int NOT NULL IDENTITY", IsPrimaryKey = true, IsDbGenerated = true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_User_Id", DbType = "Int NOT NULL")]
+		public int User_Id
+		{
+			get
+			{
+				return this._User_Id;
+			}
+			set
+			{
+				if ((this._User_Id != value))
+				{
+					if (this._User_Profile.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUser_IdChanging(value);
+					this.SendPropertyChanging();
+					this._User_Id = value;
+					this.SendPropertyChanged("User_Id");
+					this.OnUser_IdChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Photo", DbType = "NVarChar(255)")]
+		public string Photo
+		{
+			get
+			{
+				return this._Photo;
+			}
+			set
+			{
+				if ((this._Photo != value))
+				{
+					this.OnPhotoChanging(value);
+					this.SendPropertyChanging();
+					this._Photo = value;
+					this.SendPropertyChanged("Photo");
+					this.OnPhotoChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_IP", DbType = "VarChar(50)")]
+		public string IP
+		{
+			get
+			{
+				return this._IP;
+			}
+			set
+			{
+				if ((this._IP != value))
+				{
+					this.OnIPChanging(value);
+					this.SendPropertyChanging();
+					this._IP = value;
+					this.SendPropertyChanged("IP");
+					this.OnIPChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_IP_Modem", DbType = "NVarChar(MAX)")]
+		public string IP_Modem
+		{
+			get
+			{
+				return this._IP_Modem;
+			}
+			set
+			{
+				if ((this._IP_Modem != value))
+				{
+					this.OnIP_ModemChanging(value);
+					this.SendPropertyChanging();
+					this._IP_Modem = value;
+					this.SendPropertyChanged("IP_Modem");
+					this.OnIP_ModemChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Location", DbType = "NVarChar(MAX)")]
+		public string Location
+		{
+			get
+			{
+				return this._Location;
+			}
+			set
+			{
+				if ((this._Location != value))
+				{
+					this.OnLocationChanging(value);
+					this.SendPropertyChanging();
+					this._Location = value;
+					this.SendPropertyChanged("Location");
+					this.OnLocationChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Checkin_Date", DbType = "DateTime NOT NULL")]
+		public System.DateTime Checkin_Date
+		{
+			get
+			{
+				return this._Checkin_Date;
+			}
+			set
+			{
+				if ((this._Checkin_Date != value))
+				{
+					this.OnCheckin_DateChanging(value);
+					this.SendPropertyChanging();
+					this._Checkin_Date = value;
+					this.SendPropertyChanged("Checkin_Date");
+					this.OnCheckin_DateChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Status", DbType = "Int NOT NULL")]
+		public override int Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Created_Date", DbType = "DateTime NOT NULL")]
+		public override System.DateTime Created_Date
+		{
+			get
+			{
+				return this._Created_Date;
+			}
+			set
+			{
+				if ((this._Created_Date != value))
+				{
+					this.OnCreated_DateChanging(value);
+					this.SendPropertyChanging();
+					this._Created_Date = value;
+					this.SendPropertyChanged("Created_Date");
+					this.OnCreated_DateChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_InOrOut", DbType = "Int NOT NULL")]
+		public int InOrOut
+		{
+			get
+			{
+				return this._InOrOut;
+			}
+			set
+			{
+				if ((this._InOrOut != value))
+				{
+					this.OnInOrOutChanging(value);
+					this.SendPropertyChanging();
+					this._InOrOut = value;
+					this.SendPropertyChanged("InOrOut");
+					this.OnInOrOutChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage = "_Company_Id", DbType = "Int NOT NULL")]
+		public int Company_Id
+		{
+			get
+			{
+				return this._Company_Id;
+			}
+			set
+			{
+				if ((this._Company_Id != value))
+				{
+					this.OnCompany_IdChanging(value);
+					this.SendPropertyChanging();
+					this._Company_Id = value;
+					this.SendPropertyChanged("Company_Id");
+					this.OnCompany_IdChanged();
+				}
+			}
+		}
+
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name = "User_Profile_Timekeeper", Storage = "_User_Profile", ThisKey = "User_Id", OtherKey = "Id", IsForeignKey = true)]
+		public User_Profile User_Profile
+		{
+			get
+			{
+				return this._User_Profile.Entity;
+			}
+			set
+			{
+				User_Profile previousValue = this._User_Profile.Entity;
+				if (((previousValue != value)
+							|| (this._User_Profile.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._User_Profile.Entity = null;
+						previousValue.Timekeepers.Remove(this);
+					}
+					this._User_Profile.Entity = value;
+					if ((value != null))
+					{
+						value.Timekeepers.Add(this);
+						this._User_Id = value.Id;
+					}
+					else
+					{
+						this._User_Id = default(int);
+					}
+					this.SendPropertyChanged("User_Profile");
+				}
+			}
+		}
+
+		public event PropertyChangingEventHandler PropertyChanging;
+
+		public event PropertyChangedEventHandler PropertyChanged;
+
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 }
