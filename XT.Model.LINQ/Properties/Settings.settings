@@ -1,0 +1,70 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="XT.Model.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="apms_homely_vnConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=DUONG-PC;Initial Catalog=apms.homely.vn;User ID=sa;Password=1234567&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DUONG-PC;Initial Catalog=apms.homely.vn;User ID=sa;Password=1234567</Value>
+    </Setting>
+    <Setting Name="apms_homely_vn_demo_1ConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=DUONG-PC;Initial Catalog=apms.homely.vn_demo_1;Persist Security Info=True;User ID=sa;Password=1234567;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DUONG-PC;Initial Catalog=apms.homely.vn_demo_1;Persist Security Info=True;User ID=sa;Password=1234567;MultipleActiveResultSets=True</Value>
+    </Setting>
+    <Setting Name="apms_cocome_vn_4ConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=DUONG-PC;Initial Catalog=apms.cocome.vn_4;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DUONG-PC;Initial Catalog=apms.cocome.vn_4;Persist Security Info=True;User ID=sa;MultipleActiveResultSets=True</Value>
+    </Setting>
+    <Setting Name="apms_cocome_vn_5ConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=DUONG-PC;Initial Catalog=apms.cocome.vn_5;Persist Security Info=True;User ID=sa;Password=1234567;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DUONG-PC;Initial Catalog=apms.cocome.vn_5;Persist Security Info=True;User ID=sa;Password=1234567;MultipleActiveResultSets=True</Value>
+    </Setting>
+    <Setting Name="apms_cocome_vn_serverConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=DUONG-PC;Initial Catalog=apms.cocome.vn_server;Persist Security Info=True;User ID=sa;Password=1234567;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DUONG-PC;Initial Catalog=apms.cocome.vn_server;Persist Security Info=True;User ID=sa;Password=1234567;MultipleActiveResultSets=True</Value>
+    </Setting>
+    <Setting Name="apms_cocome_vn_server_finalConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=DUONG-PC;Initial Catalog=apms.cocome.vn_server_final;Persist Security Info=True;User ID=sa;Password=1234567;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DUONG-PC;Initial Catalog=apms.cocome.vn_server_final;Persist Security Info=True;User ID=sa;Password=1234567;MultipleActiveResultSets=True</Value>
+    </Setting>
+    <Setting Name="apms_cocome_vn_server_final_aahcmConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=DESKTOP-MO33L1P;Initial Catalog=apms.cocome.vn_official;Integrated Security=True;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DESKTOP-MO33L1P;Initial Catalog=apms.cocome.vn_official;Integrated Security=True;MultipleActiveResultSets=True</Value>
+    </Setting>
+    <Setting Name="apms_cocome_vn_officialConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Data Source=DESKTOP-MO33L1P;Initial Catalog=apms.cocome.vn_official;Integrated Security=True;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Data Source=DESKTOP-MO33L1P;Initial Catalog=apms.cocome.vn_official;Integrated Security=True;MultipleActiveResultSets=True</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
