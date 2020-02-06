@@ -1,0 +1,103 @@
+﻿@using XT.Model;
+@using XT.Web.Models;
+@using XT.Web.External;
+@using XT.BusinessService; 
+@using XT.Utilities;
+@using PagedList;
+@using PagedList.Mvc;
+
+@model IEnumerable<CalendarTimeKeeperModel>
+@{
+    var Item = Model;
+    var branch_id = ViewBag.Branch_Id;
+
+    var Start_Date = (DateTime)ViewBag.Start_Date;
+    var End_Date = (DateTime)ViewBag.End_Date;
+    var Start_Date_String = Start_Date.ToString("dd/MM/yyyy");
+    var End_Date_String = End_Date.ToString("dd/MM/yyyy");
+    var lstQuarters = XT.Web.Models.QuarterModel.GetQuarters();
+
+    ViewBag.Title = "Báo cáo chấm công theo ngày";
+    Layout = "~/Views/Layout/LayoutAdmin.cshtml";
+}
+
+@section Scripts{
+    @Scripts.Url("~/Scripts/Admin/Report")
+    @Scripts.Url("~/Scripts/Admin/ManageTimekeeper")
+}
+<section class="content-header">
+    <div class="row">
+        <div class="col-md-5 content-header" style="padding-top: 0;">
+            <h1>
+                @ViewBag.Title
+            </h1>
+        </div>
+        <div class="col-md-7 content-header-actions">
+            <div class="form-group pull-right by-quater">
+                <div class="dropdown">
+                    <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1"
+                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <i class="fa fa-calendar pull-left" style="padding-top: 3px;"></i>&nbsp;
+                        <span class="by-quater-text">Theo quý</span>
+                        <span class="fa fa-caret-down pull-right" style="padding-top: 3px;"></span>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                        @foreach (var q in lstQuarters)
+                        {
+                            <li>
+                                <a href="#"
+                                    data-start-date="@q.First_Date.ToString("dd/MM/yyyy")"
+                                    data-end-date="@q.Last_Date.ToString("dd/MM/yyyy")">@q.Name</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="form-group pull-right by-month">
+                <div class="input-group fake-button" style="width: 120px; margin-right: 10px;">
+                    <i class="fa fa-calendar"></i>
+                    <input type="text" class="form-control date" value="Theo tháng">
+                    <i class="fa fa-caret-down"></i>
+                </div>
+            </div>
+            <div class="form-group pull-right by-date" style="margin-right: 10px;">
+                <div class="input-group">
+                    <a href="javascript:void(0)" class="btn btn-default pull-right" id="daterange-btn">
+                        <i class="fa fa-calendar"></i>&nbsp;<span>Theo ngày</span>&nbsp;<i class="fa fa-caret-down"></i>
+                    </a>
+                </div>
+            </div>
+            @if (XT.Web.External.AuthenticationManager.CanManageEmployee())
+            {
+                    <div class="pull-right">
+                        <select class="form-control select2 filter-data" data-filter="branch" style="width: 200px;" name="branch">
+                            <option value="-1">--Center--</option>
+                            @foreach (var company in XT.Web.Models.LayoutModel.Companies_ToMyDictionary())
+                            {
+                                <option value="@company.Id">@company.Name</option>
+                            }
+                        </select>
+                    </div>
+            }
+        </div>
+    </div>
+</section>
+<section class="content" id="filter-container">
+    <div class="row ajax-search-group">
+        <form id="filter-form" action="@Url.Action("FilterReportByTimeKeeperCalendar", "ManageTimekeeper")">
+            @*Sorting*@
+            <input type="hidden" name="sort_target" value="@ViewBag.sort_target" />
+            <input type="hidden" name="sort_rank" value="false" />
+            @*Filtering*@
+            <input type="hidden" name="page" value="1" />
+            <input type="hidden" name="Start_Date" value="@Start_Date_String" />
+            <input type="hidden" name="End_Date" value="@End_Date_String" />
+            <input type="hidden" name="branch" value="@branch_id" />
+        </form>
+        <div class="col-sm-12">
+            <div class="Search_Result">
+                @Html.Partial("_partial_Report_TimeKeeperCalendar", Item)
+            </div>
+        </div>
+    </div>
+</section>

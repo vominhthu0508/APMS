@@ -40,6 +40,7 @@ namespace XT.Web.Models
         public override IEntity ToModel(IEntity _model)//edit: _model = old
         {
             //pre-processing: this
+            Company_Id = AuthenticationManager.Company_Id;
             User_Id = AuthenticationManager.User_Profile_Id;
             Checkin_Date = DateTime.Now;
             IP_Modem = HttpContext.Current.Request.UserHostAddress;
