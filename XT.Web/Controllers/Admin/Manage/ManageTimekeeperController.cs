@@ -120,7 +120,16 @@ namespace XT.Web.Controllers
 
             IEnumerable<User_Profile> users = null;
 
-            if (current_User != null)
+            if (current_User == null && branch.HasValue)
+            {
+                users = IoCConfig.Service<IUserProfileService>().FindAllValidByCriteria(e => e.Role_Type_Id != (int)RoleTypeEnum.Admin);
+                
+                if (branch > 0)
+                {
+                    users = users.Where(e => e.HasCompany(branch.Value));
+                }
+            }
+            else
             {
                 users = new List<User_Profile> { current_User };
             }
@@ -184,6 +193,7 @@ namespace XT.Web.Controllers
 
             ViewBag.Page_Size = pageSize;
             ViewBag.Page_Number = pageNumber;
+            ViewBag.Branch_Id = branch;
 
             return PartialView("_partial_Report_TimeKeeperCalendar", items);
         }

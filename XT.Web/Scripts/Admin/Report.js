@@ -160,3 +160,11 @@ function ReloadFilterReport(Start_Date, End_Date) {
 
     FilterReport();
 }
+
+$("body").on("change", "select.filter-data", function (e) {
+    var val = $(this).find("option:selected").val();
+    var filter = $(this).attr("data-filter");
+    $("#filter-form input[name='" + filter + "']").val(val);
+
+    FilterReport();
+});

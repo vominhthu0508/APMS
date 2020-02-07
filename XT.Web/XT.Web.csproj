@@ -2139,6 +2139,9 @@
   <ItemGroup>
     <Content Include="Views\ManageTimekeeper\_partial_Report_TimeKeeperCalendar_TimeKeeper.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\ManageTimekeeper\ReportByTimeKeeperCalendar.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

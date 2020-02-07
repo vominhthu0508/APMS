@@ -52,6 +52,13 @@
                 new MenuModel(_name: "Employee", _action: "ManageEmployee"),
                 new MenuModel(_name: "Resource", _action: "ManageResource"),
         }),
+        new MenuModel("fa fa-home", "Home", "Index"),
+        new MenuModel("fa fa-clock-o", "Timekeeper", "ManageTimekeeper", 
+            _children: new List<MenuModel>{
+                new MenuModel(_name: "Personal Timekeeper", _action: "ManageTimekeeper"),
+                new MenuModel(_name: "Report", _action: "ReportByTimeKeeperCalendar", 
+                                _roles: new List<RoleTypeEnum>{RoleTypeEnum.CH, RoleTypeEnum.AH, RoleTypeEnum.DAH, RoleTypeEnum.AAE, RoleTypeEnum.SRO}),
+        }),
         //new MenuModel("fa fa-cogs", "Role", "ManageRole", _children: new List<MenuModel>{
         //    new MenuModel(_name: "User Type", _action: "ManageUserType"),
         //    new MenuModel(_name: "Role Type", _action: "ManageRoleType"),
