@@ -1,0 +1,55 @@
+﻿<#@ template debug="false" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="System.IO" #>
+<#@ import namespace="System.Text.RegularExpressions" #>
+<#@ output extension=".cs" #>
+<#
+	string filename = this.Host.ResolvePath("My.designer.cs");
+	string searchStatus = "public int Status";
+	string replaceStatus = "public override int Status";
+
+	string searchDate = "public System.DateTime Created_Date";
+	string replaceDate = "public override System.DateTime Created_Date";
+
+	string searchCreated_By = "public System.Nullable<int> Created_By";
+	string replaceCreated_By = "public override System.Nullable<int> Created_By";
+
+	string searchModified_By = "public System.Nullable<int> Modified_By";
+	string replaceModified_By = "public override System.Nullable<int> Modified_By";
+
+	string searchModified_Date = "public System.DateTime Modified_Date";
+	string replaceModified_Date = "public override System.DateTime Modified_Date";
+
+	StreamReader sr = new StreamReader(filename);
+	String[] rows = Regex.Split(sr.ReadToEnd(), "\r\n");
+	sr.Close();
+	
+	StreamWriter sw = new StreamWriter(filename);
+	for (int i = 0; i < rows.Length; i++)
+	{
+	    if(rows[i].Contains(searchStatus))
+	    {
+	        rows[i] = rows[i].Replace(searchStatus, replaceStatus);
+	    }else if(rows[i].Contains(searchDate))
+	    {
+	        rows[i] = rows[i].Replace(searchDate, replaceDate);
+	    }
+		else if(rows[i].Contains(searchCreated_By))
+	    {
+	        rows[i] = rows[i].Replace(searchCreated_By, replaceCreated_By);
+	    }
+		else if(rows[i].Contains(searchModified_By))
+	    {
+	        rows[i] = rows[i].Replace(searchModified_By, replaceModified_By);
+	    }
+		else if(rows[i].Contains(searchModified_Date))
+	    {
+	        rows[i] = rows[i].Replace(searchModified_Date, replaceModified_Date);
+	    }
+	    sw.WriteLine(rows[i]);
+	}
+	sw.Close();
+#>
