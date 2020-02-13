@@ -1,5 +1,5 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="apms.cocome.vn_official" Class="MyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-MO33L1P;Initial Catalog=apms.cocome.vn_official;Integrated Security=True;MultipleActiveResultSets=True" SettingsObjectName="XT.Model.Properties.Settings" SettingsPropertyName="apms_cocome_vn_server_final_aahcmConnectionString" Provider="System.Data.SqlClient" />
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="apms.cocome.vn" Class="MyDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=DESKTOP-MO33L1P;Initial Catalog=apms.cocome.vn;Integrated Security=True" SettingsObjectName="XT.Model.Properties.Settings" SettingsPropertyName="apms_cocome_vn_server_final_aahcmConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Account" Member="Accounts">
     <Type Name="Account">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -166,6 +166,7 @@
       <Association Name="Company_BookOrder" Member="BookOrders" ThisKey="Id" OtherKey="Company_Id" Type="BookOrder" />
       <Association Name="Company_Class" Member="Classes" ThisKey="Id" OtherKey="Company_Id" Type="Class" />
       <Association Name="Company_Faculty" Member="Faculties" ThisKey="Id" OtherKey="Company_Id" Type="Faculty" />
+      <Association Name="Company_Module" Member="Modules" ThisKey="Id" OtherKey="Center_Id" Type="Module" />
       <Association Name="Company_Resource" Member="Resources" ThisKey="Id" OtherKey="Company_Id" Type="Resource" />
       <Association Name="Company_User_Company" Member="User_Companies" ThisKey="Id" OtherKey="Company_Id" Type="User_Company" />
       <Association Name="Company_Type_Company" Member="Company_Type" ThisKey="Company_Type_Id" OtherKey="Id" Type="Company_Type" IsForeignKey="true" />
@@ -192,6 +193,7 @@
       <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Parent_Course_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Course_Main_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Course_Course" Member="Courses" ThisKey="Id" OtherKey="Parent_Course_Id" Type="Course" />
       <Association Name="Course_CourseFamily" Member="CourseFamilies" ThisKey="Id" OtherKey="Course_Id" Type="CourseFamily" />
       <Association Name="Course_Course" Member="Course1" ThisKey="Parent_Course_Id" OtherKey="Id" Type="Course" IsForeignKey="true" />
@@ -281,9 +283,7 @@
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="CourseFamily_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Semester" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Semester_Name_Portal" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Module_Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="Module_Name_Portal" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Module_Code" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Module_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Module_Max_LT" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -294,8 +294,14 @@
       <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="Module_Portal_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Module_Exam_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Module_Name_Portal" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Semester_Name_Portal" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Center_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Module_Order" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="Module_Class_Module" Member="Class_Modules" ThisKey="Id" OtherKey="Module_Id" Type="Class_Module" />
       <Association Name="Module_Faculty_Module" Member="Faculty_Modules" ThisKey="Id" OtherKey="Module_Id" Type="Faculty_Module" />
+      <Association Name="Module_Student_Module" Member="Student_Modules" ThisKey="Id" OtherKey="Module_Id" Type="Student_Module" />
+      <Association Name="Company_Module" Member="Company" ThisKey="Center_Id" OtherKey="Id" Type="Company" IsForeignKey="true" />
       <Association Name="CourseFamily_Module" Member="CourseFamily" ThisKey="CourseFamily_Id" OtherKey="Id" Type="CourseFamily" IsForeignKey="true" />
     </Type>
   </Table>
@@ -381,6 +387,7 @@
       <Association Name="Student_Student_AcademicStatus" Member="Student_AcademicStatus" ThisKey="Id" OtherKey="Student_Id" Type="Student_AcademicStatus" />
       <Association Name="Student_Student_ClassHistory" Member="Student_ClassHistories" ThisKey="Id" OtherKey="Student_Id" Type="Student_ClassHistory" />
       <Association Name="Student_Student_FeePlan" Member="Student_FeePlans" ThisKey="Id" OtherKey="Student_Id" Type="Student_FeePlan" />
+      <Association Name="Student_Student_Module" Member="Student_Modules" ThisKey="Id" OtherKey="Student_Id" Type="Student_Module" />
       <Association Name="Class_Student" Member="Class" ThisKey="Class_Id" OtherKey="Id" Type="Class" IsForeignKey="true" />
       <Association Name="CourseFamily_Student" Member="CourseFamily" ThisKey="CourseFamily_Id" OtherKey="Id" Type="CourseFamily" IsForeignKey="true" />
     </Type>
@@ -447,6 +454,36 @@
       <Association Name="Student_FeePlan_Student_FeePlan_Installment" Member="Student_FeePlan" ThisKey="Student_FeePlan_Id" OtherKey="Id" Type="Student_FeePlan" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.Student_Module" Member="Student_Modules">
+    <Type Name="Student_Module">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Student_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Module_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Mark_LT" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Mark_TH" Type="System.Single" DbType="Real NOT NULL" CanBeNull="false" />
+      <Column Name="Class_Module_StudentExam_Id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="Module_Student_Module" Member="Module" ThisKey="Module_Id" OtherKey="Id" Type="Module" IsForeignKey="true" />
+      <Association Name="Student_Student_Module" Member="Student" ThisKey="Student_Id" OtherKey="Id" Type="Student" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Timekeeper" Member="Timekeepers">
+    <Type Name="Timekeeper">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Photo" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="IP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="IP_Modem" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Location" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Checkin_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="InOrOut" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Company_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="User_Profile_Timekeeper" Member="User_Profile" ThisKey="User_Id" OtherKey="Id" Type="User_Profile" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.User_Company" Member="User_Companies">
     <Type Name="User_Company">
       <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -473,26 +510,10 @@
       <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Association Name="User_Profile_Account" Member="Accounts" ThisKey="Id" OtherKey="User_Profile_Id" Type="Account" />
-      <Association Name="User_Profile_User_Company" Member="User_Companies" ThisKey="Id" OtherKey="User_Id" Type="User_Company" />
       <Association Name="User_Profile_Timekeeper" Member="Timekeepers" ThisKey="Id" OtherKey="User_Id" Type="Timekeeper" />
+      <Association Name="User_Profile_User_Company" Member="User_Companies" ThisKey="Id" OtherKey="User_Id" Type="User_Company" />
       <Association Name="Role_Type_User_Profile" Member="Role_Type" ThisKey="Role_Type_Id" OtherKey="Id" Type="Role_Type" IsForeignKey="true" />
       <Association Name="User_Type_User_Profile" Member="User_Type" ThisKey="User_Type_Id" OtherKey="Id" Type="User_Type" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.Timekeeper" Member="Timekeepers">
-    <Type Name="Timekeeper">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="User_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Photo" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="IP" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="IP_Modem" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Location" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Checkin_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Created_Date" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="InOrOut" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Company_Id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="User_Profile_Timekeeper" Member="User_Profile" ThisKey="User_Id" OtherKey="Id" Type="User_Profile" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
